@@ -1,5 +1,9 @@
 <!-- Services section -->
-<div class="mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0">
+<div
+  class="mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0"
+  x-data="{ visible: false }"
+  x-init="setTimeout(() => visible = true, 200)"
+>
   <div
     class="hero grid grid-cols-2 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center"
   >
@@ -26,7 +30,13 @@
         />
       </div>
     </div>
-    <div class="pt-28 max-sm:pt-10 max-sm:mt-0 max-sm:mb-10 col-span-1">
+    <div
+      class="pt-28 max-sm:pt-10 max-sm:mt-0 max-sm:mb-10 col-span-1"
+      x-show="visible"
+      x-transition:enter="transition ease-out duration-1000"
+      x-transition:enter-start="opacity-0 translate-x-12"
+      x-transition:enter-end="opacity-100 translate-x-0"
+    >
       <div
         class="herocontent flex flex-col justify-center items-center gap-20 max-sm:gap-10"
       >
@@ -70,6 +80,10 @@
       <div class="absolute grid grid-cols-3 max-sm:flex max-sm:flex-col">
         <div
           class="flex text-left mt-[10rem] max-sm:mt-10 flex-col col-start-1 pl-20 max-sm:p-6"
+          x-show="visible"
+          x-transition:enter="transition ease-out duration-1000"
+          x-transition:enter-start="opacity-0 -translate-x-12"
+          x-transition:enter-end="opacity-100 translate-x-0"
         >
           <div>
             <h2 class="font-medium text-[50px] max-sm:text-[30px]">
@@ -239,10 +253,14 @@
       </div>
     </div>
   </div>
-  <div
-    class="text-green-400 font-mono p-6 rounded-xl shadow-lg text-sm flex justify-center"
-  >
-    <pre>
+  <div class="grid grid-cols-2 h-[500px]">
+    <div class="flex justify-center items-center">
+      <img src="/images/icons/ai-icon.svg" class="w-[200px]" />
+    </div>
+    <div
+      class="text-green-400 font-mono p-6 rounded-xl shadow-lg text-sm flex justify-center items-center"
+    >
+      <pre>
 <span class="text-yellow-300 gap-5">class</span> AreasOfExpertise:
     algorithmic_trading = <span class="text-pink-400">"Algorithmic Trading"</span>
     exchange_matching_engines = <span class="text-pink-400">"Exchange Matching Engines"</span>
@@ -257,5 +275,110 @@
     risk_management = <span class="text-pink-400">"Risk Management"</span>
     analytics = <span class="text-pink-400">"Analytics"</span><span class="animate-blink">|</span>
   </pre>
+    </div>
+  </div>
+  <div class="overflow-hidden">
+    <div class="flex justify-center">
+      <div
+        class="relative flex flex-col items-center pb-0 bg-[#090619] text-white"
+      >
+        <!-- Vertical Line (Glowing Path) -->
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-blue-500 to-green-500 h-[700px] max-sm:h-[240px]"
+          style="
+            width: 80px;
+            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+          "
+        ></div>
+
+        <div class="relative space-y-0 w-max max-sm:w-3/4">
+          <!-- Step 1 -->
+          <div class="relative">
+            <div
+              class="bg-white/0 overflow-hidden max-sm:overflow-visible flex flex-col justify-around p-32 px-48 max-sm:py-10 max-sm:px-0 max-sm:p-0 backdrop-blur-md relative w-screen hover:scale-105 max-sm:peer-hover:scale- transition m-0"
+            >
+              <div>
+                <div
+                  class="grid grid-cols-2 max-sm:flex max-sm:flex-col max-sm:w-3/4 max-sm:justify-center max-sm:items-center"
+                >
+                  <div class="flex justify-center items-center">
+                    <section
+                      class="py-0 max-sm:py-6 w-[500px] overflow-hidden max-sm:w-[320px] max-sm:mt-0 bg-[#2a2a2a]/10 backdrop-blur-sm text-gray-200 rounded-[20px] drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] max-sm:drop-shadow-[5px_5px_5px_rgba(255,255,255,0.55)]"
+                    >
+                      <div
+                        class="p-4 border-b bg-[#3b3b3b] border-gray-700 flex items-center space-x-2"
+                      >
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-400 text-sm ml-3"
+                          >algoteq_systems.js</span
+                        >
+                      </div>
+
+                      <div class="p-6 text-sm font-mono">
+                        <span class="text-blue-400">const</span>
+                        <span class="text-green-400">algoteqSystem</span> = {<br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"highFrequencyBus"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Fast and reliable information highway",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"orderManagementSystem"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Scalable, high-performance, resilient OMS",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"matchingEngine"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Ultra-fast execution across multiple assets",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"algoTradingPlatform"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Distributed platform for advanced strategies",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"tradingAlgorithms"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Optimized for diverse market conditions",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"analytics"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Performance insights for data-driven
+                          decisions",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"exchangeSimulator"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"Ultra-realistic trading environment",</span
+                        ><br />
+                        &nbsp;&nbsp;<span class="text-yellow-400"
+                          >"agentMarkets"</span
+                        >:
+                        <span class="text-gray-300"
+                          >"AI-driven market simulations for strategy
+                          validation"</span
+                        ><br />
+                        };
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
