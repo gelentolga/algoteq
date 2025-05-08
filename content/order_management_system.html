@@ -1,0 +1,162 @@
+---
+title: "OrderManagementSystem"
+draft: false
+---
+
+<!-- Alpine.js for interactivity -->
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+></script>
+
+<div
+  class="orderManagementSystem mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0 flex flex-col items-center"
+>
+  <!-- First Section -->
+  <div
+    class="fisrtSection w-5/6 h-[500px] max-sm:h-[300px] flex flex-col justify-around relative"
+  >
+    <img
+      src="/images/omg-try.png"
+      class="w-[380px] absolute right-10 max-sm:hidden"
+    />
+    <div class="leftSide">
+      <h1 class="text-[5rem] max-sm:text-4xl">Order Management<br />System</h1>
+    </div>
+    <div
+      class="rightSide flex justify-center items-center max-sm:items-end max-sm:justify-end"
+    >
+      <div class="flex flex-col text-right">
+        <span class="text-2xl">“Quality is not an act, it is a habit.”</span>
+        <span class="text-md">Aristotle</span>
+      </div>
+    </div>
+  </div>
+  <!-- Second Section -->
+
+  <div
+    class="fisrtSection w-5/6 h-[500px] max-sm:h-[300px] flex flex-col justify-around relative"
+  >
+    <div class="h-1 bg-gradient-to-r from-green-400 to-blue-500 relative"></div>
+    <div
+      class="flex text-center justify-center items-center mx-0 max-sm:mx-0 max-sm:y-10"
+    >
+      <h2 class="w-1/2 max-sm:w-full text-2xl max-sm:text-lg font-thin">
+        The OMS is the centrepiece of the electronic workflow. It connects the
+        users to various internal and external markets, providing access to the
+        smart routing, algorithmic trading, crossing, cross negotiation and
+        other capabilities common to modern trading platforms. The OMS holds the
+        knowledge of client, care, market-side and custom orders and provides a
+        holistic picture of the current state of the execution flow it is
+        deployed to manage.
+      </h2>
+    </div>
+  </div>
+  <!-- datas Section -->
+  <div class="w-full h-[200px] grid grid-cols-6 max-sm:flex">
+    <div
+      class="col-span-1 border-y border-solid border-gray-600 max-sm:hidden"
+    ></div>
+    <div
+      class="col-span-4 max-sm:mt-10 flex pr-20 justify-end items-center text-right max-sm:text-left max-sm:pl-10 border-t border-b border-solid border-gray-600 text-xl"
+    >
+      <h2 class="max-sm:text-sm">
+        Less than
+        <span
+          class="text-4xl max-sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent animate-gradient-text"
+          >26µs</span
+        >
+        for
+        <span
+          class="text-4xl max-sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent animate-gradient-text"
+          >99.5%</span
+        >
+        of messages <br class="max-sm:hidden" />(including the network hops) for
+        the “business” IPC layer.
+      </h2>
+    </div>
+
+    <div
+      class="col-span-1 max-sm:hidden flex justify-center items-center text-center border border-solid border-gray-600"
+    >
+      <span class="text-[2rem]">Latency</span>
+    </div>
+  </div>
+  <section
+    class="relative min-h-screen w-full bg-white overflow-hidden flex justify-center py-20 max-sm:py-0"
+    x-data
+    x-init="initMatrixEffect($refs.canvas)"
+  >
+    <!-- Canvas background -->
+    <canvas x-ref="canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+
+    <!-- Glassmor<section
+      class="relative h-screen w-full bg-black overflow-hidden"
+      x-data
+      x-init="initMatrixEffect($refs.canvas)"
+    >
+      <!-- Canvas for Matrix effect -->
+    <canvas x-ref="canvas" class="absolute top-0 left-0 w-full h-full"></canvas>
+
+    <!-- Glassmorphic Content -->
+    <div
+      class="relative z-10 flex h-full w-3/4 max-sm:w-11/12 justify-center px-4 max-sm:px-0"
+    >
+      <div
+        class="bg-white/20 backdrop-blur-md px-10 py-40 max-sm:py-10 text-black text-center border border-white/30 w-full"
+      >
+        <div>
+          <div class="text-left">
+            <h1 class="font-semibold text-[50px] max-sm:text-[30px]">
+              Engineered for
+              <span
+                class="max-sm:text-3xl font-bold bg-gradient-to-r from-blue-700 to-green-500 bg-clip-text text-transparent animate-gradient-text"
+                >High-Performance</span
+              >
+              Trading
+            </h1>
+          </div>
+          <div class="text-left">
+            <p
+              class="text-[30px] max-sm:text-[20px] max-sm:mt-8 w-3/4 max-sm:w-full font-thin max-sm:font-normal"
+            >
+              Meet an OMS that’s built different — modular, resilient, and
+              blazing fast. Our micro-kernel architecture and event-driven core
+              deliver real-time performance and always-on reliability.
+            </p>
+          </div>
+          <div class="mt-20 max-sm:mt-6 pl-20 max-sm:pl-4">
+            <div class="text-left mb-6 max-sm:mb-4">
+              <h3 class="font-bold text-[20px]">Atomic Components</h3>
+              <p class="font-normal">
+                Each module does one thing — and does it flawlessly. Failures
+                are isolated and recover instantly with redundant peers.
+              </p>
+            </div>
+            <div class="text-left mb-6 max-sm:mb-4">
+              <h3 class="font-bold text-[20px]">Event-Driven Core</h3>
+              <p class="font-normal">
+                Every meaningful event is captured, stored, and reacted to —
+                powering transparent, audit-ready workflows.
+              </p>
+            </div>
+            <div class="text-left mb-6 max-sm:mb-4">
+              <h3 class="font-bold text-[20px]">Messaging That Never Misses</h3>
+              <p class="font-normal">
+                Gapless, ordered, real-time messaging with built-in persistence.
+                Late joiners? No problem.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-start mt-20 max-sm:mt-10 ml-10 max-sm:ml-0">
+            <button
+              class="w-28 h-10 bg-[#1DA903] text-white text-center justify-center items-center"
+            >
+              Let's talk
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

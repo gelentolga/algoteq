@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+[x-cloak] {
+  display: none !important;
+}
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"rel="stylesheet");
+
+@theme {
+  --font-raleway: "Raleway", sans-serif;
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 40rem;
+  --breakpoint-laptop: 64rem;
+  --breakpoint-desktop: 80rem;
+}
+@layer utilities {
+  .mask-image-gradient {
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
+:root {
+  --announcementbg: linear-gradient(
+    90deg,
+    rgba(0, 170, 0, 1) 0%,
+    rgba(83, 154, 253, 1) 86%
+  );
+  --sidebarbg: linear-gradient(
+    142deg,
+    rgba(255, 255, 255, 1) 57%,
+    rgba(4, 169, 10, 0.9780505952380952) 80%,
+    rgba(82, 154, 248, 0.986453956582633) 95%
+  );
+}
+body {
+  font-family: "Raleway";
+}
+.announcement {
+  background: var(--announcementbg);
+}
+.sidebar {
+  background: var(--sidebarbg);
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #232323 50%, #4a4a4a 50%);
+  color: white;
+  padding: 150px 0;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-section .btn-cta {
+  font-size: 1.25rem;
+  padding: 15px 30px;
+  background-color: #00ff7f;
+  color: white;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.hero-section .btn-cta:hover {
+  background-color: #00e68f;
+}
+
+/* Content Section */
+.content-section {
+  background: linear-gradient(to bottom, #212121, #1b1b1b);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.content-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.content-section p {
+  font-size: 1.125rem;
+  color: #ddd;
+  margin-bottom: 40px;
+}
+
+.interactive-graph-container {
+  margin-top: 40px;
+  background-color: #212121;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.cta-section {
+  background: #00ff7f;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.cta-section p {
+  font-size: 1.125rem;
+  margin-bottom: 40px;
+}
+
+.cta-section .btn-cta {
+  background-color: #ffffff;
+  color: #00ff7f;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.cta-section .btn-cta:hover {
+  background-color: #f0f0f0;
+}
+
+.gradient-shadow {
+  position: relative;
+  z-index: 1;
+}
+
+.gradient-shadow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #00aa00, #539afd);
+  filter: blur(30px);
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.gradient-shadow:hover::before {
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.animate-blink {
+  animation: blink 1s step-start infinite;
+}
