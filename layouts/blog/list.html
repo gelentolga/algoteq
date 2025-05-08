@@ -1,74 +1,88 @@
 {{ define "main" }}
-<div class="container mx-auto my-10">
-  <div class="flex flex-wrap">
-    <div class="flex-none">
-      Categories: {{range ($.Site.GetPage "taxonomyTerm" "categories").Pages }}
-      <a
-        class="inline-block bg-blue-500 text-white rounded-full px-3 py-1 text-sm font-semibold mr-2"
-        href="{{.Permalink}}"
-        >{{.Title}}</a
+<div class="bg-[#090619] mb-10">
+  <!-- Blog Landing Hero Section -->
+  <section class="w-full py-16 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-bold text-gray-100 leading-tight">
+        Insights, Ideas & Innovation
+      </h1>
+      <p class="mt-4 text-xl text-gray-100">
+        Discover the latest thoughts and stories from our team — crafted to
+        inspire, inform, and ignite new possibilities.
+      </p>
+    </div>
+  </section>
+
+  <div class="container mx-auto my-10 px-4">
+    {{ if ne .Kind "taxonomy" }}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{ range .Pages }}
+      <div
+        class="flex flex-col rounded-xl overflow-hidden shadow hover:shadow-lg transition-shadow duration-300 bg-white"
       >
-      {{end}}
-    </div>
-    <div class="flex-none">
-      Tags: {{range ($.Site.GetPage "taxonomyTerm" "tags").Pages }}
-      <a
-        class="inline-block bg-green-500 text-white rounded-full px-3 py-1 text-sm font-semibold mr-2"
-        href="{{.Permalink}}"
-        >{{.Title}}</a
-      >
-      {{end}}
-    </div>
-  </div>
+        <!-- Image -->
+        <div class="h-48 overflow-hidden">
+          <img
+            class="w-full h-full object-cover"
+            src="{{ .Params.featuredImage }}"
+            alt="Featured image for {{ .Title }}"
+          />
+        </div>
 
-  {{ if ne .Kind "taxonomy" }}
-  <div class="grid grid-cols-3 mt-2 gap-4">
-    {{ range .Pages }}
+        <!-- Content -->
+        <div class="p-4 flex flex-col justify-between flex-grow">
+          <a
+            href="{{ .RelPermalink }}"
+            class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition"
+          >
+            {{ .Title }}
+          </a>
 
-    <div class="flex flex-col">
-      <div>
-        <img
-          class="w-full h-auto rounded"
-          src="{{ .Params.featuredImage }}"
-          alt="featured image {{.Title }}"
-        />
+          <time class="text-sm text-gray-500 mt-1 block">
+            {{ .Lastmod.Format "Jan 2, 2006" }}
+          </time>
+
+          <!-- Categories -->
+          <div class="mt-2 text-sm text-gray-600">
+            <strong>Categories:</strong>
+            {{ range .Params.categories }}
+            <a
+              href="/categories/{{ . | urlize }}"
+              class="text-blue-500 hover:underline mr-1"
+              >{{ . }}</a
+            >
+            {{ end }}
+          </div>
+
+          <!-- Tags -->
+          <div class="mt-1 text-sm text-gray-600">
+            <strong>Tags:</strong>
+            {{ range .Params.tags }}
+            <a
+              href="/tags/{{ . | urlize }}"
+              class="text-green-500 hover:underline mr-1"
+              >{{ . }}</a
+            >
+            {{ end }}
+          </div>
+
+          <!-- Excerpt -->
+          <p class="mt-3 text-sm text-gray-700">
+            {{ .Summary | truncate 150 }}
+          </p>
+
+          <a
+            href="{{ .Permalink }}"
+            class="mt-4 inline-block text-blue-600 hover:underline text-sm font-medium"
+          >
+            Read more →
+          </a>
+        </div>
       </div>
-      <div class="w-full bg-gray-100 p-3">
-        <a class="text-black no-underline" href="{{ .RelPermalink }}">
-          <h2 class="text-lg font-bold">{{ .Title }}</h2>
-        </a>
-
-        <time
-          datetime="{{ .Lastmod.Format `006-01-02T15:04:05Z07:00` | safeHTML }}"
-        >
-          {{ .Lastmod.Format "Sep 2,2023" }}</time
-        >
-        <br />
-        Categories: {{ range .Params.categories }}
-        <a
-          class="text-black no-underline px-1"
-          href="/categories/{{ . | urlize}}"
-          >{{ . }}</a
-        >
-
-        {{end}} Tags:{{ range .Params.tags }}
-        <a class="text-black no-underline px-1" href="/tags/{{ . | urlize}}"
-          >{{ . }}</a
-        >
-
-        {{end}} {{ .Content | truncate 400 }}
-        <a
-          class="text-black no-underline hover:text-gray-600"
-          href="{{.Permalink}}"
-          >...Read Article</a
-        >
-      </div>
+      {{ end }}
     </div>
-
     {{ end }}
   </div>
-
-  {{ end }}
+  <div class="h-20"></div>
 </div>
-
 {{ end }}
