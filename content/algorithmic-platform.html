@@ -10,13 +10,21 @@ draft: false
 
 <div
   class="algorithmicPlatform mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0 flex flex-col items-center"
+  x-data="{ visible: false }"
+  x-init="setTimeout(() => visible = true, 200)"
 >
   <!-- First Section -->
   <div
     class="firstSection w-full h-[700px] max-sm:h-[350px] flex flex-col justify-around relative bg-cover bg-center"
     style="background-image: url('/images/algo-platform.png');"
   >
-    <div class="leftSide ml-20 max-sm:ml-5">
+    <div
+      class="leftSide ml-20 max-sm:ml-5"
+      x-show="visible"
+      x-transition:enter="transition ease-out duration-1000"
+      x-transition:enter-start="opacity-0 translate-x-12"
+      x-transition:enter-end="opacity-100 translate-x-0"
+    >
       <h1 class="text-[5rem] max-sm:text-5xl leading-tight text-white">
         Algorithmic<br />Platform
       </h1>
@@ -37,8 +45,16 @@ draft: false
   <!-- Introduction Section -->
   <div
     class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    x-data="{ shown: false }"
+    x-intersect="shown = true"
   >
-    <div class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto">
+    <div
+      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
+      x-show="shown"
+      x-transition:enter="transition ease-out duration-1000 delay-50"
+      x-transition:enter-start="opacity-0 translate-y-12"
+      x-transition:enter-end="opacity-100 translate-y-0"
+    >
       <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
         A Framework for Intelligent Algorithmic Execution
       </h2>
@@ -97,7 +113,13 @@ draft: false
         class="rightBlank w-[5px] h-[600px] max-sm:hidden mr-10"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
       ></div>
-      <div class="flex justify-center items-center content-center">
+      <div
+        class="flex justify-center items-center content-center"
+        x-show="shown"
+        x-transition:enter="transition ease-out duration-1000 delay-50"
+        x-transition:enter-start="opacity-0 translate-x-12"
+        x-transition:enter-end="opacity-100 translate-x-0"
+      >
         <img src="/images/imac-binance.png/" class="w-auto h-[500px]" />
       </div>
     </div>

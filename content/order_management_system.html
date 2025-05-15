@@ -11,6 +11,8 @@ draft: false
 
 <div
   class="orderManagementSystem mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0 flex flex-col items-center"
+  x-data="{ visible: false }"
+  x-init="setTimeout(() => visible = true, 200)"
 >
   <!-- First Section -->
   <div
@@ -20,7 +22,13 @@ draft: false
       src="/images/omg-try.png"
       class="w-[380px] absolute right-10 max-sm:hidden"
     />
-    <div class="leftSide">
+    <div
+      class="leftSide"
+      x-show="visible"
+      x-transition:enter="transition ease-out duration-1000"
+      x-transition:enter-start="opacity-0 translate-x-12"
+      x-transition:enter-end="opacity-100 translate-x-0"
+    >
       <h1 class="text-[5rem] max-sm:text-4xl">Order Management<br />System</h1>
     </div>
     <div
@@ -40,8 +48,16 @@ draft: false
     <div class="h-1 bg-gradient-to-r from-green-400 to-blue-500 relative"></div>
     <div
       class="flex text-center justify-center items-center mx-0 max-sm:mx-0 max-sm:y-10"
+      x-data="{ shown: false }"
+      x-intersect="shown = true"
     >
-      <h2 class="w-1/2 max-sm:w-full text-2xl max-sm:text-lg font-thin">
+      <h2
+        class="w-1/2 max-sm:w-full text-2xl max-sm:text-lg font-thin"
+        x-show="shown"
+        x-transition:enter="transition ease-out duration-1000 delay-50"
+        x-transition:enter-start="opacity-0 -translate-x-20"
+        x-transition:enter-end="opacity-100 translate-x-0"
+      >
         The OMS is the centrepiece of the electronic workflow. It connects the
         users to various internal and external markets, providing access to the
         smart routing, algorithmic trading, crossing, cross negotiation and

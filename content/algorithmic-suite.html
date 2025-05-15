@@ -14,7 +14,7 @@ draft: false
   <!-- Hero Section -->
   <div
     class="w-full h-[800px] max-sm:h-[350px] flex flex-col justify-evenly relative bg-contain bg-no-repeat bg-top"
-    style="background-image: url('/images/algo-suite-banner.png');"
+    style="background-image: url('/images/algo-suite-banner-1.png');"
   >
     <div class="ml-20 max-sm:ml-5">
       <h1 class="text-[5rem] max-sm:text-5xl leading-tight">Algorithm Suite</h1>
@@ -31,96 +31,122 @@ draft: false
     </div>
   </div>
 
-  <!-- Data & Analysis -->
-  <section
-    class="w-full bg-[#0f111a] text-white py-20 px-6 bg-cover bg-bottom h-[1000px]"
-    style="background-image: url('/images/dot-maps.png');"
+  <!-- Introduction Section: Algoteq Algorithm Suite -->
+  <div
+    class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    x-data="{ shown: false }"
+    x-intersect="shown = true"
   >
     <div
-      class="w-11/12 mt-[100px] mx-auto text-right flex flex-col justify-end items-end"
+      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
+      x-show="shown"
+      x-transition:enter="transition ease-out duration-1000 delay-50"
+      x-transition:enter-start="opacity-0 translate-y-12"
+      x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <h2 class="text-6xl font-bold mb-6">
-        Data and Analysis
+      <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
+        Algoteq Algorithm Suite
       </h2>
 
-      <p class="text-lg text-black leading-relaxed mb-6 w-1/3">
-        Our suite leverages a managed historical data repository per stock,
-        enabling tailored default behaviour and effective parameterisation.
-        Market data is enhanced in real time using advanced analytics to improve
-        algorithm responsiveness and decision-making.
+      <p class="text-xl font-light leading-relaxed mb-12">
+        The Algoteq Algorithm Suite is built on a multi-tier model, integrating
+        low-level trading tactics with high-level strategies to deliver
+        customisable and adaptive trading solutions across asset classes.
       </p>
-      <p class="text-lg text-black leading-relaxed w-1/3">
-        Custom aggregation, venue simulation, and synthetic data enhancements
-        are standard — ensuring smart routing and execution edge.
-      </p>
-    </div>
-    <div class="w-11/12 mx-auto mt-10 flex justify-end items-end">
-      <button
-        class="w-28 h-10 bg-[#3cff4f] text-purple-950 font-bold text-center justify-center items-center"
+
+      <div
+        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-6"
       >
-        Get Started
-      </button>
+        <div class="flex-1">
+          <h3 class="font-semibold text-lg mb-2">Trading Behaviour</h3>
+          <p class="text-sm leading-relaxed">
+            Our framework abstracts human and machine trading actions into coded
+            units for flexible strategy composition. Algorithms are tuned via
+            urgency and sensitivity parameters to align with client objectives
+            while maintaining control and safety limits.
+          </p>
+        </div>
+        <div
+          class="rightBlank w-[180px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+
+        <div class="flex-1">
+          <h3 class="font-semibold text-lg mb-2">Data and Analysis</h3>
+          <p class="text-sm leading-relaxed">
+            A curated set of derived historical data drives algorithm decisions
+            and default settings. Real-time analytics support adaptive
+            behaviour, smart routing, and intraday performance tracking with
+            synthetic venues and calculated enhancements.
+          </p>
+        </div>
+        <div
+          class="rightBlank w-[60px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+
+        <div class="flex-1">
+          <h3 class="font-semibold text-lg mb-2">Available Algorithms</h3>
+          <p class="text-sm leading-relaxed">
+            Our suite includes profile (VWAP, TWAP, IS, POV, MC), passive (PEG,
+            ICEBERG), responsive (SNIPER, TOUCH, STOP), and bespoke liquidity
+            seeking algorithms. All types offer configurable execution styles
+            across trading scenarios.
+          </p>
+        </div>
+        <div
+          class="rightBlank w-[180px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+
+        <div class="flex-1">
+          <h3 class="font-semibold text-lg mb-2">Simulation</h3>
+          <p class="text-sm leading-relaxed">
+            Simulate production and experimental algorithms on historical market
+            data using highly parallel hardware. Visualise behaviour, test
+            alternative strategies, and refine logic based on performance and
+            parameter responsiveness.
+          </p>
+        </div>
+        <div
+          class="rightBlank w-[60px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+
+        <div class="flex-1">
+          <h3 class="font-semibold text-lg mb-2">Summary</h3>
+          <p class="text-sm leading-relaxed">
+            The Algoteq Suite is a powerful, modular ecosystem supporting
+            continuous development, simulation, and optimisation—ensuring robust
+            algorithmic performance even in fast-evolving markets.
+          </p>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <div class="image-feature flex max-sm:hidden">
+      <div
+        class="rightBlank absolute w-[4px] h-[1000px] max-sm:hidden"
+        style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+      ></div>
+      <div
+        class="flex justify-center items-center content-center"
+        x-show="shown"
+        x-transition:enter="transition ease-out duration-1000 delay-500"
+        x-transition:enter-start="opacity-0 translate-x-12"
+        x-transition:enter-end="opacity-100 translate-x-0"
+      >
+        <img
+          src="/images/smartphone.png"
+          class="object-contain justify-center h-[800px] w-auto"
+          alt="Algoteq Algorithm Suite Visual"
+        />
+      </div>
+    </div>
+  </div>
+
   <!-- Gradient Divider -->
   <div
-    class="w-3/4 h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD] mt-10"
-  ></div>
-  <!-- Available Algorithms -->
-  <section class="w-full py-20 px-6">
-    <div class="w-11/12 md:w-3/4 mx-auto">
-      <h2 class="text-4xl font-semibold mb-6">Available Algorithms</h2>
-      <p class="text-lg leading-relaxed mb-6">
-        The suite includes a variety of algorithms, each categorized for
-        specific trading needs:
-      </p>
-      <ul class="list-disc pl-6 text-lg space-y-2">
-        <li><strong>Profile</strong> — VWAP, TWAP, IS, POV, MC</li>
-        <li><strong>Passive</strong> — PEG, ICEBERG</li>
-        <li>
-          <strong>Responsive</strong> — SNIPER, TOUCH, STOP, LIMIT-TO-MARKET
-        </li>
-        <li>
-          <strong>Liquidity Seeking</strong> — Custom, hidden-liquidity focused,
-          and alpha-optimised algorithms with smart routing
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Simulation -->
-  <section class="w-full bg-[#0f111a] text-white py-20 px-6">
-    <div class="w-11/12 md:w-3/4 mx-auto">
-      <h2 class="text-4xl font-semibold mb-6">Simulation</h2>
-      <p class="text-lg leading-relaxed mb-6">
-        Developers and quants can simulate algorithms on historical data with no
-        code change. Visualize performance, tweak parameters, and analyse
-        execution in both live and post-trade contexts.
-      </p>
-      <p class="text-lg leading-relaxed">
-        Simulation outputs also train our parameter response models, supporting
-        rapid iteration and optimisation of trading strategies.
-      </p>
-    </div>
-  </section>
-
-  <!-- Summary -->
-  <section class="w-full bg-white text-black py-20 px-6">
-    <div class="w-11/12 md:w-3/4 mx-auto text-center">
-      <h2 class="text-4xl font-semibold mb-6">Summary</h2>
-      <p class="text-lg leading-relaxed">
-        The Algoteq Algorithm Suite is a powerful, modular framework that
-        supports trading innovation and adaptability. With seamless integration
-        of strategy, data, and simulation, it empowers traders to evolve with
-        the market — across any asset class.
-      </p>
-    </div>
-  </section>
-
-  <!-- Gradient Divider -->
-  <div
-    class="w-full h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD] mt-10"
+    class="w-full h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD] mt-0"
   ></div>
 </div>
-
-<script src="js/snowfall.js"></script>

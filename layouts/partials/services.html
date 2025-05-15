@@ -7,10 +7,16 @@
   <div
     class="hero grid grid-cols-2 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center"
   >
-    <div class="col-span-1">
+    <div
+      class="col-span-1"
+      x-show="visible"
+      x-transition:enter="transition ease-out duration-1000"
+      x-transition:enter-start="opacity-0 "
+      x-transition:enter-end="opacity-100 "
+    >
       <div class="heroimage max-sm:invisible max-sm:absolute">
         <img
-          src="/images/hero-image.png"
+          src="/images/hero-image-1.png"
           alt="hero-image"
           class="w-full mt-10 ml-20 max-sm:ml-0"
         />
@@ -38,22 +44,28 @@
       x-transition:enter-end="opacity-100 translate-x-0"
     >
       <div
-        class="herocontent flex flex-col justify-center items-center gap-20 max-sm:gap-10"
+        class="herocontent flex flex-col justify-center items-center gap-10 max-sm:gap-10"
       >
         <div
           class="firstcontent w-4/6 text-6xl max-sm:text-4xl max-sm:text-center"
         >
-          <span>Building Intelligent<br />Trading Systems</span>
-          <span
-            class="-top-7 max-sm:-top-4 right-3 max-sm:right-0 text-[20px] max-sm:text-[15px] relative"
-            >TM</span
-          >
+          <span>
+            Building Intelligent<br />
+            Trading
+            <span class="relative inline-block">
+              Systems
+              <span class="absolute -top-2 -right-3 text-sm max-sm:text-[10px]"
+                >TM</span
+              >
+            </span>
+          </span>
         </div>
+
         <div class="secondcontent w-4/6 font-light max-sm:text-center">
           Algoteq builds institutional-grade technology for modern financial
           markets. Founded in 2013 by experienced investment banking
           professionals, we provide state-of-the-art trading solutions.
-          <div class="mt-20">
+          <div class="mt-10">
             <a href="/contactus">
               <button
                 class="w-28 h-10 bg-white text-black font-bold text-center justify-center items-center"
@@ -68,7 +80,8 @@
   </div>
 
   <div
-    class="relative mt-20 h-[900px] max-sm:h-[500px] bg-background-landing-three bg-cover max-sm:bg-cover bg-no-repeat"
+    class="relative mt-20 h-[900px] max-sm:h-[500px] bg-cover max-sm:bg-cover bg-no-repeat"
+    style="background-image: url('/images/bg-picture-4-1.png');"
   >
     <!-- Gradient Overlay -->
     <div
@@ -76,21 +89,29 @@
     ></div>
 
     <!-- Content -->
-    <div class="relative z-10 text-white mt-20">
-      <div class="absolute grid grid-cols-3 max-sm:flex max-sm:flex-col">
+    <div
+      class="relative z-10 text-white mt-20"
+      x-data="{ shown: false }"
+      x-intersect="shown = true"
+    >
+      <div
+        class="absolute max-sm:flex max-sm:flex-col"
+        x-data="{ shown: false }"
+        x-intersect="shown = true"
+      >
         <div
-          class="flex text-left mt-[10rem] max-sm:mt-10 flex-col col-start-1 pl-20 max-sm:p-6"
-          x-show="visible"
-          x-transition:enter="transition ease-out duration-1000"
-          x-transition:enter-start="opacity-0 -translate-x-12"
+          class="flex flex-wrap gap-96 justify-around text-left mt-[10rem] max-sm:mt-10 pl-20 max-sm:p-6"
+          x-show="shown"
+          x-transition:enter="transition ease-out duration-1000 delay-50"
+          x-transition:enter-start="opacity-0 -translate-x-20"
           x-transition:enter-end="opacity-100 translate-x-0"
         >
           <div>
-            <h2 class="font-medium text-[50px] max-sm:text-[30px]">
-              Advanced Trading Solutions
+            <h2 class="font-normal text-[70px] max-sm:text-[30px]">
+              Advanced<br />Trading<br />Solutions
             </h2>
           </div>
-          <div class="mt-16 max-sm:mt-6">
+          <div class="mt-32 max-sm:mt-6">
             <span>
               Develop, test, and optimize your strategies<br
                 class="lg:hidden"
@@ -108,8 +129,16 @@
   <!-- Introduction Section -->
   <div
     class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    x-data="{ shown: false }"
+    x-intersect="shown = true"
   >
-    <div class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto">
+    <div
+      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
+      x-show="shown"
+      x-transition:enter="transition ease-out duration-1000 delay-50"
+      x-transition:enter-start="opacity-0 translate-y-12"
+      x-transition:enter-end="opacity-100 translate-y-0"
+    >
       <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
         What We Offer
       </h2>
@@ -242,10 +271,16 @@
     </div>
     <div class="image-feature flex max-sm:hidden">
       <div
-        class="rightBlank w-[5px] h-[900px] max-sm:hidden"
+        class="rightBlank absolute w-[4px] h-[1000px] max-sm:hidden"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
       ></div>
-      <div class="flex justify-center items-center content-center">
+      <div
+        class="flex justify-center items-center content-center"
+        x-show="shown"
+        x-transition:enter="transition ease-out duration-1000 delay-500"
+        x-transition:enter-start="opacity-0 translate-x-12"
+        x-transition:enter-end="opacity-100 translate-x-0"
+      >
         <img
           src="/images/smartphone.png/"
           class="object-contain justify-center h-[800px] w-auto"
@@ -253,15 +288,54 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-2 h-[500px]">
-    <div class="flex justify-center items-center">
-      <img src="/images/icons/ai-icon.svg" class="w-[200px]" />
-    </div>
-    <div
-      class="text-green-400 font-mono p-6 rounded-xl shadow-lg text-sm flex justify-center items-center"
-    >
-      <pre>
-<span class="text-yellow-300 gap-5">class</span> AreasOfExpertise:
+
+  <div class="overflow-hidden">
+    <div class="flex justify-center">
+      <div
+        class="relative flex flex-col items-center pb-0 bg-[#090619] text-white"
+      >
+        <!-- Vertical Line (Glowing Path) -->
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-blue-500 to-green-500 h-[700px] max-sm:h-full"
+          style="
+            width: 80px;
+            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
+          "
+        ></div>
+
+        <div class="relative w-full px-4 sm:px-0">
+          <!-- Step 1 -->
+          <div class="relative">
+            <div
+              class="bg-white/0 overflow-hidden sm:overflow-visible flex justify-center items-center p-6 sm:p-32 sm:px-48 backdrop-blur-md w-full hover:scale-[1.02] transition-transform duration-300"
+            >
+              <div class="w-full max-w-7xl">
+                <div
+                  class="grid sm:grid-cols-2 gap-8 items-center justify-center"
+                >
+                  <!-- Code Block Container -->
+                  <div class="flex justify-center">
+                    <section
+                      class="w-full sm:w-[700px] max-w-full bg-[#2a2a2a]/10 max-sm:bg-black/50 backdrop-blur-sm text-gray-200 rounded-2xl drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] sm:drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] overflow-hidden"
+                    >
+                      <!-- Code Block Header -->
+                      <div
+                        class="p-4 border-b bg-[#3b3b3b] border-gray-700 flex items-center space-x-2"
+                      >
+                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <span class="text-gray-400 text-sm ml-3">
+                          algoteq_systems.js
+                        </span>
+                      </div>
+
+                      <!-- Code Block Content -->
+                      <div
+                        class="text-green-400 font-mono p-6 text-sm w-full overflow-x-auto"
+                      >
+                        <pre class="whitespace-pre-wrap break-words">
+<span class="text-yellow-300">class</span> AreasOfExpertise:
     algorithmic_trading = <span class="text-pink-400">"Algorithmic Trading"</span>
     exchange_matching_engines = <span class="text-pink-400">"Exchange Matching Engines"</span>
     client_connectivity = <span class="text-pink-400">"Client Connectivity"</span>
@@ -274,102 +348,7 @@
     smart_order_routing = <span class="text-pink-400">"Smart Order Routing (SOR)"</span>
     risk_management = <span class="text-pink-400">"Risk Management"</span>
     analytics = <span class="text-pink-400">"Analytics"</span><span class="animate-blink">|</span>
-  </pre>
-    </div>
-  </div>
-  <div class="overflow-hidden">
-    <div class="flex justify-center">
-      <div
-        class="relative flex flex-col items-center pb-0 bg-[#090619] text-white"
-      >
-        <!-- Vertical Line (Glowing Path) -->
-        <div
-          class="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-blue-500 to-green-500 h-[700px] max-sm:h-[240px]"
-          style="
-            width: 80px;
-            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
-          "
-        ></div>
-
-        <div class="relative space-y-0 w-max max-sm:w-3/4">
-          <!-- Step 1 -->
-          <div class="relative">
-            <div
-              class="bg-white/0 overflow-hidden max-sm:overflow-visible flex flex-col justify-around p-32 px-48 max-sm:py-10 max-sm:px-0 max-sm:p-0 backdrop-blur-md relative w-screen hover:scale-105 max-sm:peer-hover:scale- transition m-0"
-            >
-              <div>
-                <div
-                  class="grid grid-cols-2 max-sm:flex max-sm:flex-col max-sm:w-3/4 max-sm:justify-center max-sm:items-center"
-                >
-                  <div class="flex justify-center items-center">
-                    <section
-                      class="py-0 max-sm:py-6 w-[500px] overflow-hidden max-sm:w-[320px] max-sm:mt-0 bg-[#2a2a2a]/10 backdrop-blur-sm text-gray-200 rounded-[20px] drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] max-sm:drop-shadow-[5px_5px_5px_rgba(255,255,255,0.55)]"
-                    >
-                      <div
-                        class="p-4 border-b bg-[#3b3b3b] border-gray-700 flex items-center space-x-2"
-                      >
-                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span class="text-gray-400 text-sm ml-3"
-                          >algoteq_systems.js</span
-                        >
-                      </div>
-
-                      <div class="p-6 text-sm font-mono">
-                        <span class="text-blue-400">const</span>
-                        <span class="text-green-400">algoteqSystem</span> = {<br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"highFrequencyBus"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Fast and reliable information highway",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"orderManagementSystem"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Scalable, high-performance, resilient OMS",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"matchingEngine"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Ultra-fast execution across multiple assets",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"algoTradingPlatform"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Distributed platform for advanced strategies",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"tradingAlgorithms"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Optimized for diverse market conditions",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"analytics"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Performance insights for data-driven
-                          decisions",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"exchangeSimulator"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"Ultra-realistic trading environment",</span
-                        ><br />
-                        &nbsp;&nbsp;<span class="text-yellow-400"
-                          >"agentMarkets"</span
-                        >:
-                        <span class="text-gray-300"
-                          >"AI-driven market simulations for strategy
-                          validation"</span
-                        ><br />
-                        };
+</pre>
                       </div>
                     </section>
                   </div>

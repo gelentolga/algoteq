@@ -25,6 +25,17 @@
     rel="stylesheet"
   />
 
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+  ></script>
+
+  <!-- Alpine Core -->
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+  ></script>
+
   {{/* styles */}} {{ $options := dict "inlineImports" true }} {{ $styles :=
   resources.Get "css/styles.css" }} {{ $styles = $styles | css.PostCSS $options
   }} {{ if hugo.IsProduction }} {{ $styles = $styles | minify | fingerprint |
