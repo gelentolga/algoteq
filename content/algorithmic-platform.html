@@ -1,25 +1,15 @@
----
-title: "Algorithmic Platform"
-draft: false
----
-
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-></script>
-
 <div
-  class="algorithmicPlatform mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0 flex flex-col items-center"
-  x-data="{ visible: false }"
+  class="mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0 flex flex-col items-center"
+  x-data="{ visible: false, shown: false, open: null }"
   x-init="setTimeout(() => visible = true, 200)"
 >
-  <!-- First Section -->
+  <!-- Hero Section -->
   <div
-    class="firstSection w-full h-[700px] max-sm:h-[350px] flex flex-col justify-around relative bg-cover bg-center"
+    class="w-full h-[700px] max-sm:h-[350px] flex flex-col justify-around relative bg-cover bg-center"
     style="background-image: url('/images/algo-platform.png');"
   >
     <div
-      class="leftSide ml-20 max-sm:ml-5"
+      class="ml-20 max-sm:ml-5"
       x-show="visible"
       x-transition:enter="transition ease-out duration-1000"
       x-transition:enter-start="opacity-0 translate-x-12"
@@ -30,7 +20,7 @@ draft: false
       </h1>
     </div>
     <div
-      class="rightSide flex justify-center items-center max-sm:items-start max-sm:justify-center"
+      class="flex justify-center items-center max-sm:items-start max-sm:justify-center"
     >
       <div class="flex flex-col text-right max-sm:text-left">
         <span class="text-lg text-white"
@@ -42,90 +32,107 @@ draft: false
     </div>
   </div>
 
+  <!-- Description Section -->
+  <div
+    class="w-5/6 h-[500px] max-sm:h-[300px] flex flex-col justify-around relative mb-20"
+  >
+    <div class="h-1 bg-gradient-to-r from-green-400 to-blue-500 relative"></div>
+    <div
+      class="flex text-center justify-center items-center"
+      x-intersect:enter="shown = true"
+    >
+      <h2
+        class="w-1/2 max-sm:w-full text-2xl max-sm:text-lg font-thin"
+        x-show="shown"
+        x-transition:enter="transition ease-out duration-1000 delay-50"
+        x-transition:enter-start="opacity-0 -translate-x-20"
+        x-transition:enter-end="opacity-100 translate-x-0"
+      >
+        Our Algorithmic Platform provides fully automated trading strategies for
+        institutional and proprietary desks, with intelligent infrastructure to
+        design, test, and deploy robust algorithms.
+      </h2>
+    </div>
+  </div>
+
   <!-- Introduction Section -->
   <div
-    class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
-    x-data="{ shown: false }"
-    x-intersect="shown = true"
+    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    x-intersect:enter="shown = true"
   >
     <div
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
+      x-data="{
+    shown: true,
+    open: null,
+    items: [
+      { title: 'Separation of Concerns', content: 'Algorithmic Container is a powerful framework based on simple “atomic” structures. Each layer and components it consists of carry out a specific role in the system. It is well defined, loosely coupled and therefore perfectly testable. It can be replaced by a different implementation should the need arise.' },
+      { title: 'Event-Driven Approach', content: 'Any meaningful event in the system is captured, persisted and delivered for processing. The event-response model employed by individual components reflects our Simplicity-Agility-Reliability paradigm.' },
+      { title: 'Multi-Agent System', content: 'The algorithmic framework is modelled as a specialised multiagent system where “agents” (be their analytics, trading strategies, fragmentation and order placement strategies) are operating in a distributed environment and can exhibit cooperative and/or competitive behaviours. They can be deployed in a single process or seamlessly in a cluster without any changes to the way they interact.' },
+      { title: 'Microkernel Architecture & Message Passing IPC', content: 'At its core, our low level components follow the microkernel design that uses a bespoke messaging framework for inter-process communications (IPC). The framework provides reliable delivery of events with real-time persistence and recovery capabilities (e.g. support for late joiners). The strategies, analytics, services and functional layers in a single instance of the Algorithmic Container operate in a lightweight cooperative multitasking environment and exhibit deterministic behaviour. The preemptive multitasking is achieved through deploying multiple instances of the container microkernel that act as parallel pipelines. This approach allows us to engineer and deliver very resilient and highly available components.' },
+      { title: 'Embedded Transaction Support', content: 'Transactions are an intrinsic part of our event-driven frameworks. They are persistent, recoverable and can be easily audited.' },
+      { title: 'Vendor Agnostic', content: 'The Configuration, Reference Data, Market Data, Analytical and other services provided by the Algorithmic Container are completely generalised and have no dependencies on the vendor solutions. Such decoupling makes it possible to change the data and trading service providers without programmatic changes to the main infrastructure and the trading algorithms.' },
+      { title: 'Multiple Redundant Peers', content: 'Multiple redundant peers (instances of the Algorithmic Container) can be deployed to replace the active components lost during a hardware failure.' },
+      { title: 'High Availability', content: 'High availability (HA) is an inherent feature of all our systems. The properties required to achieve HA are implemented from very early stages of the development cycle.' },
+      { title: 'Scalability', content: 'The system is designed to be linearly scalable up and down, from large-scale deployment in a data centre to a notebook computer running all the application layers running a cluster of strategies in a realistic simulator.' },
+    ]
+  }"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-y-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
       <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
-        A Framework for Intelligent Algorithmic Execution
+        Architectural Principles
       </h2>
 
-      <p class="text-xl font-light leading-relaxed mb-12">
-        Designed for both agency and proprietary trading, our Algorithmic
-        Platform delivers a modular, event-driven infrastructure enabling
-        seamless strategy development, real-time analytics, and resilient
-        execution across multiple asset classes.
-      </p>
-
-      <div
-        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-2"
-      >
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Modular Design</h3>
-          <p class="text-sm leading-relaxed">
-            Built to support extendable, testable and independently deployable
-            components.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[200px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Event-Driven Core</h3>
-          <p class="text-sm leading-relaxed">
-            Ensures responsiveness, transparency, and recovery with persistent
-            events and transactions.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Cross-Asset Support</h3>
-          <p class="text-sm leading-relaxed">
-            Easily adapted for multiple asset classes and evolving client needs.
-          </p>
-        </div>
+      <div class="flex flex-col gap-1 text-left text-base">
+        <template x-for="(item, index) in items" :key="index">
+          <div
+            class="bg-white border-b-[1px] rounded-sm py-2 transition duration-500"
+          >
+            <button
+              class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer"
+              @click="open === index ? open = null : open = index"
+            >
+              <span x-text="item.title"></span>
+              <span
+                class="text-[30px] font-thin transition-transform duration-300"
+                :class="open === index ? 'rotate-45' : ''"
+              >
+                +
+              </span>
+            </button>
+            <div
+              x-show="open === index"
+              x-transition
+              class="text-sm leading-relaxed mt-2 text-gray-700"
+            >
+              <p x-text="item.content" class="pr-10"></p>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
+
     <div class="image-feature flex max-sm:hidden absolute -right-28">
       <div
-        class="rightBlank w-[5px] h-[600px] max-sm:hidden mr-10"
+        class="w-[5px] h-[00px] mr-10"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
       ></div>
       <div
-        class="flex justify-center items-center content-center"
+        class="flex justify-center items-center"
         x-show="shown"
         x-transition:enter="transition ease-out duration-1000 delay-50"
         x-transition:enter-start="opacity-0 translate-x-12"
         x-transition:enter-end="opacity-100 translate-x-0"
       >
-        <img src="/images/imac-binance.png/" class="w-auto h-[500px]" />
+        <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
       </div>
     </div>
   </div>
 
-  <!-- Functional Overview Section -->
+  <!-- Platform Overview -->
   <section class="overview w-full py-20 text-center text-white">
     <div class="w-5/6 mx-auto">
       <h3 class="text-4xl font-semibold mb-6 text-gray-100">
@@ -147,7 +154,7 @@ draft: false
     </div>
   </section>
 
-  <!-- Gradient Divider -->
+  <!-- Divider -->
   <div
     class="w-full h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD] mt-10"
   ></div>
