@@ -13,27 +13,27 @@ draft: false
 >
   <!-- Hero Section -->
   <div
-    class="w-full h-[500px] max-sm:h-[350px] flex flex-col justify-around relative bg-cover bg-center"
+    class="w-full h-[700px] max-sm:h-[350px] flex flex-col justify-evenly relative bg-cover bg-center"
+    style="background-image: url('/images/analytic.png');"
   >
-    <div class="grid grid-cols-2 ml-20 max-sm:ml-5">
-      <div class="flex flex-col justify-around">
-        <div>
-          <h1 class="text-[5rem] max-sm:text-5xl leading-tight text-white">
-            Analytics
-          </h1>
-        </div>
-        <div
-          class="flex justify-center items-center max-sm:items-start max-sm:justify-center"
+    <div
+      class="ml-20 max-sm:ml-5"
+      x-show="visible"
+      x-transition:enter="transition ease-out duration-1000"
+      x-transition:enter-start="opacity-0 translate-x-12"
+      x-transition:enter-end="opacity-100 translate-x-0"
+    >
+      <h1 class="text-[5rem] max-sm:text-5xl leading-tight text-white">
+        Analytics
+      </h1>
+    </div>
+    <div
+      class="flex justify-center items-center max-sm:items-start max-sm:justify-center"
+    >
+      <div class="flex flex-col text-right max-sm:text-left">
+        <span class="text-lg text-white"
+          >Data-driven Innovation in Financial Markets</span
         >
-          <div class="flex flex-col text-right max-sm:text-left">
-            <span class="text-lg text-white"
-              >“ Data-driven Innovation in Financial Markets ”</span
-            >
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src="/images/analytic.png" class="w-[400px]" />
       </div>
     </div>
   </div>
@@ -59,43 +59,25 @@ draft: false
         class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-2"
       >
         <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Smart Analysis</h3>
-          <p class="text-sm leading-relaxed">
-            Summary metrics, dimensionality reduction, time-dependence modeling,
-            and correlation help turn complex data into insight.
-          </p>
+          <h3 class="font-semibold text-lg mb-2">
+            Effective approaches to making large data manageable and
+            understandable involve:
+          </h3>
         </div>
+
         <div
           class="rightBlank w-[200px] h-[5px]"
           style="background: linear-gradient(to bottom, #00aa00, #539afd);"
         ></div>
+        <ul class="list-disc list-inside pl-4">
+          <li>Deriving and calculating of robust summary metrics,</li>
+          <li>Dimensionality reduction,</li>
+          <li>Modelling time-dependence,</li>
+          <li>Calculating correlation & co-integration of processes.</li>
+        </ul>
         <div
           class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
         ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Tech Foundations</h3>
-          <p class="text-sm leading-relaxed">
-            Time-series databases, FPGAs, cloud deployments, and modern web tech
-            ensure rapid, reliable, and portable analysis.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Visual Insight</h3>
-          <p class="text-sm leading-relaxed">
-            Tabular and graphical data views guide exploration, enable signals
-            and alerts, and assist AI-enhanced analysis.
-          </p>
-        </div>
       </div>
     </div>
     <div class="image-feature flex max-sm:hidden">
@@ -111,29 +93,128 @@ draft: false
       </div>
     </div>
   </div>
-
+  <!-- Gradient Divider -->
+  <div class="w-full h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD]"></div>
   <!-- Functional Overview Section -->
-  <section class="overview w-full py-20 text-center text-white">
-    <div class="w-5/6 mx-auto">
-      <h3 class="text-4xl font-semibold mb-6 text-gray-100">
-        Analytics Platform Overview
-      </h3>
-      <div class="w-full md:w-3/4 mx-auto">
-        <p class="text-lg font-light text-gray-300 mb-6">
-          We apply these techniques to help traders, exchanges, and market
-          participants evolve. Our research includes micro-strategies powered by
-          evolutionary algorithms and exchange simulations driven by interacting
-          data-aware actors.
-        </p>
-        <p class="text-lg font-light text-gray-300">
-          A shared data and analysis core underpins every component — from
-          quantifying trading behaviours to managing the live order book —
-          delivering insight, accuracy, and adaptability across the financial
-          data ecosystem.
-        </p>
+
+  <div
+    class="min-h-screen w-full from-[#060218] text-white flex max-sm:flex-col justify-between p-20 max-sm:px-6 max-sm:grid-cols-1 bg-cover bg-center"
+  >
+    <div class="flex justify-center items-center max-sm:mb-20">
+      <div class="w-[700px] max-sm:w-auto flex flex-col gap-8 max-sm:gap-4">
+        <h3>
+          Interacting with meaningful tabular and graphical representations
+          guides this process, and provides groundwork for signals and alerting,
+          as well as AI/model-assisted multi-factor data exploration.
+        </h3>
+        <h3>
+          Rapid advances in technology are drastically changing the
+          data-analysis landscape, enabling greater utility and deeper
+          exploration, but a solid theoretical basis and careful testing remains
+          paramount for accuracy and effectiveness.
+        </h3>
+        <div
+          class="rightBlank w-[300px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+        <h3 class="text-5xl max-sm:text-4xl font-semibold">
+          Technological foundations include:
+        </h3>
+        <div
+          class="rightBlank w-[250px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+        <ul class="list-disc list-inside pl-4">
+          <li>High performance time-series databases,</li>
+          <li>FPGAs for real-time responsiveness to streaming data,</li>
+          <li>Cloud for reliable, access-anywhere deployment,</li>
+          <li>Modern web browsers for ease of use and portability.</li>
+        </ul>
+
+        <h3>
+          In our ongoing research, we are applying the philosophy and techniques
+          described above to problems of interest to algorithmic traders,
+          exchange providers, and both buy and sell side market participants.
+        </h3>
+        <div
+          class="rightBlank w-[200px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+        <h3 class="text-5xl max-sm:text-4xl font-semibold">
+          Specifically:
+        </h3>
+        <div
+          class="rightBlank w-[150px] h-[5px]"
+          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
+        ></div>
+        <ul class="list-disc list-inside pl-4">
+          <li>
+            Evolutionary algorithms built on analytic-driven micro-strategies,
+          </li>
+          <li>
+            Simulation of exchanges from the behaviour of multiple interacting,
+            data- and goal-driven actors, with a matching engine exposing and
+            managing the resulting order book,
+          </li>
+          <li>
+            Formal quantification & representation of data relationships and
+            trading behaviours for execution and/or market monitoring.
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
+    <!-- Main Visual Console -->
+    <main class="relative flex justify-center items-center">
+      <!-- Grid lines -->
+      <div
+        class="absolute inset-0 z-0 pointer-events-none opacity-5 bg-[radial-gradient(circle,white_1px,transparent_1px)] [background-size:40px_40px]"
+      ></div>
+
+      <!-- Core visual -->
+      <div
+        class="relative z-10 flex flex-col items-center justify-center h-full space-y-10"
+      >
+        <!-- Data Core -->
+        <div
+          class="w-[310px] h-[310px] max-sm:w-[250px] max-sm:h-[250px] hover:scale-110 duration-500 m-20 bg-white rounded-full border border-cyan-500/20 backdrop-blur-sm shadow-[0_0_70px_#defffc] relative flex items-center justify-center"
+        >
+          <div
+            class="absolute inset-0 animate-spin-slow border-[1px] border-white/10 backdrop-blur-lg shadow-[0_0_10px_#defffc]"
+          ></div>
+          <div
+            class="absolute inset-0 animate-spin-slower border-[1px] border-white/30 backdrop-blur-lg shadow-[0_0_10px_#defffc]"
+          ></div>
+          <div class="text-center z-10">
+            <p
+              class="uppercase text-3xl max-sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-500 bg-clip-text text-transparent mb-2"
+            >
+              Realtime Core
+            </p>
+            <h2 class="text-3xl text-[#060218] font-normal mb-5">+124ms</h2>
+            <p class="text-sm text-zinc-700">Latency Avg</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <style>
+    .animate-spin-slow {
+      animation: spin 20s linear infinite;
+    }
+    .animate-spin-slower {
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 
   <!-- Gradient Divider -->
   <div

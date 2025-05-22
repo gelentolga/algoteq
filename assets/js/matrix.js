@@ -35,3 +35,44 @@ window.initMatrixEffect = function (canvas) {
     drops = new Array(columns).fill(1); // reset drops for new width
   });
 };
+
+function typingList() {
+  return {
+    fullItems: [
+      "Developing and testing trading strategies",
+      "Simulating market macro and flash crashes and testing robustness",
+      "Replaying and analysing real life data",
+      "Reproducing production problems and troubleshooting",
+      "Refining analytics (e.g. batch non-linear optimisation)",
+      "What-if analysis for “pre”, “at” and “post” trade analytics",
+      "Automated integration & performance tests (CI process)",
+      "Sales demo tool for clients",
+    ],
+    typedItems: [],
+    currentTypingIndex: 0,
+    cursor: "▌",
+
+    async startTyping() {
+      for (let i = 0; i < this.fullItems.length; i++) {
+        this.currentTypingIndex = i;
+        let words = this.fullItems[i].split(" ");
+        let item = "";
+        for (let w = 0; w < words.length; w++) {
+          let word = words[w];
+          for (let l = 0; l < word.length; l++) {
+            item += word[l];
+            this.typedItems[i] = item + (w < words.length - 1 ? " " : "");
+            await new Promise((resolve) => setTimeout(resolve, 15)); // letter delay
+          }
+          if (w < words.length - 1) {
+            item += " "; // add space after word
+            this.typedItems[i] = item;
+            await new Promise((resolve) => setTimeout(resolve, 50)); // small pause between words
+          }
+        }
+        await new Promise((resolve) => setTimeout(resolve, 200)); // pause after full sentence
+      }
+      this.cursor = "";
+    },
+  };
+}

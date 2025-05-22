@@ -167,3 +167,10 @@ body {
 .animate-blink {
   animation: blink 1s step-start infinite;
 }
+
+/*md file */
+
+.prose hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
