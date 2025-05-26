@@ -1,25 +1,238 @@
-{{ define "main"}}
+{{ define "main" }}
+<section
+  class="relative min-h-screen px-6 py-20 bg-[#090619] text-white overflow-hidden"
+>
+  <!-- Background Animation -->
+  <canvas
+    id="bgCanvas"
+    class="absolute inset-0 z-0 opacity-30 pointer-events-none"
+  ></canvas>
 
-<section class="py-20 px-4">
-  <div class="max-w-4xl mx-auto text-center mb-10">
-    <h2 class="text-4xl font-bold mb-2">Send us a Message</h2>
-    <p class="text-lg">
-      Fill out the form below and we'll get back to you shortly.
-    </p>
-  </div>
-  <div class="rounded-lg shadow-lg overflow-hidden max-w-4xl mx-auto p-4">
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSfwwm92TgjaBghowF4MUECsST-icguBxCEm0F60GyoebJwPoQ/viewform?embedded=true"
-      width="100%"
-      height="1200"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      class="w-full"
+  <!-- Floating Algorithm Keywords -->
+  <div
+    class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden select-none"
+  >
+    <div
+      class="absolute animate-float text-xs font-mono text-white/10"
+      style="top: 20%; left: 10%;"
     >
-      Loading…
-    </iframe>
+      Mean Reversion
+    </div>
+    <div
+      class="absolute animate-float text-xs font-mono text-white/10"
+      style="top: 60%; left: 70%; animation-delay: 2s;"
+    >
+      Liquidity Curve
+    </div>
+    <div
+      class="absolute animate-float text-xs font-mono text-white/10"
+      style="top: 40%; left: 30%; animation-delay: 4s;"
+    >
+      Volatility Shift
+    </div>
+    <div
+      class="absolute animate-float text-xs font-mono text-white/10"
+      style="top: 75%; left: 50%; animation-delay: 5s;"
+    >
+      HFT
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-5xl mx-auto">
+    <!-- Heading -->
+    <div class="text-center">
+      <h1
+        class="text-5xl font-bold tracking-wide bg-gradient-to-r from-white via-cyan-300 to-white text-transparent bg-clip-text drop-shadow-lg"
+      >
+        Get in Touch with Algoteq
+      </h1>
+      <p class="mt-4 text-gray-400 max-w-xl mx-auto">
+        Whether you're exploring algo trading, data strategies, or partnerships
+        — let's start the conversation.
+      </p>
+
+      <!-- Live Trading Metrics -->
+      <div
+        class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-400 animate-pulse select-none"
+      >
+        <div
+          class="bg-white/5 px-4 py-2 rounded-lg shadow-inner font-mono tracking-wide"
+        >
+          BTC/USDT: $67,342
+        </div>
+        <div
+          class="bg-white/5 px-4 py-2 rounded-lg shadow-inner font-mono tracking-wide"
+        >
+          Market Volatility: High
+        </div>
+        <div
+          class="bg-white/5 px-4 py-2 rounded-lg shadow-inner font-mono tracking-wide"
+        >
+          Avg Trade Latency: 21ms
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div
+      class="mt-20 bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md shadow-2xl"
+    >
+      <h2 class="text-2xl font-bold mb-6 text-center">Send a Message</h2>
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-6" autocomplete="off">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          class="form-field py-5 pl-5"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          class="form-field py-5 pl-5"
+          required
+        />
+        <input
+          type="text"
+          name="company"
+          placeholder="Company (optional)"
+          class="form-field md:col-span-2 py-5 pl-5"
+        />
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Your Message"
+          class="form-field md:col-span-2 py-5 pl-5"
+          required
+        ></textarea>
+        <div class="md:col-span-2 text-center">
+          <button
+            type="submit"
+            class="px-8 py-3 bg-gradient-to-r from-white to-cyan-300 text-black font-semibold rounded-lg hover:scale-105 hover:from-cyan-200 hover:to-white transition-all duration-300 shadow-white shadow-md"
+          >
+            Launch Message 🚀
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="mt-16 grid md:grid-cols-2 gap-8 text-center">
+      <!-- Email Card -->
+      <div
+        class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md shadow-lg hover:shadow-white/10 transition"
+      >
+        <h3 class="font-semibold text-lg mb-2">Email Us</h3>
+        <p class="text-gray-300">hello@algoteq.io</p>
+      </div>
+
+      <!-- Address Card -->
+      <div
+        class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md shadow-lg hover:shadow-white/10 transition"
+      >
+        <h3 class="font-semibold text-lg mb-2">Our Office</h3>
+        <p class="text-gray-300">Level 5, 123 Tech Street, Sydney</p>
+      </div>
+    </div>
   </div>
 </section>
 
-{{end}}
+<!-- Tailwind Custom Style -->
+<style>
+  .form-field {
+    @apply w-full p-3 rounded-lg bg-black/30 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-300;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
+
+<!-- Background Canvas (Algorithm-inspired nodes/links) -->
+<script>
+  const canvas = document.getElementById("bgCanvas");
+  const ctx = canvas.getContext("2d");
+  let width, height, nodes;
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    nodes = Array.from({ length: 70 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      baseRadius: 1.5 + Math.random() * 1,
+      pulse: 0,
+      pulseDir: 1,
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    const time = Date.now() * 0.002;
+
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+
+      // Move
+      a.x += a.vx;
+      a.y += a.vy;
+
+      if (a.x < 0 || a.x > width) a.vx *= -1;
+      if (a.y < 0 || a.y > height) a.vy *= -1;
+
+      // Pulse radius
+      a.pulse += 0.03 * a.pulseDir;
+      if (a.pulse > 1 || a.pulse < 0) a.pulseDir *= -1;
+
+      const radius = a.baseRadius + Math.sin(time + i) * 0.5 * a.pulse;
+
+      // Draw node
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = "#00ffff88";
+      ctx.shadowColor = "#00ffffaa";
+      ctx.shadowBlur = 8;
+      ctx.fill();
+
+      // Draw connections
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+
+          // Hue shifts with distance and time
+          const hue = (time * 60 + (dist / 120) * 240) % 360;
+          ctx.strokeStyle = `hsla(${hue}, 100%, 75%, ${1 - dist / 120})`;
+          ctx.lineWidth = 0.8;
+          ctx.shadowColor = `hsla(${hue}, 100%, 75%, 0.6)`;
+          ctx.shadowBlur = 4;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+  draw();
+</script>
+{{ end }}
