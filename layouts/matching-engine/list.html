@@ -44,79 +44,88 @@
       <img src="/images/chip.png" class="w-3/4" />
     </div>
     <div class="md:w-3/4 mx-auto">
-      <h2 class="text-4xl font-semibold mb-6">Why Performance Matters</h2>
+      <h2 class="text-4xl font-semibold mb-6">
+        What is an Exchange Matching Engine?
+      </h2>
       <p class="text-lg leading-relaxed mb-6">
-        In the fast-paced world of institutional crypto trading, speed and
-        reliability are everything. A few milliseconds can be the difference
-        between profit and loss.
-      </p>
-      <p class="text-lg leading-relaxed">
-        Algoteq's matching engine ensures ultra-low latency and high-throughput
-        performance, giving traders confidence and exchanges a crucial
-        competitive edge.
+        An exchange matching engine is a system responsible for matching buy and
+        sell orders on a cryptocurrency exchange. When a user places an order to
+        buy or sell a cryptocurrency, the matching engine matches it with an
+        opposing order of equal or similar value. This ensures that both parties
+        get the best possible price while executing the trade, updating the
+        order book, and keeping track of balances.
       </p>
     </div>
   </section>
-  <!-- Introduction Section -->
+
+  <!-- Unique Features Section (Dynamic with Alpine.js) -->
   <div
     class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    x-data="{
+    title: 'Unique Features',
+    intro: 'Here are some unique features of Algoteq’s matching engine:',
+    features: [
+      {
+        title: 'Robust Order Management System',
+        content: 'Algoteq’s matching engine comes with a robust order management system that is capable of handling a large volume of orders.',
+        barWidth: '200px'
+      },
+      {
+        title: 'Advanced Order Types',
+        content: 'Algoteq’s matching engine supports advanced order types such as stop-loss, limit orders and when needed strategy order types. These order types can help traders manage their risk and ensure they get the best possible prices, even in a volatile market.',
+        barWidth: '60px'
+      },
+      {
+        title: 'Ultra Low Latency',
+        content: 'Algoteq’s matching engine is built for speed, with ultra-low latency processing. This means that trades are executed quickly and efficiently, reducing the risk of price slippage, and ensuring traders get the best possible prices.',
+        barWidth: '60px'
+      },
+      {
+        title: 'High Throughput',
+        content: 'Algoteq’s matching engine can handle a large volume of trades per second, providing traders with a seamless trading experience, even during high volume trading periods.',
+        barWidth: '60px'
+      },
+      {
+        title: 'Robust Security',
+        content: 'Security is a top priority for Algoteq’s matching engine. It is designed to prevent unauthorised access, protect against attacks, and ensure the integrity of trades.',
+        barWidth: '60px'
+      }
+    ]
+  }"
   >
+    <!-- Left Content -->
     <div class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto">
-      <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
-        Data-driven Innovation in Financial Markets
-      </h2>
-
-      <p class="text-xl font-light leading-relaxed mb-12">
-        Successful electronic engagement with Financial Markets requires a
-        foundation of meaningful and productive handling of noisy and high
-        dimensional real-time and historical data. Techniques must be informed
-        by established methods, while also exploiting appropriate technology to
-        generate innovative custom outcomes.
-      </p>
+      <h2
+        class="text-5xl max-sm:text-4xl font-semibold mb-2"
+        x-text="title"
+      ></h2>
+      <p class="text-xl font-light leading-relaxed mb-12" x-text="intro"></p>
 
       <div
-        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-2"
+        class="flex flex-col justify-between items-start text-left text-base gap-2"
       >
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Smart Analysis</h3>
-          <p class="text-sm leading-relaxed">
-            Summary metrics, dimensionality reduction, time-dependence modeling,
-            and correlation help turn complex data into insight.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[200px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Tech Foundations</h3>
-          <p class="text-sm leading-relaxed">
-            Time-series databases, FPGAs, cloud deployments, and modern web tech
-            ensure rapid, reliable, and portable analysis.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Visual Insight</h3>
-          <p class="text-sm leading-relaxed">
-            Tabular and graphical data views guide exploration, enable signals
-            and alerts, and assist AI-enhanced analysis.
-          </p>
-        </div>
+        <template x-for="(feature, index) in features" :key="index">
+          <div class="flex-1 w-full">
+            <h3 class="font-semibold text-lg mb-2" x-text="feature.title"></h3>
+            <p
+              class="text-sm leading-relaxed mb-2"
+              x-text="feature.content"
+            ></p>
+            <div
+              class="rightBlank h-[2px]"
+              :style="`width: ${feature.barWidth}; background: linear-gradient(to bottom, #00aa00, #539afd);`"
+              x-show="feature.barWidth"
+            ></div>
+            <div
+              class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
+              x-show="index < features.length - 1"
+            ></div>
+          </div>
+        </template>
       </div>
     </div>
+
+    <!-- Right Image -->
     <div class="image-feature flex max-sm:hidden">
       <div
         class="rightBlank w-[5px] h-[600px] max-sm:hidden"
@@ -126,27 +135,34 @@
         <img
           src="/images/imac-screen.png"
           class="object-contain justify-center h-[600px] w-auto"
+          alt="Matching Engine Display"
         />
       </div>
     </div>
   </div>
+
   <section
-    class="w-full pb-10 bg-cover bg-top max-sm:bg-bottom h-[800px] max-sm:h-[400px] flex justify-end text-right max-sm:justify-start max-sm:text-left"
+    class="w-full pb-10 bg-cover bg-top max-sm:bg-bottom h-[1100px] max-sm:h-[400px] flex justify-end text-right max-sm:justify-start max-sm:text-left"
     style="background-image: url('/images/servers.png');"
   >
     <div
       class="w-11/12 md:w-3/4 mt-[300px] max-sm:mt-[100px] pr-20 max-sm:pr-0 max-sm:px-5"
     >
       <h2 class="text-5xl max-sm:text-xl font-semibold mb-6">
-        Why is a High-Performing<br />Exchange Matching<br />Engine Important?
+        Why is a High-Performing Exchange<br />Matching Engine Important?
       </h2>
       <p
         class="text-lg max-sm:text-base leading-relaxed mb-6 mt-20 max-sm:mt-10"
       >
-        Any meaningful event in the system is captured,<br />persisted and
-        delivered for processing.The event-response<br />model employed by
-        individual components reflects<br />our Simplicity-Agility-Reliability
-        paradigm.
+        A high-performing exchange matching engine is critical to the success of
+        any cryptocurrency exchange.<br />The speed, reliability, and
+        scalability of the matching engine are directly linked to the user
+        experience<br />and can have a significant impact on the success of the
+        exchange. In a market that is constantly evolving,<br />exchanges need
+        to be able to handle an increasing number of transactions to keep up
+        with demand.<br />Any delay or latency in executing trades can cause
+        significant losses to traders and<br />negatively impact the reputation
+        of the exchange.
       </p>
     </div>
   </section>

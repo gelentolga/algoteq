@@ -76,3 +76,22 @@ function typingList() {
     },
   };
 }
+
+document.addEventListener("alpine:init", () => {
+  Alpine.data("tradingFeatures", () => ({
+    features: [
+      { title: "Algorithmic Trading" },
+      { title: "Exchange Matching Engines" },
+      { title: "Client Connectivity" },
+      { title: "Artificial Intelligence" },
+      { title: "Market Simulation" },
+      { title: "Market Connectivity" },
+      { title: "Order Management Systems (OMS)" },
+      { title: "Crossing Engines" },
+      { title: "Market Data Distribution" },
+      { title: "Smart Order Routing (SOR)" },
+      { title: "Risk Management" },
+      { title: "Analytics" },
+    ],
+  }));
+});

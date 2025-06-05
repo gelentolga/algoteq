@@ -1,15 +1,11 @@
 {{ define "main"}}
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-></script>
 
 <div
   class="algorithmSuitePage mx-auto overflow-hidden w-full bg-[#090619] text-white flex flex-col items-center"
 >
   <!-- Hero Section -->
   <div
-    class="w-full h-[800px] max-sm:h-[350px] flex flex-col justify-evenly relative bg-contain bg-no-repeat bg-top"
+    class="w-full h-[900px] max-sm:h-[350px] flex flex-col justify-evenly relative bg-cover bg-no-repeat bg-top"
     style="background-image: url('/images/algo-suite-banner-1.png');"
   >
     <div class="ml-20 max-sm:ml-5">
@@ -30,9 +26,43 @@
   <!-- Introduction Section: Algoteq Algorithm Suite -->
   <div
     class="w-full grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
-    x-data="{ shown: false }"
+    x-data="{
+    shown: false,
+    section: {
+      title: 'Algoteq Algorithm Suite',
+      description: 'The Algoteq Algorithm Suite is built on a multi-tier model, integrating low-level trading tactics with high-level strategies to deliver customisable and adaptive trading solutions across asset classes.',
+      features: [
+        {
+          title: 'Trading Behaviour',
+          content: 'Our framework abstracts human and machine trading actions into coded units for flexible strategy composition. Algorithms are tuned via urgency and sensitivity parameters to align with client objectives while maintaining control and safety limits.',
+          barWidth: '180px'
+        },
+        {
+          title: 'Data and Analysis',
+          content: 'A curated set of derived historical data drives algorithm decisions and default settings. Real-time analytics support adaptive behaviour, smart routing, and intraday performance tracking with synthetic venues and calculated enhancements.',
+          barWidth: '60px'
+        },
+        {
+          title: 'Available Algorithms',
+          content: 'Our suite includes profile (VWAP, TWAP, IS, POV, MC), passive (PEG, ICEBERG), responsive (SNIPER, TOUCH, STOP), and bespoke liquidity seeking algorithms. All types offer configurable execution styles across trading scenarios.',
+          barWidth: '180px'
+        },
+        {
+          title: 'Simulation',
+          content: 'Simulate production and experimental algorithms on historical market data using highly parallel hardware. Visualise behaviour, test alternative strategies, and refine logic based on performance and parameter responsiveness.',
+          barWidth: '60px'
+        },
+        {
+          title: 'Summary',
+          content: 'The Algoteq Suite is a powerful, modular ecosystem supporting continuous development, simulation, and optimisation—ensuring robust algorithmic performance even in fast-evolving markets.',
+          barWidth: null
+        }
+      ]
+    }
+  }"
     x-intersect="shown = true"
   >
+    <!-- Left Side Content -->
     <div
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
       x-show="shown"
@@ -40,87 +70,37 @@
       x-transition:enter-start="opacity-0 translate-y-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
-        Algoteq Algorithm Suite
-      </h2>
-
-      <p class="text-xl font-light leading-relaxed mb-12">
-        The Algoteq Algorithm Suite is built on a multi-tier model, integrating
-        low-level trading tactics with high-level strategies to deliver
-        customisable and adaptive trading solutions across asset classes.
-      </p>
+      <h2
+        class="text-5xl max-sm:text-4xl font-semibold mb-2"
+        x-text="section.title"
+      ></h2>
+      <p
+        class="text-xl font-light leading-relaxed mb-12"
+        x-text="section.description"
+      ></p>
 
       <div
-        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-6"
+        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-2"
       >
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Trading Behaviour</h3>
-          <p class="text-sm leading-relaxed">
-            Our framework abstracts human and machine trading actions into coded
-            units for flexible strategy composition. Algorithms are tuned via
-            urgency and sensitivity parameters to align with client objectives
-            while maintaining control and safety limits.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[180px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Data and Analysis</h3>
-          <p class="text-sm leading-relaxed">
-            A curated set of derived historical data drives algorithm decisions
-            and default settings. Real-time analytics support adaptive
-            behaviour, smart routing, and intraday performance tracking with
-            synthetic venues and calculated enhancements.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Available Algorithms</h3>
-          <p class="text-sm leading-relaxed">
-            Our suite includes profile (VWAP, TWAP, IS, POV, MC), passive (PEG,
-            ICEBERG), responsive (SNIPER, TOUCH, STOP), and bespoke liquidity
-            seeking algorithms. All types offer configurable execution styles
-            across trading scenarios.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[180px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Simulation</h3>
-          <p class="text-sm leading-relaxed">
-            Simulate production and experimental algorithms on historical market
-            data using highly parallel hardware. Visualise behaviour, test
-            alternative strategies, and refine logic based on performance and
-            parameter responsiveness.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Summary</h3>
-          <p class="text-sm leading-relaxed">
-            The Algoteq Suite is a powerful, modular ecosystem supporting
-            continuous development, simulation, and optimisation—ensuring robust
-            algorithmic performance even in fast-evolving markets.
-          </p>
-        </div>
+        <template x-for="(feature, index) in section.features" :key="index">
+          <div class="flex-1 w-full">
+            <h3 class="font-semibold text-lg mb-2" x-text="feature.title"></h3>
+            <p
+              class="text-sm leading-relaxed mb-2"
+              x-text="feature.content"
+            ></p>
+            <div
+              class="rightBlank h-[2px]"
+              :style="feature.barWidth ? `width: ${feature.barWidth}; background: linear-gradient(to bottom, #00aa00, #539afd);` : ''"
+              x-show="feature.barWidth"
+            ></div>
+          </div>
+        </template>
       </div>
     </div>
 
-    <div class="image-feature flex max-sm:hidden">
+    <!-- Right Side Image -->
+    <div class="image-feature flex max-sm:hidden relative">
       <div
         class="rightBlank absolute w-[4px] h-[1000px] max-sm:hidden"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
@@ -133,7 +113,7 @@
         x-transition:enter-end="opacity-100 translate-x-0"
       >
         <img
-          src="/images/smartphone.png"
+          src="/images/imac-screen.png"
           class="object-contain justify-center h-[800px] w-auto"
           alt="Algoteq Algorithm Suite Visual"
         />

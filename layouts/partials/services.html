@@ -149,132 +149,35 @@
       </p>
 
       <div
-        class="flex flex-col md:flex-col justify-between items-start text-left text-base gap-2"
+        x-data="tradingFeatures"
+        class="grid grid-cols-1 md:grid-cols-2 gap-2 text-left text-base"
       >
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">
-            Algorithmic Trading Platform
-          </h3>
-          <p class="text-sm leading-relaxed">
-            Design, test, and deploy advanced trading strategies with precision.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[200px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
+        <template x-for="(feature, index) in features" :key="index">
+          <div>
+            <h3 class="font-semibold text-lg mb-2" x-text="feature.title"></h3>
 
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Matching Engine</h3>
-          <p class="text-sm leading-relaxed">
-            Ultra-low-latency, multi-asset execution engine built for speed and
-            accuracy.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">
-            Order Management System (OMS)
-          </h3>
-          <p class="text-sm leading-relaxed">
-            Resilient and scalable order flow control for institutional
-            operations.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[200px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">High-Frequency Message Bus</h3>
-          <p class="text-sm leading-relaxed">
-            A lightning-fast, reliable information backbone connecting all
-            components.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[200px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Smart Trading Algorithms</h3>
-          <p class="text-sm leading-relaxed">
-            A curated portfolio of battle-tested, high-performing algorithmic
-            strategies.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">Analytics & Insights</h3>
-          <p class="text-sm leading-relaxed">
-            Comprehensive performance analytics to guide optimisation and
-            decision-making.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">
-            Realistic Trading Simulator
-          </h3>
-          <p class="text-sm leading-relaxed">
-            Test and refine strategies in ultra-realistic, risk-free market
-            environments.
-          </p>
-        </div>
-        <div
-          class="rightBlank w-[60px] h-[5px]"
-          style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-        ></div>
-
-        <div
-          class="hidden md:block w-[1px] bg-gradient-to-b from-blue-600 to-green-500 h-full mx-4"
-        ></div>
-
-        <div class="flex-1">
-          <h3 class="font-semibold text-lg mb-2">
-            Agent-Based Artificial Markets
-          </h3>
-          <p class="text-sm leading-relaxed">
-            Model and validate strategies within dynamic, lifelike trading
-            scenarios.
-          </p>
+            <!-- Random Width Divider (60–200px) -->
+            <div
+              class="h-[2px] max-sm:h-[1px] my-2 max-sm:my-0"
+              :style="`background: linear-gradient(to bottom, #00aa00, #539afd); width: ${Math.floor(Math.random() * (200 - 60 + 1)) + 60}px;`"
+            ></div>
+          </div>
+        </template>
+        <div class="text-center mt-10 flex justify-start">
+          <a href="/contactus">
+            <button
+              type="submit"
+              class="px-8 py-3 bg-gradient-to-r from-blue-100 to-green-500 text-black font-semibold hover:scale-105 hover:from-green-500 hover:to-blue-200 transition-all duration-2000 shadow-white shadow-md"
+            >
+              Learn More
+            </button>
+          </a>
         </div>
       </div>
     </div>
     <div class="image-feature flex max-sm:hidden">
       <div
-        class="rightBlank absolute w-[4px] h-[1000px] max-sm:hidden"
+        class="rightBlank absolute w-[4px] h-[600px] max-sm:hidden"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
       ></div>
       <div
@@ -285,81 +188,85 @@
         x-transition:enter-end="opacity-100 translate-x-0"
       >
         <img
-          src="/images/smartphone.png/"
-          class="object-contain justify-center h-[800px] w-auto"
+          src="/images/imac-binance.png"
+          class="object-contain justify-center h-[600px] w-auto ml-80"
         />
       </div>
     </div>
   </div>
 
-  <div class="overflow-hidden">
-    <div class="flex justify-center">
-      <div
-        class="relative flex flex-col items-center pb-0 bg-[#090619] text-white"
-      >
-        <!-- Vertical Line (Glowing Path) -->
-        <div
-          class="absolute left-1/2 transform -translate-x-1/2 bg-gradient-to-b from-blue-500 to-green-500 h-[700px] max-sm:h-full"
-          style="
-            width: 80px;
-            clip-path: polygon(45% 0%, 55% 0%, 100% 100%, 0% 100%);
-          "
-        ></div>
+  <div class="flex flex-col relative bg-[#090619] text-white overflow-hidden">
+    <!-- Ellipse Glow Background -->
+    <div
+      class="absolute top-52 -right-20 translate-x-1/2 -translate-y-1/4 z-0 pointer-events-none"
+    >
+      <img
+        src="/images/ellipse-2.png"
+        class="w-[400px] opacity-30 blur-3xl animate-pulse duration-[4000ms]"
+        alt="glow background"
+      />
+    </div>
 
-        <div class="relative w-full px-4 sm:px-0">
-          <!-- Step 1 -->
-          <div class="relative">
-            <div
-              class="bg-white/0 overflow-hidden sm:overflow-visible flex justify-center items-center p-6 sm:p-32 sm:px-48 backdrop-blur-md w-full hover:scale-[1.02] transition-transform duration-300"
-            >
-              <div class="w-full max-w-7xl">
-                <div
-                  class="grid sm:grid-cols-2 gap-8 items-center justify-center"
-                >
-                  <!-- Code Block Container -->
-                  <div class="flex justify-center">
-                    <section
-                      class="w-full sm:w-[700px] max-w-full bg-[#2a2a2a]/10 max-sm:bg-black/50 backdrop-blur-sm text-gray-200 rounded-2xl drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] sm:drop-shadow-[5px_10px_5px_rgba(0,0,0,0.55)] overflow-hidden"
-                    >
-                      <!-- Code Block Header -->
-                      <div
-                        class="p-4 border-b bg-[#3b3b3b] border-gray-700 flex items-center space-x-2"
-                      >
-                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span class="text-gray-400 text-sm ml-3">
-                          algoteq_systems.js
-                        </span>
-                      </div>
+    <!-- Section Title -->
+    <div
+      class="flex justify-start items-center py-20 max-sm:py-10 border-b border-gray-600 relative z-10"
+    >
+      <h2 class="text-5xl max-sm:text-3xl font-semibold pl-28 max-sm:px-5">
+        Our comprehensive system includes
+      </h2>
+    </div>
 
-                      <!-- Code Block Content -->
-                      <div
-                        class="text-green-400 font-mono p-6 text-sm w-full overflow-x-auto"
-                      >
-                        <pre class="whitespace-pre-wrap break-words">
-<span class="text-yellow-300">class</span> AreasOfExpertise:
-    algorithmic_trading = <span class="text-pink-400">"Algorithmic Trading"</span>
-    exchange_matching_engines = <span class="text-pink-400">"Exchange Matching Engines"</span>
-    client_connectivity = <span class="text-pink-400">"Client Connectivity"</span>
-    artificial_intelligence = <span class="text-pink-400">"Artificial Intelligence"</span>
-    market_simulation = <span class="text-pink-400">"Market Simulation"</span>
-    market_connectivity = <span class="text-pink-400">"Market Connectivity"</span>
-    order_management_systems = <span class="text-pink-400">"Order Management Systems (OMS)"</span>
-    crossing_engines = <span class="text-pink-400">"Crossing Engines"</span>
-    market_data_distribution = <span class="text-pink-400">"Market Data Distribution"</span>
-    smart_order_routing = <span class="text-pink-400">"Smart Order Routing (SOR)"</span>
-    risk_management = <span class="text-pink-400">"Risk Management"</span>
-    analytics = <span class="text-pink-400">"Analytics"</span><span class="animate-blink">|</span>
-</pre>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <!-- Grid Content -->
+    <div
+      class="grid grid-cols-3 max-sm:grid-cols-1 border-b border-gray-600 relative z-10"
+    >
+      <!-- Placeholder Column 2 -->
+      <div class="border-r border-gray-600 py-10 max-sm:hidden">
+        <div class="flex justify-center items-center">
+          <img src="/images/icons/home-page.svg" />
         </div>
+      </div>
+      <!-- Dynamic Items List (Column 1) -->
+      <div
+        class="py-10 col-span-2"
+        x-data="{
+        items: [
+          'A high-frequency message bus providing a fast and reliable information highway',
+          'A scalable, high-performance, and resilient Order Management System (OMS)',
+          'An institutional-grade matching engine for high-speed, multi-asset execution',
+          'A distributed algorithmic trading platform',
+          'A portfolio of advanced trading algorithms',
+          'Analytics and performance insights',
+          'An ultra-realistic exchange and trading simulato',
+          'Agent-based artificial markets to test, refine, and validate trading strategies'
+        ]
+      }"
+      >
+        <template x-for="(item, index) in items" :key="index">
+          <div
+            x-data="{ open: false }"
+            @mouseleave="open = false"
+            class="flex flex-row justify-start items-start group max-sm:px-8 max-sm:pb-2"
+          >
+            <!-- Dropdown Toggle Button -->
+            <button
+              @mouseover="open = true"
+              class="flex items-center rounded-md hover:text-gray-400 pl-20 max-sm:pl-0"
+            >
+              <span
+                :class="open ? '-rotate-180' : ''"
+                class="transition-transform duration-500 transform text-2xl max-sm:text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent"
+              >
+                X
+              </span>
+            </button>
+            <!-- Item Text -->
+            <span
+              x-text="item"
+              class="ml-4 group-hover:text-gray-400 transition duration-300"
+            ></span>
+          </div>
+        </template>
       </div>
     </div>
   </div>
