@@ -174,3 +174,19 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.animate-spin-slow {
+  animation: spin 40s linear infinite;
+}
+.animate-spin-slower {
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

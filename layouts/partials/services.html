@@ -221,11 +221,106 @@
       class="grid grid-cols-3 max-sm:grid-cols-1 border-b border-gray-600 relative z-10"
     >
       <!-- Placeholder Column 2 -->
-      <div class="border-r border-gray-600 py-10 max-sm:hidden">
-        <div class="flex justify-center items-center">
-          <img src="/images/icons/home-page.svg" />
-        </div>
+      <div class="border-r border-gray-600 py-10">
+        <main
+          class="relative flex justify-center items-center"
+          x-data="{
+      index: 0,
+      cards: [
+        { title: 'Matching Engine', url: '/matching-engine/' },
+        { title: 'Order Management', url: '/order_management_system' },
+        { title: 'Algorithmic Suite', url: '/algorithmic-suite/' },
+        { title: 'Algorithmic Platform', url: '/algorithmic-platform/' },
+      ]
+    }"
+        >
+          <!-- Grid lines -->
+          <div
+            class="absolute inset-0 z-0 pointer-events-none opacity-5 bg-[radial-gradient(circle,white_1px,transparent_1px)] [background-size:40px_40px]"
+          ></div>
+
+          <!-- Left Navigation Button -->
+          <button
+            class="absolute left-0 ml-4 z-20 p-2 text-white rounded-full hover:bg-white/10 transition"
+            @click="index = (index - 1 + cards.length) % cards.length"
+            aria-label="Previous"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          <!-- Right Navigation Button -->
+          <button
+            class="absolute right-0 mr-4 z-20 p-2 text-white rounded-full hover:bg-white/10 transition"
+            @click="index = (index + 1) % cards.length"
+            aria-label="Next"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
+          <!-- Visual Card Swiper -->
+          <div
+            class="relative z-10 flex flex-col items-center justify-center h-full"
+          >
+            <div
+              class="relative transition-all duration-700 ease-in-out"
+              x-transition:enter="transform scale-90 opacity-0"
+              x-transition:enter-start="transform scale-90 opacity-0"
+              x-transition:enter-end="transform scale-120 opacity-100"
+              x-transition:leave="transform scale-90 opacity-0"
+              x-transition:leave-end="transform scale-90 opacity-0"
+            >
+              <!-- Cards -->
+              <template x-for="(item, i) in cards" :key="i">
+                <a
+                  :href="item.url"
+                  x-show="index === i"
+                  class="w-[200px] h-[200px] max-sm:w-[150px] max-sm:h-[150px] hover:scale-110 duration-500 m-20 bg-white rounded-full border border-cyan-500/20 backdrop-blur-sm shadow-[0_0_70px_#defffc] relative flex items-center justify-center"
+                >
+                  <div
+                    class="absolute inset-0 animate-spin-slow border-[1px] border-white/10 backdrop-blur-lg shadow-[0_0_10px_#defffc]"
+                  ></div>
+                  <div
+                    class="absolute inset-0 animate-spin-slower border-[1px] border-white/30 backdrop-blur-lg shadow-[0_0_10px_#defffc]"
+                  ></div>
+                  <div class="text-center z-10">
+                    <p
+                      class="uppercase max-sm:text-sm font-semibold bg-gradient-to-r from-blue-900 to-green-800 bg-clip-text text-transparent mb-2"
+                      x-text="item.title"
+                    ></p>
+                  </div>
+                </a>
+              </template>
+            </div>
+          </div>
+        </main>
       </div>
+
       <!-- Dynamic Items List (Column 1) -->
       <div
         class="py-10 col-span-2"
