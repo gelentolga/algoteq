@@ -1,7 +1,7 @@
 <head>
   <title>
-    {{ if .Title }}{{ .Title }} | {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{
-    end }}
+    {{- if .Title -}}{{ .Title }} | {{ .Site.Title }}{{- else -}}{{ .Site.Title
+    }}{{- end -}}
   </title>
 
   <meta charset="UTF-8" />
