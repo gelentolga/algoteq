@@ -1,4 +1,4 @@
 ---
 title: "Algoteq – Advanced Algorithmic Trading Systems"
-description: "Discover how Algoteq leverages AI and data-driven strategies to build next-gen algorithmic trading platforms. Explore our technology and performance-focused solutions."
+description: "Algoteq builds institutional-grade technology for modern financial markets. Founded in 2013 by experienced investment banking professionals, we provide state-of-the-art trading solutions."
 ---

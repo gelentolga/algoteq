@@ -48,4 +48,7 @@ title = 'Algoteq – Advanced Algorithmic Trading Systems'
     source = "assets/.*\\.(.*)$"
     target = "$1"
 
+[permalinks]
+  # For example, for pages in 'content'
+  page = "/:slug/"
 
