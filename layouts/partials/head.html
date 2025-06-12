@@ -1,16 +1,18 @@
 <head>
-  <title>{{ .Site.Title }}</title>
+  <title>
+    {{ if .Title }}{{ .Title }} | {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{
+    end }}
+  </title>
   <meta charset="UTF-8" />
   <meta name="google" content="notranslate" />
   <meta http-equiv="Content-Language" content="en" />
   <meta
     name="description"
-    content="Site description, this can be imported from hugo site params"
+    content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
   />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Include Animate.css for the fade-in animation -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
