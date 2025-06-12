@@ -167,75 +167,78 @@
   </section>
   <!-- Introduction Section -->
   <div
-    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-[#090619] text-white text-left py-20 max-sm:py-10"
+    class="w-full max-h-max grid grid-cols-2 max-sm:grid-cols-1 bg-[#090619] text-white text-left py-20 max-sm:py-10"
     x-intersect:enter="shown = true"
   >
-    <!-- IMAGE on right -->
+    <!-- IMAGE on Right -->
     <div
-      class="image-feature flex justify-center items-center absolute sm:static -left-28 w-auto order-1 max-sm:order-2"
+      class="image-feature flex justify-center items-center absolute sm:static max-sm:relative -left-28 sm:left-0 max-sm:left-auto w-auto order-1 max-sm:order-2"
     >
-      <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
+      <img
+        src="/images/imac-binance.png"
+        class="w-full h-auto max-h-[400px] object-contain"
+        alt="Binance on iMac"
+      />
     </div>
 
-    <!-- TEXT on Right -->
+    <!-- TEXT on Left -->
     <div
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
       shown: true,
       open: null,
       items: [
-  {
-    title: 'Separation of Concerns',
-    content:
-      'OMS is a powerful system based on simple “atomic” structures. Each component carries out a specific role in the system. It is well defined and perfectly testable. Its failure in the production environment should not compromise the referential integrity and stability of the entire system. The failure is easily identified and a redundant peer component can take over the remaining work.',
-  },
-  {
-    title: 'Event Driven Approach',
-    content:
-      'Any meaningful event in the system is captured, persisted and delivered for processing. The event-response model employed by individual components reflects our Simplicity-Agility-Reliability paradigm.',
-  },
-  {
-    title: 'Message Passing IPC',
-    content:
-      'At its core, our OMS solution follows the micro-kernel design that uses a bespoke messaging framework for inter-process communications (IPC). The framework provides reliable multicast with some strong guarantees such as total ordering, gapless and duplicate free message delivery, real-time persistence and seamless recovery provided to late joiners. These features allow us to engineer and deliver very resilient and highly available components.',
-  },
-  {
-    title: 'Simple Protocol',
-    content:
-      'We use simple yet very descriptive protocols optimised for both memory footprint and performance. The protocols can meet the requirements of multi-asset trading and model multi-leg products and portfolios.',
-  },
-  {
-    title: 'Embedded Transaction Support',
-    content:
-      'Transactions are an intrinsic part of our event-driven frameworks. They are persistent, recoverable and can be easily audited.',
-  },
-  {
-    title: 'Middleware Agnostic',
-    content:
-      'In all of our designs, we draw a clear distinction line between the business and session-management layers. Such careful separation makes it possible to change the middleware implementation and retain the business logic without additional programmatic changes.',
-  },
-  {
-    title: 'Multiple Redundant Peers',
-    content:
-      'Multiple redundant peers can be deployed in the OMS to replace the active components lost during a hardware failure.',
-  },
-  {
-    title: 'High Availability',
-    content:
-      'High availability (HA) is an inherent feature of all our systems. The properties required to achieve HA are implement from very early stages of the development cycle.',
-  },
-  {
-    title: 'Scalability',
-    content:
-      'We believe that a good OMS should be capable of handing hundreds of millions of orders, amends, cancellations, quotes, and other business objects without performance deterioration as the capacity increases. This should be achievable with reasonably standard hardware.',
-  },
-  {
-    title: 'Lightweight Scalability',
-    content:
-      'The same OMS should be scalable down to a handful of physical processes running on a single underpowered machine or even a notebook computer. The latter can be invaluable in presentations to clients. The downward scalability aspect of the system and support for self-contained configurations significantly simplifies the development process, continuous integration and testing.',
-  },
-]
-
+        {
+          title: 'Separation of Concerns',
+          content:
+            'OMS is a powerful system based on simple “atomic” structures. Each component carries out a specific role in the system. It is well defined and perfectly testable. Its failure in the production environment should not compromise the referential integrity and stability of the entire system. The failure is easily identified and a redundant peer component can take over the remaining work.',
+        },
+        {
+          title: 'Event Driven Approach',
+          content:
+            'Any meaningful event in the system is captured, persisted and delivered for processing. The event-response model employed by individual components reflects our Simplicity-Agility-Reliability paradigm.',
+        },
+        {
+          title: 'Message Passing IPC',
+          content:
+            'At its core, our OMS solution follows the micro-kernel design that uses a bespoke messaging framework for inter-process communications (IPC). The framework provides reliable multicast with some strong guarantees such as total ordering, gapless and duplicate free message delivery, real-time persistence and seamless recovery provided to late joiners. These features allow us to engineer and deliver very resilient and highly available components.',
+        },
+        {
+          title: 'Simple Protocol',
+          content:
+            'We use simple yet very descriptive protocols optimised for both memory footprint and performance. The protocols can meet the requirements of multi-asset trading and model multi-leg products and portfolios.',
+        },
+        {
+          title: 'Embedded Transaction Support',
+          content:
+            'Transactions are an intrinsic part of our event-driven frameworks. They are persistent, recoverable and can be easily audited.',
+        },
+        {
+          title: 'Middleware Agnostic',
+          content:
+            'In all of our designs, we draw a clear distinction line between the business and session-management layers. Such careful separation makes it possible to change the middleware implementation and retain the business logic without additional programmatic changes.',
+        },
+        {
+          title: 'Multiple Redundant Peers',
+          content:
+            'Multiple redundant peers can be deployed in the OMS to replace the active components lost during a hardware failure.',
+        },
+        {
+          title: 'High Availability',
+          content:
+            'High availability (HA) is an inherent feature of all our systems. The properties required to achieve HA are implement from very early stages of the development cycle.',
+        },
+        {
+          title: 'Scalability',
+          content:
+            'We believe that a good OMS should be capable of handing hundreds of millions of orders, amends, cancellations, quotes, and other business objects without performance deterioration as the capacity increases. This should be achievable with reasonably standard hardware.',
+        },
+        {
+          title: 'Lightweight Scalability',
+          content:
+            'The same OMS should be scalable down to a handful of physical processes running on a single underpowered machine or even a notebook computer. The latter can be invaluable in presentations to clients. The downward scalability aspect of the system and support for self-contained configurations significantly simplifies the development process, continuous integration and testing.',
+        },
+      ]
     }"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
@@ -275,86 +278,86 @@
       </div>
     </div>
   </div>
-  <!-- Introduction Section -->
+
+  <!-- Introduction Section 2 -->
+  <!-- Functional Overview Section -->
   <div
-    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    class="w-full max-h-max grid grid-cols-2 max-sm:grid-cols-1 bg-white text-black text-left py-20 max-sm:py-10"
     x-intersect:enter="shown = true"
   >
-    <!-- TEXT on Right -->
+    <!-- TEXT on Left (Desktop) / Top (Mobile) -->
     <div
-      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
+      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-1 max-sm:order-1"
       x-data="{
       shown: true,
       open: null,
       items: [
-  {
-    title: 'Multi-Asset',
-    content:
-      'Our solutions are geared towards multi-asset trading that becomes crucial in the investment banking brokerage industries to achieve uniformity, improve efficiency, risk transparency and promote cross-selling on various levels.\n\nEven if the initial client requirements are skewed towards a particular business flow and asset type, design provisions are made to make the components extendible to multi-asset trading.',
-  },
-  {
-    title: 'Message Bus',
-    content:
-      'A high-performance message bus is right in the core of our platform. This allows us to achieve low latency, low dispersion of latency and high throughput. The bus-centric architecture is linearly scalable.',
-  },
-  {
-    title: 'Reporting',
-    content:
-      'The event-driven and transactional nature of the system allows us to capture all the system and business events that improves the transparency. The real-time reporting capability can be tailored to meet the specific reporting and compliance requirements.',
-  },
-  {
-    title: 'Data Retention',
-    content:
-      'The historical data outside of the OMS trading session (that can incorporate single or multiple day trading sessions) is retained in a decoupled long-term storage (such as a classical RDBMS or its NoSQL substitute).\n\nCustom drop-feed and query components are developed to support real-time long-term data persistence as well as retrieval.',
-  },
-  {
-    title: 'Flexible Order Hierarchy',
-    content:
-      'We avoid rigid order hierarchies and support N levels of order nesting (parent-child relationship). Parent, work/care, market-side or other types orders use the uniform order representation. Constraints on the depth of nesting, slicing child orders, and propagation of trade events and states can be imposed on individual branches of the order hierarchy.',
-  },
-  {
-    title: 'Powerful Order Routing',
-    content:
-      'We employ a DSL-driven routing engine to manage the business flow segmentation, order routing, ah-hoc business rules, enrichment, validation, and custom behaviours.',
-  },
-  {
-    title: 'Business Flows',
-    content:
-      'Business Flow is a first-class OMS concept. It is supported in all the key business objects to ensure proper flow segmentation, authorisation and control.',
-  },
-  {
-    title: 'Security',
-    content:
-      'A very fine-grained authorisation model is embedded in the system core and can be applied to individual actions and the business objects on which they are performed. The model can provide “Chinese wall” separation between different business flows, desks, processes and trading destinations.',
-  },
-  {
-    title: 'Race Conditions',
-    content:
-      'The OMS design caters for the natural race conditions that can occur in the normal business flow and as the result of market anomalies and exchange-specific behaviours. It imposes versioning on some of its key business objects to ensure the state integrity and stability of the internal and client components.',
-  },
-  {
-    title: 'Event Sequencing',
-    content:
-      'Many client systems are intolerant to out-of-sequence behaviour. The OMS can provide event sequencing capability to normalise the flow.',
-  },
-  {
-    title: 'Multiple Amendments',
-    content:
-      'We support multiple pending order amendments to ensure fast basket staging and modifications that becomes particularly important with slow markets before the opening and closing auctions.',
-  },
-  {
-    title: 'Order Staging and Queuing',
-    content:
-      'Order staging and queuing functionality can be enabled to streamline order submission and amendments outside of market trading hours and around the exchange auctions.',
-  },
-  {
-    title: 'Testing Philosophy',
-    content:
-      'The quality of testing is one our key differentiating factors. A special attention is payed to unit tests, automated component-centric and cross-system integrations tests, performance and stress tests.\n\nIn addition to that, we employ model-driven methodology complemented by a set of proprietary techniques to generate hundreds of thousands individual state transition tests collectively producing millions of events the system is subjected to in a single test run.\n\nThe aim of this layer of tests is to ensure the adherence to the product specification and robustness of the state engines. It is used as a solid regression pack protecting us against unwanted changes and bugs that can be introduced in the course of incremental development.',
-  },
-]
-
-
+        {
+          title: 'Multi-Asset',
+          content:
+            'Our solutions are geared towards multi-asset trading that becomes crucial in the investment banking brokerage industries to achieve uniformity, improve efficiency, risk transparency and promote cross-selling on various levels.\n\nEven if the initial client requirements are skewed towards a particular business flow and asset type, design provisions are made to make the components extendible to multi-asset trading.',
+        },
+        {
+          title: 'Message Bus',
+          content:
+            'A high-performance message bus is right in the core of our platform. This allows us to achieve low latency, low dispersion of latency and high throughput. The bus-centric architecture is linearly scalable.',
+        },
+        {
+          title: 'Reporting',
+          content:
+            'The event-driven and transactional nature of the system allows us to capture all the system and business events that improves the transparency. The real-time reporting capability can be tailored to meet the specific reporting and compliance requirements.',
+        },
+        {
+          title: 'Data Retention',
+          content:
+            'The historical data outside of the OMS trading session (that can incorporate single or multiple day trading sessions) is retained in a decoupled long-term storage (such as a classical RDBMS or its NoSQL substitute).\n\nCustom drop-feed and query components are developed to support real-time long-term data persistence as well as retrieval.',
+        },
+        {
+          title: 'Flexible Order Hierarchy',
+          content:
+            'We avoid rigid order hierarchies and support N levels of order nesting (parent-child relationship). Parent, work/care, market-side or other types orders use the uniform order representation. Constraints on the depth of nesting, slicing child orders, and propagation of trade events and states can be imposed on individual branches of the order hierarchy.',
+        },
+        {
+          title: 'Powerful Order Routing',
+          content:
+            'We employ a DSL-driven routing engine to manage the business flow segmentation, order routing, ah-hoc business rules, enrichment, validation, and custom behaviours.',
+        },
+        {
+          title: 'Business Flows',
+          content:
+            'Business Flow is a first-class OMS concept. It is supported in all the key business objects to ensure proper flow segmentation, authorisation and control.',
+        },
+        {
+          title: 'Security',
+          content:
+            'A very fine-grained authorisation model is embedded in the system core and can be applied to individual actions and the business objects on which they are performed. The model can provide “Chinese wall” separation between different business flows, desks, processes and trading destinations.',
+        },
+        {
+          title: 'Race Conditions',
+          content:
+            'The OMS design caters for the natural race conditions that can occur in the normal business flow and as the result of market anomalies and exchange-specific behaviours. It imposes versioning on some of its key business objects to ensure the state integrity and stability of the internal and client components.',
+        },
+        {
+          title: 'Event Sequencing',
+          content:
+            'Many client systems are intolerant to out-of-sequence behaviour. The OMS can provide event sequencing capability to normalise the flow.',
+        },
+        {
+          title: 'Multiple Amendments',
+          content:
+            'We support multiple pending order amendments to ensure fast basket staging and modifications that becomes particularly important with slow markets before the opening and closing auctions.',
+        },
+        {
+          title: 'Order Staging and Queuing',
+          content:
+            'Order staging and queuing functionality can be enabled to streamline order submission and amendments outside of market trading hours and around the exchange auctions.',
+        },
+        {
+          title: 'Testing Philosophy',
+          content:
+            'The quality of testing is one our key differentiating factors. A special attention is payed to unit tests, automated component-centric and cross-system integrations tests, performance and stress tests.\n\nIn addition to that, we employ model-driven methodology complemented by a set of proprietary techniques to generate hundreds of thousands individual state transition tests collectively producing millions of events the system is subjected to in a single test run.\n\nThe aim of this layer of tests is to ensure the adherence to the product specification and robustness of the state engines. It is used as a solid regression pack protecting us against unwanted changes and bugs that can be introduced in the course of incremental development.',
+        },
+      ]
     }"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
@@ -385,76 +388,84 @@
               x-transition
               class="text-sm leading-relaxed mt-2"
             >
-              <p x-text="item.content" class="pr-10"></p>
+              <p x-text="item.content" class="pr-10 whitespace-pre-line"></p>
             </div>
           </div>
         </template>
       </div>
     </div>
-    <!-- IMAGE on right -->
+
+    <!-- IMAGE on Right (Desktop) / Bottom (Mobile) -->
     <div
-      class="image-feature flex justify-center items-center sm:static w-auto order-2 max-sm:order-2"
+      class="image-feature flex justify-center items-center sm:static w-full order-2 max-sm:order-2 mt-10 sm:mt-0"
     >
-      <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
+      <img
+        src="/images/imac-binance.png"
+        class="w-full max-w-md h-auto object-contain"
+        alt="Functional Overview Graphic"
+      />
     </div>
   </div>
-  <!-- Introduction Section -->
+
+  <!-- Introduction Section 3 - Non-Functional Aspects -->
   <div
-    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-[#090619] text-white text-left py-20 max-sm:py-10"
+    class="w-full max-h-max grid grid-cols-2 max-sm:grid-cols-1 bg-[#090619] text-white text-left py-20 max-sm:py-10"
     x-intersect:enter="shown = true"
   >
-    <!-- IMAGE on right -->
+    <!-- IMAGE on Left (Desktop) / Bottom (Mobile) -->
     <div
-      class="image-feature flex justify-center items-center absolute sm:static -left-28 w-auto order-1 max-sm:order-2"
+      class="image-feature flex justify-center items-center w-full order-1 max-sm:order-2 mt-10 sm:mt-0"
     >
-      <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
+      <img
+        src="/images/imac-binance.png"
+        class="w-full max-w-md h-auto object-contain"
+        alt="System Diagram"
+      />
     </div>
 
-    <!-- TEXT on Right -->
+    <!-- TEXT on Right (Desktop) / Top (Mobile) -->
     <div
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
       shown: true,
       open: null,
       items: [
-  {
-    title: 'Non-Functional Aspects',
-    content:
-      'We firmly believe that non-functional aspects define the quality and longevity of the system. If they are ignored in the early stages of design and implementation, retrofitting them later is next to impossible.\n\nThus, significant consideration is given to the choice of processing algorithms, memory model, performance, memory footprint of individual data structures and their storages, garbage collection and its impact on the latency profile, and numerous other factors.\n\nWe use high-performance design patterns that significantly improve the KPI’s without compromising the clarity of the code and its maintainability.',
-  },
-  {
-    title: 'Capacity',
-    content:
-      'A single instance of our OMS can handle over a hundred millions of orders, amends and cancellations.\n\nA typical configuration of the core OMS process handling 40 million orders, 20 million amends and 20 millions cancellations would have a memory footprint around 4 to 5Gb.',
-  },
-  {
-    title: 'Sustainable Throughput',
-    content:
-      'The sustainable throughput can vary from a few hundred thousand to over a million messages per second depending on the deployment configuration.',
-  },
-  {
-    title: 'Latency',
-    content:
-      'Less than 26µs for 99.5% of messages (including the network hops) for the “business” IPC layer. The latency introduced by the core OMS layer can be configured to be less than 1µs.\n\nThe increased configured capacity is not expected to increase the latencies and their dispersion.',
-  },
-  {
-    title: 'Deployment Configuration',
-    content:
-      'We can cater for highly distributed, localised and “co-located” deployment configurations.',
-  },
-  {
-    title: 'Maintenance',
-    content:
-      'Our OMS solutions are intuitively modularised, well-documented and are easily maintainable. The design supports ongoing updates of individual components and would not typically require re-deployment of the entire system.',
-  },
-  {
-    title: 'Support',
-    content:
-      'We provide continuous product training for the first and second-level support staff. Additional advanced training can be arranged upon request. Our development team can provide the third level support and help handling production emergencies.',
-  },
-]
-
-
+        {
+          title: 'Non-Functional Aspects',
+          content:
+            'We firmly believe that non-functional aspects define the quality and longevity of the system. If they are ignored in the early stages of design and implementation, retrofitting them later is next to impossible.\n\nThus, significant consideration is given to the choice of processing algorithms, memory model, performance, memory footprint of individual data structures and their storages, garbage collection and its impact on the latency profile, and numerous other factors.\n\nWe use high-performance design patterns that significantly improve the KPI’s without compromising the clarity of the code and its maintainability.',
+        },
+        {
+          title: 'Capacity',
+          content:
+            'A single instance of our OMS can handle over a hundred millions of orders, amends and cancellations.\n\nA typical configuration of the core OMS process handling 40 million orders, 20 million amends and 20 millions cancellations would have a memory footprint around 4 to 5Gb.',
+        },
+        {
+          title: 'Sustainable Throughput',
+          content:
+            'The sustainable throughput can vary from a few hundred thousand to over a million messages per second depending on the deployment configuration.',
+        },
+        {
+          title: 'Latency',
+          content:
+            'Less than 26µs for 99.5% of messages (including the network hops) for the “business” IPC layer. The latency introduced by the core OMS layer can be configured to be less than 1µs.\n\nThe increased configured capacity is not expected to increase the latencies and their dispersion.',
+        },
+        {
+          title: 'Deployment Configuration',
+          content:
+            'We can cater for highly distributed, localised and “co-located” deployment configurations.',
+        },
+        {
+          title: 'Maintenance',
+          content:
+            'Our OMS solutions are intuitively modularised, well-documented and are easily maintainable. The design supports ongoing updates of individual components and would not typically require re-deployment of the entire system.',
+        },
+        {
+          title: 'Support',
+          content:
+            'We provide continuous product training for the first and second-level support staff. Additional advanced training can be arranged upon request. Our development team can provide the third level support and help handling production emergencies.',
+        }
+      ]
     }"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
@@ -468,7 +479,7 @@
       <div class="flex flex-col gap-1 text-left text-base">
         <template x-for="(item, index) in items" :key="index">
           <div
-            class="bg-[#090619] border-b-[1px] rounded-sm py-2 transition duration-500"
+            class="border-b border-white/20 rounded-sm py-2 transition duration-500"
           >
             <button
               class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer"
@@ -487,7 +498,7 @@
               x-transition
               class="text-sm leading-relaxed mt-2"
             >
-              <p x-text="item.content" class="pr-10"></p>
+              <p x-text="item.content" class="pr-10 whitespace-pre-line"></p>
             </div>
           </div>
         </template>

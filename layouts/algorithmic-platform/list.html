@@ -178,65 +178,80 @@
 
   <!-- Platform Overview -->
   <section
-    class="w-full flex flex-col h-[700px] justify-evenly text-center text-white p-20 overflow-hidden"
+    class="w-full flex flex-col justify-evenly text-center text-white p-8 md:p-20 overflow-hidden min-h-[700px]"
   >
     <div class="relative">
-      <div class="absolute">
-        <img src="/images/Ellipse.svg" class="opacity-40" />
+      <div class="absolute inset-0">
+        <img
+          src="/images/Ellipse.svg"
+          class="opacity-40 w-full h-full object-cover"
+          alt="Background ellipse"
+        />
       </div>
     </div>
-    <div class="grid grid-cols-3 gap-20 z-20">
-      <div class="h-[500px] w-[350px] flex flex-col justify-center">
-        <div class="h-[250px] flex justify-center mb-10">
-          <img src="/images/icons/buy-and-sell.svg" class="h-[240px]" />
-        </div>
-        <div class="title h-10 mb-5">
-          <h2 class="text-3xl font-semibold">Buy & Sell Side</h2>
-        </div>
-        <div>
-          <span
-            >The Algorithmic Container supports both agency and proprietary
-            trading. While their setups differ, the same execution and
-            alpha-seeking algorithms can be used to reduce slippage and improve
-            performance, within regulatory limits.</span
-          >
-        </div>
-      </div>
-      <div class="h-[500px] w-[350px] flex flex-col justify-center">
-        <div class="h-[250px] flex justify-center mb-10">
-          <img src="/images/icons/multi-asset.svg" class="h-[240px]" />
-        </div>
-        <div class="title h-10 mb-5">
-          <h2 class="text-3xl font-semibold">Multi-Asset Trading</h2>
-        </div>
-        <div>
-          <span
-            >Our solutions are geared towards multi-asset trading that becomes
-            crucial in the investment banking brokerage industries to achieve
-            uniformity, improve efficiency, risk transparency and promote
-            cross-selling on various levels.<br />
 
-            Even if the initial client requirements are skewed towards a
-            particular business flow and asset type, design provisions were put
-            in place to make the components extendible to multi-asset
-            trading.</span
-          >
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-20 z-20">
+      <div
+        class="flex flex-col justify-center items-center w-full max-w-md mx-auto h-auto md:h-[500px] p-4 md:p-0"
+      >
+        <div class="h-[180px] md:h-[250px] flex justify-center mb-6 md:mb-10">
+          <img
+            src="/images/icons/buy-and-sell.svg"
+            class="h-full object-contain"
+            alt="Buy & Sell Side"
+          />
         </div>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4">Buy & Sell Side</h2>
+        <p class="text-base leading-relaxed max-w-md">
+          The Algorithmic Container supports both agency and proprietary
+          trading. While their setups differ, the same execution and
+          alpha-seeking algorithms can be used to reduce slippage and improve
+          performance, within regulatory limits.
+        </p>
       </div>
-      <div class="h-[500px] w-[350px] flex flex-col justify-center">
-        <div class="h-[250px] flex justify-center mb-10">
-          <img src="/images/icons/composite-strategies.svg" class="h-[240px]" />
+
+      <div
+        class="flex flex-col justify-center items-center w-full max-w-md mx-auto h-auto md:h-[500px] p-4 md:p-0"
+      >
+        <div class="h-[180px] md:h-[250px] flex justify-center mb-6 md:mb-10">
+          <img
+            src="/images/icons/multi-asset.svg"
+            class="h-full object-contain"
+            alt="Multi-Asset Trading"
+          />
         </div>
-        <div class="title h-10 mb-5">
-          <h2 class="text-3xl font-semibold">Composite Strategies</h2>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
+          Multi-Asset Trading
+        </h2>
+        <p class="text-base leading-relaxed max-w-md">
+          Our solutions are geared towards multi-asset trading that becomes
+          crucial in the investment banking brokerage industries to achieve
+          uniformity, improve efficiency, risk transparency and promote
+          cross-selling on various levels.<br />
+          Even if the initial client requirements are skewed towards a
+          particular business flow and asset type, design provisions were put in
+          place to make the components extendible to multi-asset trading.
+        </p>
+      </div>
+
+      <div
+        class="flex flex-col justify-center items-center w-full max-w-md mx-auto h-auto md:h-[500px] p-4 md:p-0"
+      >
+        <div class="h-[180px] md:h-[250px] flex justify-center mb-6 md:mb-10">
+          <img
+            src="/images/icons/composite-strategies.svg"
+            class="h-full object-contain"
+            alt="Composite Strategies"
+          />
         </div>
-        <div>
-          <span
-            >We avoid monolithic approach in strategy development and encourage
-            the use of the Composite pattern by nesting strategies. This can be
-            done both statically in the code and the configuration.</span
-          >
-        </div>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4">
+          Composite Strategies
+        </h2>
+        <p class="text-base leading-relaxed max-w-md">
+          We avoid monolithic approach in strategy development and encourage the
+          use of the Composite pattern by nesting strategies. This can be done
+          both statically in the code and the configuration.
+        </p>
       </div>
     </div>
   </section>
@@ -244,10 +259,10 @@
   <section
     x-data="typingList()"
     x-intersect.once="startTyping()"
-    class="bg-white w-full grid grid-cols-3 p-20"
+    class="bg-white w-full grid grid-cols-1 md:grid-cols-3 p-10 md:p-20 gap-8 relative"
   >
     <div
-      class="w-full h-[700px] col-span-2 sm:w-[700px] max-w-full bg-[#121010] text-white rounded-2xl overflow-hidden z-20 shadow-lg shadow-black"
+      class="w-full h-[700px] md:col-span-2 bg-[#121010] text-white rounded-2xl overflow-hidden z-20 shadow-lg shadow-black"
     >
       <!-- Code Block Header -->
       <div
@@ -257,18 +272,16 @@
         <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
         <div class="w-3 h-3 bg-green-500 rounded-full"></div>
         <div class="pl-5">
-          <span class="text-gray-400 text-sm">
-            algoteq_systems.js
-          </span>
+          <span class="text-gray-400 text-sm">algoteq_systems.js</span>
         </div>
       </div>
-      <div class="max-w-4xl mx-auto p-10 font-mono">
+      <div class="max-w-4xl mx-auto p-5 font-mono">
         <h2 class="text-2xl mb-6 text-green-500">Trading Simulator</h2>
 
-        <p class="mb-6">
+        <p class="mb-6 max-sm:text-sm">
           As a test harness for prototyping quantitative ideas and a
-          <span class="text-yellow-500">“debugger”</span>
-          for <span class="text-yellow-500">troubleshooting</span>,
+          <span class="text-yellow-500">“debugger”</span> for
+          <span class="text-yellow-500">troubleshooting</span>,
           <span class="text-yellow-500">refining</span> and
           <span class="text-yellow-500">testing</span> strategies, we
           incorporate the
@@ -277,7 +290,7 @@
           for:
         </p>
 
-        <ul class="list-disc list-inside space-y-3 text-base">
+        <ul class="list-disc list-inside space-y-3 max-sm:text-xs">
           <template x-for="(item, index) in typedItems" :key="index">
             <li
               x-text="item + (index === currentTypingIndex ? cursor : '')"
@@ -286,84 +299,59 @@
         </ul>
       </div>
     </div>
-    <div>
-      <img src="/images/imac-screen.png" class="w-[700px] absolute" />
+
+    <!-- Image container - no absolute positioning, scales responsively -->
+    <div class="w-full flex justify-center items-center">
+      <img
+        src="/images/imac-screen.png"
+        alt="Trading simulator screenshot"
+        class="max-w-full h-auto"
+        style="max-height: 700px;"
+      />
     </div>
   </section>
 
-  <!-- Divider -->
-  <div class="w-full h-1 bg-gradient-to-r from-[#00AA00] to-[#539AFD]"></div>
-  <!-- Introduction Section -->
   <div
-    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-[#090619] text-white text-left py-20 max-sm:py-10"
+    class="w-full bg-[#090619] text-white text-left py-20 px-4 max-md:py-10 max-md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 relative"
     x-intersect:enter="shown = true"
   >
     <!-- IMAGE on Left -->
     <div
-      class="image-feature flex justify-center items-center absolute sm:static -left-28 w-auto order-1 max-sm:order-2"
+      class="image-feature flex justify-center items-center w-full md:w-auto order-2 md:order-1 transition-all duration-700 ease-in-out"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-x-12"
       x-transition:enter-end="opacity-100 translate-x-0"
     >
       <div
-        class="w-[5px] h-[100px] mr-10"
+        class="hidden md:block w-[5px] h-[100px] mr-10"
         style="background: linear-gradient(to bottom, #00aa00, #539afd);"
       ></div>
-      <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
+      <img
+        src="/images/imac-binance.png"
+        alt="Trading simulator screen"
+        class="w-auto max-w-full max-h-[400px] md:max-h-[500px] rounded-md"
+      />
     </div>
 
     <!-- TEXT on Right -->
     <div
-      class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
+      class="w-full md:w-3/4 mx-auto order-1 md:order-2"
       x-data="{
       shown: true,
       open: null,
       items: [
-        {
-          title: 'Functional Layers',
-          content: 'The Functional Layers are the specialised processing layers that constitute the Assembly Line, a complex event processing (CEP) pipeline structured as a chain of responsibility...'
-        },
-        {
-          title: 'Services',
-          content: 'The Services are required by a Strategy to carry out its essential functions, be it trading, surveillance and monitoring, or management of other strategies...'
-        },
-        {
-          title: 'Managers',
-          content: 'The Managers complement the Services by providing additional functionality and standardising the interactions with the Container...'
-        },
-        {
-          title: 'Reporting',
-          content: 'The event-driven and transactional nature of the system allows us to capture all the system and business events that improves the transparency...'
-        },
-        {
-          title: 'Data Retention',
-          content: 'The historical data outside of the trading session is retained in a decoupled long-term storage. Custom components support real-time long-term data persistence and retrieval...'
-        },
-        {
-          title: 'Flexible Strategy Order Hierarchy',
-          content: 'We avoid rigid order hierarchies and support N levels of strategy order nesting...'
-        },
-        {
-          title: 'Powerful Order Routing',
-          content: 'We employ a DSL-driven routing engine to manage business flow segmentation, enrichment, validation, and custom behaviours...'
-        },
-        {
-          title: 'Testing Philosophy',
-          content: 'Our testing focuses on unit tests, integration, performance and stress testing. We use model-driven test generation to simulate millions of events in a single run...'
-        },
-        {
-          title: 'Deployment Configuration',
-          content: 'We can cater for highly distributed, localised and co-located deployment configurations.'
-        },
-        {
-          title: 'Maintenance',
-          content: 'The system is modular, documented, and supports updates without full re-deployment.'
-        },
-        {
-          title: 'Support',
-          content: 'We provide ongoing support and training across all levels including emergency production handling.'
-        }
+        { title: 'Functional Layers', content: 'The Functional Layers are the specialised processing layers that constitute the Assembly Line, a complex event processing (CEP) pipeline structured as a chain of responsibility...' },
+        { title: 'Services', content: 'The Services are required by a Strategy to carry out its essential functions, be it trading, surveillance and monitoring, or management of other strategies...' },
+        { title: 'Managers', content: 'The Managers complement the Services by providing additional functionality and standardising the interactions with the Container...' },
+        { title: 'Reporting', content: 'The event-driven and transactional nature of the system allows us to capture all the system and business events that improves the transparency...' },
+        { title: 'Data Retention', content: 'The historical data outside of the trading session is retained in a decoupled long-term storage. Custom components support real-time long-term data persistence and retrieval...' },
+        { title: 'Flexible Strategy Order Hierarchy', content: 'We avoid rigid order hierarchies and support N levels of strategy order nesting...' },
+        { title: 'Powerful Order Routing', content: 'We employ a DSL-driven routing engine to manage business flow segmentation, enrichment, validation, and custom behaviours...' },
+        { title: 'Testing Philosophy', content: 'Our testing focuses on unit tests, integration, performance and stress testing. We use model-driven test generation to simulate millions of events in a single run...' },
+        { title: 'Deployment Configuration', content: 'We can cater for highly distributed, localised and co-located deployment configurations.' },
+        { title: 'Maintenance', content: 'The system is modular, documented, and supports updates without full re-deployment.' },
+        { title: 'Support', content: 'We provide ongoing support and training across all levels including emergency production handling.' }
       ]
     }"
       x-show="shown"
@@ -371,22 +359,22 @@
       x-transition:enter-start="opacity-0 translate-y-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <h2 class="text-5xl max-sm:text-4xl font-semibold mb-6">
+      <h2 class="text-5xl max-md:text-4xl font-semibold mb-6">
         Architectural Principles
       </h2>
 
-      <div class="flex flex-col gap-1 text-left text-base">
+      <div class="flex flex-col gap-1 text-left text-base max-md:text-sm">
         <template x-for="(item, index) in items" :key="index">
           <div
-            class="bg-[#090619] border-b-[1px] rounded-sm py-2 transition duration-500"
+            class="bg-[#090619] border-b border-gray-700 rounded-sm py-2 transition duration-500"
           >
             <button
-              class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer"
+              class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer max-md:text-base"
               @click="open === index ? open = null : open = index"
             >
               <span x-text="item.title"></span>
               <span
-                class="text-[30px] font-thin transition-transform duration-300"
+                class="text-[30px] font-thin transition-transform duration-300 max-md:text-2xl"
                 :class="open === index ? 'rotate-45' : ''"
               >
                 +
@@ -395,9 +383,9 @@
             <div
               x-show="open === index"
               x-transition
-              class="text-sm leading-relaxed mt-2"
+              class="text-sm leading-relaxed mt-2 max-md:text-xs pr-4"
             >
-              <p x-text="item.content" class="pr-10"></p>
+              <p x-text="item.content"></p>
             </div>
           </div>
         </template>
