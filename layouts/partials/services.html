@@ -1,6 +1,7 @@
 <!-- Services section -->
 <div
   class="mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0"
+  x-cloak
   x-data="{ visible: false }"
   x-init="setTimeout(() => visible = true, 200)"
 >
@@ -9,6 +10,7 @@
   >
     <div
       class="col-span-1"
+      x-cloak
       x-show="visible"
       x-transition:enter="transition ease-out duration-1000"
       x-transition:enter-start="opacity-0 "
@@ -91,6 +93,7 @@
     <!-- Content -->
     <div
       class="relative z-10 text-white mt-20 max-sm:mt-0"
+      x-cloak
       x-data="{ shown: false }"
       x-intersect="shown = true"
     >
