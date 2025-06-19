@@ -190,3 +190,38 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* contact us */
+.form-field {
+  @apply w-full p-3 rounded-lg bg-black/30 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-300;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ai page */
+
+#neuralCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.aiPageContainer {
+  position: relative;
+  overflow: hidden;
+}
