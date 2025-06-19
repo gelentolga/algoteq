@@ -98,11 +98,19 @@
       // Fading trail effect for glow, lighter fade for speed
       this.ctx.fillStyle = "rgba(11, 12, 23, 0.25)";
       this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      const gradient = this.ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        this.canvas.height
+      );
+      gradient.addColorStop(0, "#ffffff"); // blue
+      gradient.addColorStop(1, "#00ff9d"); // green
 
       for (let y = 0; y < this.rows; y++) {
         for (let x = 0; x < this.cols; x++) {
           if (this.grid[y][x] === 1) {
-            this.ctx.fillStyle = "#00ffe0";
+            this.ctx.fillStyle = gradient;
             this.ctx.fillRect(
               x * this.cellSize,
               y * this.cellSize,
