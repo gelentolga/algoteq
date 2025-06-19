@@ -1,7 +1,6 @@
 {{ define "main" }}
 
 <style>
-  /* Canvas fills full container and is behind content */
   #neuralCanvas {
     position: absolute;
     top: 0;
@@ -12,223 +11,208 @@
     pointer-events: none;
   }
   .aiPageContainer {
-    position: relative; /* to contain the absolutely positioned canvas */
+    position: relative;
     overflow: hidden;
   }
 </style>
 
 <div
   class="aiPageContainer mx-auto w-full bg-[#0b0c17] text-white min-h-screen flex flex-col items-center"
-  x-data="{ introVisible: false, sectionVisible: false }"
-  x-init="
-    setTimeout(() => introVisible = true, 300); 
-    setTimeout(() => sectionVisible = true, 800);
-    initNeuralBackground($refs.canvas);
-  "
+  x-data="gameOfLifeApp"
+  x-init="init($refs.canvas); initNeuralBackground($refs.neural)"
 >
-  <!-- Neural network background canvas -->
-  <canvas x-ref="canvas" id="neuralCanvas"></canvas>
+  <canvas x-ref="neural" id="neuralCanvas"></canvas>
 
-  <!-- Intro Section -->
   <section
-    class="relative w-5/6 max-w-7xl py-24 flex flex-col md:flex-row items-center justify-between z-10"
+    class="relative w-5/6 max-w-7xl py-24 flex flex-col items-center z-10 text-center"
   >
-    <div
-      class="introText max-w-xl"
-      x-show="introVisible"
-      x-transition:enter="transition ease-out duration-800"
-      x-transition:enter-start="opacity-0 translate-y-12"
-      x-transition:enter-end="opacity-100 translate-y-0"
-    >
-      <h1 class="text-[3rem] md:text-[4rem] font-semibold leading-tight">
-        Don’t Be Intimidated <br />
-        <span
-          class="bg-gradient-to-r from-green-500 to-blue-400 bg-clip-text text-transparent"
-          >by AI</span
-        >, Seize the Opportunity
-      </h1>
-      <p class="mt-6 text-lg font-light leading-relaxed text-gray-300">
-        AI isn’t some mysterious force. It’s a complex ecosystem of intelligent
-        agents — computing nodes collaborating and competing — evolving to make
-        smarter decisions, protect your investments, and unlock new horizons.
-      </p>
-      <a
-        href="/contact"
-        class="inline-block mt-10 px-8 py-3 bg-green-500 hover:bg-green-100 text-white hover:text-green-950 font-semibold transition"
-        >Contact Us</a
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+      <span
+        class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
       >
-    </div>
+        Game of Life
+      </span>
+      <br />— Conway's Cellular Sand Simulation
+    </h1>
+    <p class="mt-6 text-lg text-gray-300 max-w-2xl">
+      Cells live, die, and evolve in mesmerizing patterns. A universe of logic,
+      right in your browser.
+    </p>
 
-    <!-- Realistic GPU Animation -->
-    <div
-      class="gpu-wrapper mt-12 md:mt-0 w-72 h-72 relative"
-      x-show="introVisible"
-      x-transition:enter="transition ease-out duration-1000 delay-300"
-      x-transition:enter-start="opacity-0 scale-75"
-      x-transition:enter-end="opacity-100 scale-100"
-      aria-label="Animated GPU chip"
-      role="img"
-    >
+    <!-- Game of Life -->
+    <div class="mt-12 relative w-full max-w-[800px]">
+      <canvas
+        x-ref="canvas"
+        id="gameCanvas"
+        class="w-full aspect-square border border-cyan-500 rounded-lg shadow-lg cursor-pointer"
+        @click="toggleCell($event)"
+      ></canvas>
+
+      <!-- Controls -->
       <div
-        class="gpu-chip rounded-lg relative w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 shadow-2xl border border-gray-600 overflow-hidden"
+        class="absolute bottom-2 left-2 flex gap-2 bg-black/60 p-2 rounded-lg text-sm text-white z-10"
       >
-        <!-- GPU core -->
-        <div
-          class="gpu-core absolute top-1/2 left-1/2 w-28 h-28 bg-gradient-to-tr from-white to-green-400 rounded-lg shadow-inner transform -translate-x-1/2 -translate-y-1/2 z-10"
+        <button
+          @click="toggle()"
+          class="px-3 py-1 bg-green-600 hover:bg-green-400 rounded"
         >
-          <!-- Inner glow ring -->
-          <div
-            class="absolute inset-0 rounded-lg border-4 border-blue-400/40 animate-pulse-slow"
-          ></div>
-        </div>
-
-        <!-- Circuit lines grid -->
-        <svg
-          class="absolute inset-0 w-full h-full stroke-cyan-500/30"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 200 200"
+          <span x-text="running ? 'Pause' : 'Play'"></span>
+        </button>
+        <button
+          @click="reset()"
+          class="px-3 py-1 bg-gray-700 hover:bg-gray-500 rounded"
         >
-          <!-- Vertical lines -->
-          <line x1="20" y1="0" x2="20" y2="200" stroke-width="1" />
-          <line x1="50" y1="0" x2="50" y2="200" stroke-width="1" />
-          <line x1="80" y1="0" x2="80" y2="200" stroke-width="1" />
-          <line x1="110" y1="0" x2="110" y2="200" stroke-width="1" />
-          <line x1="140" y1="0" x2="140" y2="200" stroke-width="1" />
-          <line x1="170" y1="0" x2="170" y2="200" stroke-width="1" />
-          <!-- Horizontal lines -->
-          <line x1="0" y1="20" x2="200" y2="20" stroke-width="1" />
-          <line x1="0" y1="50" x2="200" y2="50" stroke-width="1" />
-          <line x1="0" y1="80" x2="200" y2="80" stroke-width="1" />
-          <line x1="0" y1="110" x2="200" y2="110" stroke-width="1" />
-          <line x1="0" y1="140" x2="200" y2="140" stroke-width="1" />
-          <line x1="0" y1="170" x2="200" y2="170" stroke-width="1" />
-        </svg>
-
-        <!-- Pulsing circuit nodes -->
-        <div
-          class="absolute top-14 left-14 w-2 h-2 bg-cyan-400 rounded-full animate-pulse-fast shadow-lg"
-        ></div>
-        <div
-          class="absolute top-14 left-[186px] w-2 h-2 bg-cyan-400 rounded-full animate-pulse-slower shadow-lg"
-        ></div>
-        <div
-          class="absolute top-48 left-20 w-2 h-2 bg-cyan-400 rounded-full animate-pulse-slowest shadow-lg"
-        ></div>
-        <div
-          class="absolute top-60 left-60 w-2 h-2 bg-cyan-400 rounded-full animate-pulse-fast shadow-lg"
-        ></div>
-        <div
-          class="absolute top-100 left-80 w-2 h-2 bg-cyan-400 rounded-full animate-pulse-slower shadow-lg"
-        ></div>
-
-        <!-- Glowing data flow lines -->
-        <svg
-          class="absolute inset-0 w-full h-full pointer-events-none"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 200 200"
+          Reset
+        </button>
+        <button
+          @click="randomize()"
+          class="px-3 py-1 bg-indigo-600 hover:bg-indigo-400 rounded"
         >
-          <path
-            d="M40 40 L80 80 L120 40 L160 80"
-            stroke="url(#glowGradient)"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <animate
-              attributeName="stroke-dashoffset"
-              from="200"
-              to="0"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </path>
-          <defs>
-            <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#0ff" stop-opacity="0" />
-              <stop offset="50%" stop-color="#0ff" stop-opacity="1" />
-              <stop offset="100%" stop-color="#0ff" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-
-        <!-- Shine sweep -->
-        <div
-          class="shine-sweep absolute inset-0 pointer-events-none rounded-lg"
-        ></div>
+          Random
+        </button>
       </div>
-
-      <style>
-        /* Pulsing animation variations */
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 0.5;
-            transform: scale(1);
-            box-shadow: 0 0 8px #0ff;
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.3);
-            box-shadow: 0 0 20px #0ff;
-          }
-        }
-        .animate-pulse-fast {
-          animation: pulse 1.2s ease-in-out infinite;
-        }
-        .animate-pulse-slower {
-          animation: pulse 1.8s ease-in-out infinite;
-        }
-        .animate-pulse-slowest {
-          animation: pulse 2.5s ease-in-out infinite;
-        }
-
-        /* Glow ring inside GPU core */
-        .gpu-core > div {
-          animation: pulse 5s ease-in-out infinite;
-        }
-
-        /* Shine sweep */
-        .shine-sweep {
-          background: linear-gradient(
-            120deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.15) 50%,
-            rgba(255, 255, 255, 0) 100%
-          );
-          filter: blur(15px);
-          animation: sweep 2.5s linear infinite;
-          mix-blend-mode: screen;
-        }
-        @keyframes sweep {
-          0% {
-            transform: translateX(-150%);
-          }
-          100% {
-            transform: translateX(150%);
-          }
-        }
-      </style>
     </div>
   </section>
 </div>
 
 <script>
+  const gameOfLifeApp = {
+    canvas: null,
+    ctx: null,
+    cellSize: 8, // Sweet spot size
+    cols: 0,
+    rows: 0,
+    grid: [],
+    running: true,
+    animation: null,
+    lastUpdate: 0,
+    updateInterval: 66, // ~15 FPS
+
+    init(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext("2d");
+      this.resize();
+      window.addEventListener("resize", () => {
+        this.resize();
+        this.draw();
+      });
+      this.randomize();
+      this.loop();
+    },
+
+    resize() {
+      this.canvas.width = this.canvas.clientWidth;
+      this.canvas.height = this.canvas.clientHeight;
+      this.cols = Math.floor(this.canvas.width / this.cellSize);
+      this.rows = Math.floor(this.canvas.height / this.cellSize);
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+    },
+
+    draw() {
+      // Fading trail effect for glow, lighter fade for speed
+      this.ctx.fillStyle = "rgba(11, 12, 23, 0.25)";
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      for (let y = 0; y < this.rows; y++) {
+        for (let x = 0; x < this.cols; x++) {
+          if (this.grid[y][x] === 1) {
+            this.ctx.fillStyle = "#00ffe0";
+            this.ctx.fillRect(
+              x * this.cellSize,
+              y * this.cellSize,
+              this.cellSize,
+              this.cellSize
+            );
+          }
+        }
+      }
+    },
+
+    update() {
+      const next = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+      for (let y = 0; y < this.rows; y++) {
+        for (let x = 0; x < this.cols; x++) {
+          let neighbors = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (dx === 0 && dy === 0) continue;
+              const ny = y + dy,
+                nx = x + dx;
+              if (ny >= 0 && ny < this.rows && nx >= 0 && nx < this.cols) {
+                neighbors += this.grid[ny][nx];
+              }
+            }
+          }
+          if (this.grid[y][x] === 1) {
+            next[y][x] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+          } else {
+            next[y][x] = neighbors === 3 ? 1 : 0;
+          }
+        }
+      }
+      this.grid = next;
+    },
+
+    loop(timestamp) {
+      if (!this.lastUpdate) this.lastUpdate = timestamp;
+
+      const elapsed = timestamp - this.lastUpdate;
+      if (elapsed > this.updateInterval) {
+        if (this.running) this.update();
+        this.lastUpdate = timestamp;
+      }
+
+      this.draw();
+      this.animation = requestAnimationFrame((t) => this.loop(t));
+    },
+
+    toggle() {
+      this.running = !this.running;
+    },
+
+    reset() {
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+    },
+
+    randomize() {
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols)
+          .fill(0)
+          .map(() => (Math.random() < 0.12 ? 1 : 0))
+      );
+    },
+
+    toggleCell(e) {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = Math.floor((e.clientX - rect.left) / this.cellSize);
+      const y = Math.floor((e.clientY - rect.top) / this.cellSize);
+      if (x >= 0 && x < this.cols && y >= 0 && y < this.rows) {
+        this.grid[y][x] = this.grid[y][x] ? 0 : 1;
+        this.draw();
+      }
+    },
+  };
+
   function initNeuralBackground(canvas) {
     const ctx = canvas.getContext("2d");
     let width, height;
-    const nodesCount = 200;
+    const nodesCount = 120;
     const nodes = [];
 
     function resize() {
       width = canvas.width = canvas.clientWidth;
       height = canvas.height = canvas.clientHeight;
     }
+
     window.addEventListener("resize", resize);
     resize();
 
-    // Node constructor
     function Node(x, y) {
       this.x = x;
       this.y = y;
@@ -237,7 +221,6 @@
       this.radius = 2 + Math.random() * 2;
     }
 
-    // Initialize nodes at random positions
     for (let i = 0; i < nodesCount; i++) {
       nodes.push(new Node(Math.random() * width, Math.random() * height));
     }
@@ -245,30 +228,22 @@
     function draw() {
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = "rgba(100, 220, 255, 0.2)";
-
-      // Move nodes
       nodes.forEach((node) => {
         node.x += node.vx;
         node.y += node.vy;
-
-        // Bounce off edges
         if (node.x < 0 || node.x > width) node.vx *= -1;
         if (node.y < 0 || node.y > height) node.vy *= -1;
-
-        // Draw node as circle
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Draw connecting lines
       for (let i = 0; i < nodesCount; i++) {
         for (let j = i + 1; j < nodesCount; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           const maxDist = 80;
-
           if (dist < maxDist) {
             ctx.strokeStyle = `rgba(100, 220, 255, ${1 - dist / maxDist})`;
             ctx.lineWidth = 1;
