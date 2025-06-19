@@ -9,19 +9,13 @@
     {{- partial "footer.html" . -}}
 
     <!-- Reference to matrix.js -->
-    {{ $matrix := resources.Get "js/matrix.js" |
-    minify | fingerprint }}
+    {{ $matrix := resources.Get "js/matrix.js" | minify | fingerprint }}
     <script
       src="{{ $matrix.RelPermalink }}"
       integrity="{{ $matrix.Data.Integrity }}"
     ></script>
-  
 
-    <!-- Include the boot.js file -->
-    <script src="{{ "js/boot.js" | relURL }}"></script>
     {{ $alpine := resources.Get "alpinejs/cdn.min.js" }}
-  <script src="{{ $alpine.RelPermalink }}" defer></script>
-  
- 
+    <script src="{{ $alpine.RelPermalink }}" defer></script>
   </body>
 </html>
