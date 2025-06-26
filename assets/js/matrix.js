@@ -157,7 +157,7 @@ function draw() {
         ctx.strokeStyle = `hsla(${hue}, 100%, 75%, ${1 - dist / 120})`;
         ctx.lineWidth = 0.8;
         ctx.shadowColor = `hsla(${hue}, 100%, 75%, 0.6)`;
-        ctx.shadowBlur = 4;
+        ctx.shadowBlur = 8;
         ctx.stroke();
       }
     }

@@ -52,33 +52,6 @@ body {
   background: var(--sidebarbg);
 }
 
-/* Hero Section */
-.hero-section {
-  background: linear-gradient(135deg, #232323 50%, #4a4a4a 50%);
-  color: white;
-  padding: 150px 0;
-  text-align: center;
-}
-
-.hero-section h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-
-.hero-section .btn-cta {
-  font-size: 1.25rem;
-  padding: 15px 30px;
-  background-color: #00ff7f;
-  color: white;
-  border-radius: 30px;
-  transition: all 0.3s ease;
-}
-
-.hero-section .btn-cta:hover {
-  background-color: #00e68f;
-}
-
 /* Content Section */
 .content-section {
   background: linear-gradient(to bottom, #212121, #1b1b1b);

@@ -1,35 +1,79 @@
 <head>
+  <meta charset="UTF-8" />
   <title>
     {{- if .Title -}}{{ .Title }} | {{ .Site.Title }}{{- else -}}{{ .Site.Title
     }}{{- end -}}
   </title>
 
-  <meta charset="UTF-8" />
-  <meta name="google" content="notranslate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Language" content="en" />
+  <meta name="google" content="notranslate" />
   <meta
     name="description"
     content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
   />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Preload and load Google Fonts (Raleway) with swap -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
   />
   <link
     href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet"
   />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
+
+  <!-- Favicon (prevent browser request errors) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Animate.css (optional: remove if not used above the fold) -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+  <!-- Social Media / SEO Metadata -->
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta
+    property="og:description"
+    content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta
+    property="og:image"
+    content="{{ with .Params.opengraphImage }}{{ . }}{{ else }}{{ .Site.Params.opengraphImage }}{{ end }}"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta
+    name="twitter:description"
+    content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}"
+  />
+  <meta
+    name="twitter:image"
+    content="{{ with .Params.opengraphImage }}{{ . }}{{ else }}{{ .Site.Params.opengraphImage }}{{ end }}"
+  />
+
+  <!-- Alpine.js Plugin (Intersection Observer) -->
   <script
     defer
     src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
   ></script>
 
-  {{/* styles */}} {{ $options := dict "inlineImports" true }} {{ $styles :=
-  resources.Get "css/styles.css" }} {{ $styles = $styles | css.PostCSS $options
-  }} {{ if hugo.IsProduction }} {{ $styles = $styles | minify | fingerprint |
-  resources.PostProcess }} {{ end }}
+  <!-- Main CSS from Hugo PostCSS -->
+  {{ $options := dict "inlineImports" true }} {{ $styles := resources.Get
+  "css/styles.css" | css.PostCSS $options }} {{ if hugo.IsProduction }} {{
+  $styles = $styles | minify | fingerprint | resources.PostProcess }} {{ end }}
   <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
 </head>

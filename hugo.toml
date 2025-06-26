@@ -1,12 +1,13 @@
 baseURL = 'http://localhost:1314/'
 languageCode = 'en-AU'
 title = 'Algoteq – Advanced Algorithmic Trading Systems'
+enableRobotsTXT = true
+canonifyURLs = false  # Set to true when deploying live
 
-[menu]
-  
 [params]
   author = "Algoteq"
   description = "Algoteq designs high-performance algorithmic trading platforms powered by AI, data analytics, and advanced simulation tools."
+  opengraphImage = "/images/opengraph-default.jpg"
 
 [frontmatter]
   date = ["date", "publishDate", "lastmod"]
@@ -23,18 +24,20 @@ title = 'Algoteq – Advanced Algorithmic Trading Systems'
   [module.hugoVersion]
     extended = true
     min      = "0.115.0"
+
 [[module.mounts]]
-    source = "node_modules/alpinejs/dist"
-    target = "assets/alpinejs"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
+  source = "node_modules/alpinejs/dist"
+  target = "assets/alpinejs"
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+[[module.mounts]]
+  source = "hugo_stats.json"
+  target = "assets/watching/hugo_stats.json"
 
 [build]
   writeStats = true
+
   [[build.cachebusters]]
     source = "assets/watching/hugo_stats\\.json"
     target = "styles\\.css"
@@ -47,6 +50,3 @@ title = 'Algoteq – Advanced Algorithmic Trading Systems'
   [[build.cachebusters]]
     source = "assets/.*\\.(.*)$"
     target = "$1"
-
-
-

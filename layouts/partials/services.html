@@ -3,7 +3,7 @@
   class="mx-auto overflow-hidden w-full bg-[#090619] text-white pb-0"
   x-cloak
   x-data="{ visible: false }"
-  x-init="setTimeout(() => visible = true, 200)"
+  x-init="setTimeout(() => visible = true, 50)"
 >
   <div
     class="hero grid grid-cols-2 max-sm:flex max-sm:flex-col max-sm:justify-center max-sm:items-center"
@@ -18,23 +18,30 @@
     >
       <div class="heroimage max-sm:invisible max-sm:absolute">
         <img
-          src="/images/hero-image-1.png"
-          alt="hero-image"
-          class="w-full mt-10 ml-20 max-sm:ml-0"
+          src="/images/hero-image-home-data-lines.webp"
+          fetchpriority="high"
+          alt="hero-image data lines"
+          width="832"
+          height="600"
+          class="w-auto h-[600px] mt-10 ml-20 max-sm:ml-0"
         />
       </div>
       <div
         class="invisible lg:absolute lg:hidden max-sm:visible flex justify-center"
       >
         <img
-          src="/images/imac-binance.png"
-          alt="hero-image"
-          class="w-full max-sm:w-5/6 mt-10 z-10"
+          src="/images/imac-algoteq-simulator.webp"
+          alt="imac screen for trading system"
+          width="640"
+          height="389"
+          class="w-[640px] h-auto max-sm:w-5/6 mt-10 z-10"
         />
         <img
           src="/images/Ellipse.svg"
-          alt="hero-image"
-          class="w-full max-sm:w-5/6 mt-10 absolute z-0"
+          alt="ellipse"
+          width="full"
+          height="auto"
+          class="w-full h-[400px] max-sm:w-5/6 mt-10 absolute z-0"
         />
       </div>
     </div>
@@ -81,35 +88,41 @@
     </div>
   </div>
 
-  <div
-    class="relative mt-20 h-[900px] max-sm:h-[500px] bg-cover max-sm:bg-cover bg-no-repeat"
-    style="background-image: url('/images/bg-picture-4-1.png');"
-  >
-    <!-- Gradient Overlay -->
+  <div class="relative mt-20 h-[900px] max-sm:h-[500px] overflow-hidden">
+    <!-- Background image as actual <img> -->
+    <img
+      src="/images/bg-picture-light-speed-road-lights.webp"
+      alt="High-speed road light trails"
+      width="1600"
+      height="900"
+      loading="lazy"
+      class="absolute inset-0 w-[1600px] h-[900px] object-cover z-10"
+    />
+
+    <!-- Gradient overlay -->
     <div
-      class="absolute max-sm:-top-2 inset-0 bg-gradient-to-b from-[#06041a] to-transparent backdrop-blur-3xl mask-image-gradient"
+      class="absolute inset-0 bg-gradient-to-b from-[#06041a] to-transparent backdrop-blur-3xl mask-image-gradient z-10 pointer-events-none"
     ></div>
 
     <!-- Content -->
     <div
-      class="relative z-10 text-white mt-20 max-sm:mt-0"
+      class="relative z-20 text-white mt-20 max-sm:mt-0"
       x-cloak
       x-data="{ shown: false }"
       x-intersect="shown = true"
     >
-      <div
-        class="absolute max-sm:flex max-sm:flex-col"
-        x-data="{ shown: false }"
-        x-intersect="shown = true"
-      >
+      <div class="absolute max-sm:flex max-sm:flex-col">
         <div
           class="flex flex-wrap gap-96 max-sm:gap-5 justify-start mt-[10rem] max-sm:mt-5 pl-20 max-sm:pl-5 max-sm:p-6"
-          x-show="shown"
-          x-transition:enter="transition ease-out duration-1000 delay-50"
-          x-transition:enter-start="opacity-0 -translate-x-20"
-          x-transition:enter-end="opacity-100 translate-x-0"
+          x-data="{ shown: false }"
+          x-intersect="shown = true"
         >
-          <div>
+          <div
+            x-show="shown"
+            x-transition:enter="transition ease-out duration-1000 delay-50"
+            x-transition:enter-start="opacity-0 -translate-x-20"
+            x-transition:enter-end="opacity-100 translate-x-0"
+          >
             <h2 class="text-[70px] max-sm:text-[30px]">
               Advanced<br />Trading<br />Solutions
             </h2>
@@ -120,8 +133,8 @@
                 class="lg:hidden"
               />
               effortlessly.<br class="max-sm:hidden" />
-              Analyze market trends and execute tradeswith precision using<br />
-              Algoteqs advanced tools.
+              Analyze market trends and execute trades with precision using<br />
+              Algoteq’s advanced tools.
             </span>
           </div>
         </div>
@@ -191,8 +204,13 @@
         x-transition:enter-end="opacity-100 translate-x-0"
       >
         <img
-          src="/images/imac-binance.png"
-          class="object-contain justify-center h-[600px] ml-80"
+          src="/images/imac-algoteq-simulator.webp"
+          loading="lazy"
+          fetchpriority="low"
+          height="1200"
+          width="778"
+          class="object-contain justify-center h-[800px] w-auto ml-80"
+          alt="imac-trading-screen"
         />
       </div>
     </div>
@@ -204,9 +222,13 @@
       class="absolute top-52 -right-20 translate-x-1/2 -translate-y-1/4 z-0 pointer-events-none"
     >
       <img
-        src="/images/ellipse-2.png"
-        class="w-[400px] opacity-30 blur-3xl animate-pulse duration-[4000ms]"
-        alt="glow background"
+        src="/images/ellipse-blue-green.webp"
+        loading="lazy"
+        fetchpriority="low"
+        width="400"
+        height="400"
+        class="w-[400px] h-[400px] opacity-30 blur-3xl animate-pulse duration-[4000ms]"
+        alt="Glowing ellipse background blur green"
       />
     </div>
 

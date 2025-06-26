@@ -5,11 +5,16 @@
   <!-- Left nav -->
   <div class="flex items-center pl-14 max-sm:pl-4">
     <a href="/" class="text-3xl tracking-wide">
-      <img src="/images/algoteq-logo.png" class="w-44 max-sm:w-36" />
+      <img
+        src="/images/algoteq-logo.png"
+        width="176"
+        height="28"
+        class="w-[176px] h-[28px] max-sm:w-36"
+        alt="algoteq logo"
+      />
     </a>
   </div>
   <!-- End left nav -->
-
 
   <!-- Show Menu lg -->
   <div class="hidden w-full lg:flex lg:items-center lg:w-auto">
@@ -71,7 +76,13 @@
             href="/order_management_system"
             class="flex items-center gap-4 p-4 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition"
           >
-            <img src="/images/omg-icon.svg" class="h-10 w-10 flex-shrink-0" />
+            <img
+              src="/images/omg-icon.svg"
+              loading="lazy"
+              fetchpriority="low"
+              class="h-10 w-10 flex-shrink-0"
+              alt="order management system icon"
+            />
             <div class="flex flex-col">
               <span class="text-base font-semibold"
                 >Order Management System</span
@@ -89,6 +100,9 @@
           >
             <img
               src="/images/algorithmic-suite-icon.svg"
+              alt="Algorithm Suite Icon"
+              loading="lazy"
+              fetchpriority="low"
               class="h-10 w-10 flex-shrink-0"
             />
             <div class="flex flex-col">
@@ -106,6 +120,8 @@
           >
             <img
               src="/images/algorithmic-platform-icon.svg"
+              loading="lazy"
+              fetchpriority="low"
               class="h-10 w-10 flex-shrink-0"
             />
             <div class="flex flex-col">
@@ -123,6 +139,8 @@
           >
             <img
               src="/images/matching-engine.svg"
+              loading="lazy"
+              fetchpriority="low"
               class="h-10 w-10 flex-shrink-0"
             />
             <div class="flex flex-col">
@@ -169,7 +187,7 @@
           CONTACT US
         </a>
       </div>
-      <div class=""></div>
+      <div class="">
         <a
           href="/blog"
           class="inline-block px-4 py-2 no-underline hover:text-gray-100"
@@ -179,8 +197,11 @@
       </div>
     </div>
   </div>
-<div class="max-sm:hidden"></div>
-  <div x-data="{ open: false }" class="block lg:hidden cursor-pointer w-44 z-40">
+  <div class="max-sm:hidden"></div>
+  <div
+    x-data="{ open: false }"
+    class="block lg:hidden cursor-pointer w-44 z-40"
+  >
     <!-- Hamburger Button -->
     <button
       @click="open = !open"
@@ -274,16 +295,24 @@
             class="flex flex-col gap-y-4 gap-x-8 font-bold text-2xl max-sm:text-4xl"
           >
             <a href="/" class="hover:text-gray-700">Home</a>
-            <a href="/order_management_system" class="hover:text-gray-700">Products</a>
+            <a href="/order_management_system" class="hover:text-gray-700"
+              >Products</a
+            >
             <div
               class="subheaders ml-8 flex flex-col font-normal text-base/6 max-sm:text-base/8"
             >
               <a href="/order_management_system" class="hover:text-gray-700"
                 >OMS</a
               >
-              <a href="/algorithmic-platform" class="hover:text-gray-700">Algorithmic Platform</a>
-              <a href="/algorithmic-suite" class="hover:text-gray-700">Algorithmic Suie</a>
-              <a href="/matching-engine" class="hover:text-gray-700">Matching Engine</a>
+              <a href="/algorithmic-platform" class="hover:text-gray-700"
+                >Algorithmic Platform</a
+              >
+              <a href="/algorithmic-suite" class="hover:text-gray-700"
+                >Algorithmic Suie</a
+              >
+              <a href="/matching-engine" class="hover:text-gray-700"
+                >Matching Engine</a
+              >
             </div>
             <a href="/analytics" class="hover:text-gray-700">Analytics</a>
             <a href="/ai_page" class="hover:text-gray-700">AI</a>
@@ -295,5 +324,4 @@
   </div>
 
   <!-- End toggle menu -->
- 
 </nav>
