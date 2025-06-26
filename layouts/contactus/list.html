@@ -53,36 +53,43 @@
       <p class="mt-4 text-gray-400 max-w-xl mx-auto">
         We are here to revolutionise the way you trade. Ask us how.
       </p>
-
-      
+    </div>
 
     <!-- Form -->
     <div
       class="mt-32 bg-white/5 border border-white/10 p-10 rounded-3xl backdrop-blur-md shadow-2xl"
     >
       <h2 class="text-2xl font-bold mb-6 text-center">Send a Message</h2>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6" autocomplete="off">
+      <form
+        id="contact-form"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6"
+        autocomplete="off"
+      >
         <input
-          type="text"
+          id="name"
           name="name"
+          type="text"
           placeholder="Your Name"
           class="form-field py-5 pl-5"
           required
         />
         <input
-          type="email"
+          id="email"
           name="email"
+          type="email"
           placeholder="Your Email"
           class="form-field py-5 pl-5"
           required
         />
         <input
-          type="text"
+          id="company"
           name="company"
+          type="text"
           placeholder="Company (optional)"
           class="form-field md:col-span-2 py-5 pl-5"
         />
         <textarea
+          id="message"
           name="message"
           rows="5"
           placeholder="Your Message"
@@ -119,6 +126,39 @@
       </div>
     </div>
   </div>
-</section>
 
+  <script>
+    document
+      .getElementById("contact-form")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const company = document.getElementById("company").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const payload = { name, email, company, message };
+
+        try {
+          const res = await fetch("http://localhost:5001/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+
+          if (res.ok) {
+            alert("Message sent successfully! 🚀");
+            e.target.reset();
+          } else {
+            alert("Error: " + (data.message || "Something went wrong."));
+          }
+        } catch (error) {
+          alert("Network error: " + error.message);
+        }
+      });
+  </script>
+</section>
 {{ end }}
