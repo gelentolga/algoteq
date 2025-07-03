@@ -68,7 +68,7 @@
 </div>
 
     <!-- Pagination -->
-    <div class="mt-16 flex justify-center">
+    <div class="mt-16 pb-16 flex justify-center">
       <nav class="flex space-x-1">
         {{ with .Paginator.Prev }}
         <a
@@ -80,7 +80,7 @@
         {{ end }} {{ range .Paginator.Pagers }}
         <a
           href="{{ .URL }}"
-          class="px-4 py-2 text-sm rounded border
+          class="px-4 py-2 text-sm rounded-lg border
             {{ if eq .PageNumber $.Paginator.PageNumber }}
               bg-green-500 text-white border-green-500
             {{ else }}
