@@ -168,30 +168,33 @@
   </section>
   <!-- Introduction Section -->
   <div
-    class="w-full max-h-max grid grid-cols-2 max-sm:grid-cols-1 bg-[#090619] text-white text-left py-20 max-sm:py-10"
+    class="w-full grid grid-cols-2 gap-8 max-sm:grid-cols-1 bg-[#090619] text-white text-left py-20 max-sm:py-10"
     x-data="{ shown: false }"
     x-intersect:enter="shown = true"
   >
-    <!-- IMAGE on Right -->
+    <!-- IMAGE Column (Right) -->
     <div
-      class="image-feature flex justify-center items-center absolute sm:static max-sm:relative -left-28 sm:left-0 max-sm:left-auto w-auto order-1 max-sm:order-2"
+      class="order-1 max-sm:order-2 place-self-start"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 -translate-x-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <img
-        src="/images/imac-binance.png"
-        class="w-full h-auto max-h-[800px] max-sm:h-[200px] object-contain"
-        alt="Binance on iMac"
-      />
+      <div
+        class="flex flex-col justify-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+      >
+        <img
+          src="/images/imac-binance.png"
+          class="w-full h-auto max-h-[500px] max-sm:h-[300px] object-contain mx-auto"
+          alt="Binance on iMac"
+        />
+      </div>
     </div>
 
-    <!-- TEXT on Left -->
+    <!-- TEXT Column (Left) -->
     <div
-      class="w-auto md:w-3/4 max-sm:w-11/12 max-sm:pb-10 mx-auto order-2 max-sm:order-1"
+      class="w-full md:w-11/12 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
-      shown: true,
       open: null,
       items: [
         {
@@ -274,7 +277,8 @@
             </button>
             <div
               x-show="open === index"
-              x-transition
+              x-transition:enter="transition ease-out duration-300"
+              x-transition:leave="transition ease-in duration-200"
               class="text-sm leading-relaxed mt-2"
             >
               <p x-text="item.content" class="pr-10"></p>
@@ -404,17 +408,21 @@
 
     <!-- IMAGE on Right (Desktop) / Bottom (Mobile) -->
     <div
-      class="flex justify-center items-center sm:static w-full order-2 max-sm:order-2 mt-10 sm:mt-0"
+      class="flex justify-center items-center sm:static w-full order-2 max-sm:order-2 mt-10 sm:mt-0 place-self-start"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-x-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <img
-        src="/images/imac-binance-2.png"
-        class="w-full h-[800px] object-contain max-sm:h-[200px]"
-        alt="Functional Overview Graphic"
-      />
+      <div
+        class="flex justify-center items-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+      >
+        <img
+          src="/images/imac-binance-2.png"
+          class="w-full h-auto max-h-[600px] object-contain"
+          alt="Functional Overview Graphic"
+        />
+      </div>
     </div>
   </div>
 
@@ -426,17 +434,21 @@
   >
     <!-- IMAGE on Left (Desktop) / Bottom (Mobile) -->
     <div
-      class="image-feature flex justify-center items-center w-full order-1 max-sm:order-2 mt-10 sm:mt-0"
+      class="flex justify-center items-center w-full order-1 max-sm:order-2 mt-10 sm:mt-0 place-self-start"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-y-12"
       x-transition:enter-end="opacity-100 translate-y-0"
     >
-      <img
-        src="/images/imac-binance-3.png"
-        class="w-full h-[400px] object-contain max-sm:h-[200px]"
-        alt="System Diagram"
-      />
+      <div
+        class="flex justify-center items-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+      >
+        <img
+          src="/images/imac-binance-3.png"
+          class="w-full h-auto max-h-[500px] object-contain"
+          alt="System Diagram"
+        />
+      </div>
     </div>
 
     <!-- TEXT on Right (Desktop) / Top (Mobile) -->

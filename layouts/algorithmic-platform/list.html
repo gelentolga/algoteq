@@ -44,7 +44,7 @@
       x-intersect:enter="shown = true"
     >
       <h2
-        class="w-1/2 max-sm:w-full text-2xl max-sm:text-lg font-thin"
+        class="w-1/2 max-sm:w-full text-2xl max-sm:text-base font-thin"
         x-show="shown"
         x-transition:enter="transition ease-out duration-1000 delay-50"
         x-transition:enter-start="opacity-0 -translate-x-20"
@@ -64,63 +64,62 @@
 
   <!-- Introduction Section -->
   <div
-    class="w-full max-h-max max-sm:max-h-screen grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10"
+    class="w-full h-[700px] max-sm:h-[900px] grid grid-cols-2 max-sm:flex bg-white text-black text-left py-20 max-sm:py-10 relative"
     x-intersect:enter="shown = true"
   >
     <div
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto"
       x-data="{
-    shown: true,
-    open: null,
-    items: [
-  {
-    title: 'Separation of Concerns',
-    content:
-      'Algorithmic Container is a powerful framework based on simple “atomic” structures. Each layer and components it consists of carry out a specific role in the system. It is well defined, loosely coupled and therefore perfectly testable. It can be replaced by a different implementation should the need arise.',
-  },
-  {
-    title: 'Event Driven Approach',
-    content:
-      'Any meaningful event in the system is captured, persisted and delivered for processing. The event-response model employed by individual components reflects our Simplicity-Agility-Reliability paradigm.',
-  },
-  {
-    title: 'Multiagent System Approach',
-    content:
-      'The algorithmic framework is modelled as a specialised multiagent system where “agents” (be their analytics, trading strategies, fragmentation and order placement strategies) are operating in a distributed environment and can exhibit cooperative and/or competitive behaviours. They can be deployed in a single process or seamlessly in a cluster without any changes to the way they interact.',
-  },
-  {
-    title: 'Microkernel Architecture & Message Passing IPC',
-    content:
-      'At its core, our low level components follow the microkernel design that uses a bespoke messaging framework for inter-process communications (IPC). The framework provides reliable delivery of events with real-time persistence and recovery capabilities (e.g. support for late joiners). The strategies, analytics, services and functional layers in a single instance of the Algorithmic Container operate in a lightweight cooperative multitasking environment and exhibit deterministic behaviour. The preemptive multitasking is achieved through deploying multiple instances of the container microkernel that act as parallel pipelines. This approach allows us to engineer and deliver very resilient and highly available components.',
-  },
-  {
-    title: 'Embedded Transaction Support',
-    content:
-      'Transactions are an intrinsic part of our event-driven frameworks. They are persistent, recoverable and can be easily audited.',
-  },
-  {
-    title: 'Vendor Agnostic',
-    content:
-      'The Configuration, Reference Data, Market Data, Analytical and other services provided by the Algorithmic Container are completely generalised and have no dependencies on the vendor solutions. Such decoupling makes it possible to change the data and trading service providers without programmatic changes to the main infrastructure and the trading algorithms.',
-  },
-  {
-    title: 'Multiple Redundant Peers',
-    content:
-      'Multiple redundant peers (instances of the Algorithmic Container) can be deployed to replace the active components lost during a hardware failure.',
-  },
-  {
-    title: 'High Availability',
-    content:
-      'High availability (HA) is an inherent feature of all our systems. The properties required to achieve HA are implemented from very early stages of the development cycle.',
-  },
-  {
-    title: 'Scalability',
-    content:
-      'The system is designed to be linearly scalable up and down, from large-scale deployment in a data centre to a notebook computer running all the application layers running a cluster of strategies in a realistic simulator.',
-  },
-]
-
-  }"
+      shown: true,
+      open: null,
+      items: [
+        {
+          title: 'Separation of Concerns',
+          content:
+            'Algorithmic Container is a powerful framework based on simple “atomic” structures. Each layer and components it consists of carry out a specific role in the system. It is well defined, loosely coupled and therefore perfectly testable. It can be replaced by a different implementation should the need arise.',
+        },
+        {
+          title: 'Event Driven Approach',
+          content:
+            'Any meaningful event in the system is captured, persisted and delivered for processing. The event-response model employed by individual components reflects our Simplicity-Agility-Reliability paradigm.',
+        },
+        {
+          title: 'Multiagent System Approach',
+          content:
+            'The algorithmic framework is modelled as a specialised multiagent system where “agents” (be their analytics, trading strategies, fragmentation and order placement strategies) are operating in a distributed environment and can exhibit cooperative and/or competitive behaviours. They can be deployed in a single process or seamlessly in a cluster without any changes to the way they interact.',
+        },
+        {
+          title: 'Microkernel Architecture & Message Passing IPC',
+          content:
+            'At its core, our low level components follow the microkernel design that uses a bespoke messaging framework for inter-process communications (IPC). The framework provides reliable delivery of events with real-time persistence and recovery capabilities (e.g. support for late joiners). The strategies, analytics, services and functional layers in a single instance of the Algorithmic Container operate in a lightweight cooperative multitasking environment and exhibit deterministic behaviour. The preemptive multitasking is achieved through deploying multiple instances of the container microkernel that act as parallel pipelines. This approach allows us to engineer and deliver very resilient and highly available components.',
+        },
+        {
+          title: 'Embedded Transaction Support',
+          content:
+            'Transactions are an intrinsic part of our event-driven frameworks. They are persistent, recoverable and can be easily audited.',
+        },
+        {
+          title: 'Vendor Agnostic',
+          content:
+            'The Configuration, Reference Data, Market Data, Analytical and other services provided by the Algorithmic Container are completely generalised and have no dependencies on the vendor solutions. Such decoupling makes it possible to change the data and trading service providers without programmatic changes to the main infrastructure and the trading algorithms.',
+        },
+        {
+          title: 'Multiple Redundant Peers',
+          content:
+            'Multiple redundant peers (instances of the Algorithmic Container) can be deployed to replace the active components lost during a hardware failure.',
+        },
+        {
+          title: 'High Availability',
+          content:
+            'High availability (HA) is an inherent feature of all our systems. The properties required to achieve HA are implemented from very early stages of the development cycle.',
+        },
+        {
+          title: 'Scalability',
+          content:
+            'The system is designed to be linearly scalable up and down, from large-scale deployment in a data centre to a notebook computer running all the application layers running a cluster of strategies in a realistic simulator.',
+        },
+      ]
+    }"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-y-12"
@@ -139,7 +138,7 @@
               class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer"
               @click="open === index ? open = null : open = index"
             >
-              <span x-text="item.title"></span>
+              <span x-text="item.title" class="text-left"></span>
               <span
                 class="text-[30px] font-thin transition-transform duration-300"
                 :class="open === index ? 'rotate-45' : ''"
@@ -159,20 +158,19 @@
       </div>
     </div>
 
-    <div class="image-feature flex max-sm:hidden absolute -right-28">
-      <div
-        class="w-[5px] h-[00px] mr-10"
-        style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-      ></div>
-      <div
-        class="flex justify-center items-center"
-        x-show="shown"
-        x-transition:enter="transition ease-out duration-1000 delay-50"
-        x-transition:enter-start="opacity-0 translate-x-12"
-        x-transition:enter-end="opacity-100 translate-x-0"
-      >
-        <img src="/images/imac-binance.png" class="w-auto h-[500px]" />
-      </div>
+    <!-- IMAGE on desktop only -->
+    <div
+      class="image-feature hidden sm:flex absolute top-0 right-0 h-full w-[600px] items-center justify-center overflow-hidden"
+      x-show="shown"
+      x-transition:enter="transition ease-out duration-1000 delay-50"
+      x-transition:enter-start="opacity-0 translate-x-12"
+      x-transition:enter-end="opacity-100 translate-x-0"
+    >
+      <img
+        src="/images/imac-binance.png"
+        class="max-w-full max-h-full object-contain"
+        alt="Binance on iMac"
+      />
     </div>
   </div>
 
@@ -321,31 +319,34 @@
   </section>
 
   <div
-    class="w-full bg-[#090619] text-white text-left py-20 px-4 max-md:py-10 max-md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 relative"
+    class="w-full grid grid-cols-2 gap-8 max-sm:grid-cols-1 bg-[#090619] text-white text-left py-20 max-sm:py-10"
+    x-data="{ shown: false }"
     x-intersect:enter="shown = true"
   >
-    <!-- IMAGE on Left -->
+    <!-- IMAGE -->
     <div
-      class="image-feature flex justify-center items-center w-full md:w-auto order-2 md:order-1 transition-all duration-700 ease-in-out"
+      class="order-1 max-sm:order-2 place-self-start"
       x-show="shown"
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-x-12"
       x-transition:enter-end="opacity-100 translate-x-0"
+      style="min-width: 0;"
     >
       <div
-        class="hidden md:block w-[5px] h-[100px] mr-10"
-        style="background: linear-gradient(to bottom, #00aa00, #539afd);"
-      ></div>
-      <img
-        src="/images/imac-binance.png"
-        alt="Trading simulator screen"
-        class="w-auto max-w-full max-h-[400px] md:max-h-[500px] rounded-md"
-      />
+        class="flex flex-col justify-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+      >
+        <img
+          src="/images/imac-binance.png"
+          alt="Trading simulator screen"
+          class="w-auto justify-center max-w-full max-h-[400px] md:max-h-[500px] rounded-md object-contain"
+          style="display: block;"
+        />
+      </div>
     </div>
 
-    <!-- TEXT on Right -->
+    <!-- TEXT -->
     <div
-      class="w-full md:w-3/4 mx-auto order-1 md:order-2"
+      class="w-full md:w-11/12 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
       shown: true,
       open: null,
@@ -367,9 +368,10 @@
       x-transition:enter="transition ease-out duration-1000 delay-50"
       x-transition:enter-start="opacity-0 translate-y-12"
       x-transition:enter-end="opacity-100 translate-y-0"
+      style="min-width: 0;"
     >
-      <h2 class="text-5xl max-md:text-4xl font-semibold mb-6">
-        Architectural Principles
+      <h2 class="text-5xl max-md:text-4xl font-semibold mb-6 flex-shrink-0">
+        Core Functional and Support Layers
       </h2>
 
       <div class="flex flex-col gap-1 text-left text-base max-md:text-sm">
@@ -380,11 +382,13 @@
             <button
               class="w-full flex justify-between items-center font-semibold text-lg cursor-pointer max-md:text-base"
               @click="open === index ? open = null : open = index"
+              type="button"
             >
               <span x-text="item.title"></span>
               <span
                 class="text-[30px] font-thin transition-transform duration-300 max-md:text-2xl"
                 :class="open === index ? 'rotate-45' : ''"
+                aria-hidden="true"
               >
                 +
               </span>
@@ -393,6 +397,7 @@
               x-show="open === index"
               x-transition
               class="text-sm leading-relaxed mt-2 max-md:text-xs pr-4"
+              style="overflow-wrap: break-word;"
             >
               <p x-text="item.content"></p>
             </div>
