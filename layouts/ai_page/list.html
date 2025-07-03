@@ -1,196 +1,216 @@
 {{ define "main" }}
 
 <div
-  class="aiPageContainer mx-auto w-full bg-[#0b0c17] text-white min-h-screen flex flex-col items-center"
-  x-data="gameOfLifeApp"
-  x-init="init($refs.canvas); initNeuralBackground($refs.neural)"
+  class="aiPageContainer mx-auto w-full bg-black text-green-400 min-h-screen flex flex-col items-center px-6 py-16 relative font-mono select-none"
+  x-data="terminalGame"
+  x-init="() => { initNeuralBackground($refs.neural); init() }"
 >
-  <canvas x-ref="neural" id="neuralCanvas"></canvas>
+  <canvas
+    x-ref="neural"
+    id="neuralCanvas"
+    class="fixed top-0 left-0 w-full h-full -z-10"
+  ></canvas>
 
-  <section
-    class="relative w-5/6 max-w-7xl py-24 flex flex-col items-center z-10 text-center"
-  >
-    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-      <span
-        class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
-      >
-        Game of Life
-      </span>
-      <br />— Conway's Cellular Sand Simulation
-    </h1>
-    <p class="mt-6 text-lg text-gray-300 max-w-2xl">
-      Cells live, die, and evolve in mesmerizing patterns. A universe of logic,
-      right in your browser.
-    </p>
-
-    <!-- Game of Life -->
-    <div class="mt-12 relative w-full max-w-[450px]">
-      <canvas
-        x-ref="canvas"
-        id="gameCanvas"
-        class="w-full aspect-square border border-cyan-500 rounded-lg shadow-lg cursor-pointer"
-        @click="toggleCell($event)"
-      ></canvas>
-
-      <!-- Controls -->
+  <section class="relative w-full max-w-4xl mb-16 text-green-400 z-10">
+    <!-- Terminal window -->
+    <div
+      class="bg-black bg-opacity-90 p-6 rounded shadow-lg min-h-[400px] overflow-auto"
+      style="height: 600px;"
+      @click="$refs.input.focus()"
+      x-ref="terminalWindow"
+    >
+      <!-- Output area -->
       <div
-        class="absolute bottom-2 left-2 flex gap-2 bg-black/60 p-2 rounded-lg text-sm text-white z-10"
+        class="whitespace-pre-wrap"
+        x-html="output"
+        style="
+          font-family: Consolas, Monaco, monospace;
+          font-size: 1.1rem;
+          line-height: 1.4;
+        "
+      ></div>
+
+      <!-- Input prompt -->
+      <div
+        class="flex items-center mt-2"
+        style="font-family: Consolas, Monaco, monospace; font-size: 1.1rem;"
       >
-        <button
-          @click="toggle()"
-          class="px-3 py-1 bg-green-600 hover:bg-green-400 rounded"
-        >
-          <span x-text="running ? 'Pause' : 'Play'"></span>
-        </button>
-        <button
-          @click="reset()"
-          class="px-3 py-1 bg-gray-700 hover:bg-gray-500 rounded"
-        >
-          Reset
-        </button>
-        <button
-          @click="randomize()"
-          class="px-3 py-1 bg-indigo-600 hover:bg-indigo-400 rounded"
-        >
-          Random
-        </button>
+        <span class="mr-2">user@algoteq:~$</span>
+        <input
+          x-ref="input"
+          x-model="inputText"
+          @keydown.enter.prevent="handleEnter"
+          autocomplete="off"
+          spellcheck="false"
+          class="bg-transparent border-none outline-none text-green-400 caret-green-400 flex-grow"
+          style="caret-color: #00ff00;"
+          placeholder="Type your command here"
+          :disabled="inputDisabled"
+        />
+        <span class="animate-blink ml-1" aria-hidden="true">|</span>
       </div>
     </div>
   </section>
 </div>
 
 <script>
-  const gameOfLifeApp = {
-    canvas: null,
-    ctx: null,
-    cellSize: 10, // Sweet spot size
-    cols: 0,
-    rows: 0,
-    grid: [],
-    running: true,
-    animation: null,
-    lastUpdate: 0,
-    updateInterval: 66, // ~15 FPS
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("terminalGame", () => ({
+      inputText: "",
+      output: "",
+      section: 0,
+      isTyping: false,
+      inputDisabled: false,
+      typingSpeed: 20, // slower for wise AI vibe
+      sections: [
+        {
+          id: 0,
+          lines: [
+            "Welcome to the AI Terminal Adventure.\n",
+            "Type 'start' to begin your journey...\n",
+          ],
+          expectedCommand: "start",
+        },
+        {
+          id: 1,
+          lines: [
+            "Section 1: The Intelligent Network.\n",
+            "Imagine an intricate network of elastic compute clouds, data centres, rows of quiet office desktop computers running algorithms that communicate with one another engaged in fierce competition or active collaboration. The whole purpose of their existence is to grow stronger, become more resilient and survive in a turbulent, chaotic and at times rather hostile environment.\n\n",
+            "Type 'next' to continue...\n",
+          ],
+          expectedCommand: "next",
+        },
+        {
+          id: 2,
+          lines: [
+            "Section 2: The Algorithmic Agents.\n",
+            "They seem to carry out some distinctly different functions: many of them are workers, warriors, some seem to be silent guardians that protect their environment.\n\n",
+            "Type 'next' to proceed...\n",
+          ],
+          expectedCommand: "next",
+        },
+        {
+          id: 3,
+          lines: [
+            "Section 3: Market Simulations.\n",
+            "They conduct and participate in large scale simulations, they learn to deal better with boom and bust cycles, slow and fast markets; they seem to pinpoint human cognitive biases that let many market participants sabotage themselves and work around them.\n\n",
+            "Type 'next' to move on...\n",
+          ],
+          expectedCommand: "next",
+        },
+        {
+          id: 4,
+          lines: [
+            "Section 4: The Optimist’s View.\n",
+            "An optimist would see a tremendous opportunity in expanding our horizons, focusing on what we do best: projecting our vision, dreaming, inventing new ways of doing things backed by our ever-expanding knowledge, experience, intuition and wisdom.\n\n",
+            "Type 'restart' to begin again or 'exit' to end.\n",
+          ],
+          expectedCommand: "next",
+        },
+        {
+          id: 5,
+          lines: [
+            "The End.\n",
+            "Thank you for exploring the brave new world of AI. Don’t be intimidated by it, seize the opportunity.\n\n",
+            "Type 'restart' to start over.\n",
+          ],
+          expectedCommand: "restart",
+        },
+      ],
+      currentLineIndex: 0,
+      currentCharIndex: 0,
+      typingTimeout: null,
 
-    init(canvas) {
-      this.canvas = canvas;
-      this.ctx = canvas.getContext("2d");
-      this.resize();
-      window.addEventListener("resize", () => {
-        this.resize();
-        this.draw();
-      });
-      this.randomize();
-      this.loop();
-    },
+      init() {
+        this.output = "";
+        this.section = 0;
+        this.inputDisabled = false;
+        this.printSection(0);
+        this.$nextTick(() => this.$refs.input.focus());
+      },
 
-    resize() {
-      this.canvas.width = this.canvas.clientWidth;
-      this.canvas.height = this.canvas.clientHeight;
-      this.cols = Math.floor(this.canvas.width / this.cellSize);
-      this.rows = Math.floor(this.canvas.height / this.cellSize);
-      this.grid = Array.from({ length: this.rows }, () =>
-        Array(this.cols).fill(0)
-      );
-    },
+      handleEnter() {
+        if (this.isTyping) return;
 
-    draw() {
-      // Fading trail effect for glow, lighter fade for speed
-      this.ctx.fillStyle = "rgba(11, 12, 23, 0.15)";
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-      const gradient = this.ctx.createLinearGradient(
-        0,
-        0,
-        0,
-        this.canvas.height
-      );
-      gradient.addColorStop(0, "#ffffff"); // blue
-      gradient.addColorStop(1, "#00ff9d"); // green
+        let cmd = this.inputText.trim().toLowerCase();
+        if (!cmd) return; // ignore empty
 
-      for (let y = 0; y < this.rows; y++) {
-        for (let x = 0; x < this.cols; x++) {
-          if (this.grid[y][x] === 1) {
-            this.ctx.fillStyle = gradient;
-            this.ctx.fillRect(
-              x * this.cellSize,
-              y * this.cellSize,
-              this.cellSize,
-              this.cellSize
-            );
-          }
+        this.output += `<br><span class="text-green-300">user@algoteq:~$ ${this.inputText}</span><br>`;
+        this.inputText = "";
+
+        // Always allow restart and exit commands at any time
+        if (cmd === "exit") {
+          this.output += "\nSession terminated. Goodbye!\n";
+          this.inputDisabled = true;
+          this.scrollToBottom();
+          return;
         }
-      }
-    },
-
-    update() {
-      const next = Array.from({ length: this.rows }, () =>
-        Array(this.cols).fill(0)
-      );
-      for (let y = 0; y < this.rows; y++) {
-        for (let x = 0; x < this.cols; x++) {
-          let neighbors = 0;
-          for (let dy = -1; dy <= 1; dy++) {
-            for (let dx = -1; dx <= 1; dx++) {
-              if (dx === 0 && dy === 0) continue;
-              const ny = y + dy,
-                nx = x + dx;
-              if (ny >= 0 && ny < this.rows && nx >= 0 && nx < this.cols) {
-                neighbors += this.grid[ny][nx];
-              }
-            }
-          }
-          if (this.grid[y][x] === 1) {
-            next[y][x] = neighbors === 2 || neighbors === 3 ? 1 : 0;
-          } else {
-            next[y][x] = neighbors === 3 ? 1 : 0;
-          }
+        if (cmd === "restart") {
+          this.resetGame();
+          return;
         }
-      }
-      this.grid = next;
-    },
 
-    loop(timestamp) {
-      if (!this.lastUpdate) this.lastUpdate = timestamp;
+        const currentSection = this.sections[this.section];
+        if (cmd === currentSection.expectedCommand) {
+          this.section = Math.min(this.section + 1, this.sections.length - 1);
+          this.printSection(this.section);
+        } else {
+          this.output += `command not found: ${cmd}\n`;
+        }
+        this.scrollToBottom();
+      },
 
-      const elapsed = timestamp - this.lastUpdate;
-      if (elapsed > this.updateInterval) {
-        if (this.running) this.update();
-        this.lastUpdate = timestamp;
-      }
+      printSection(index) {
+        this.isTyping = true;
+        this.currentLineIndex = 0;
+        this.currentCharIndex = 0;
+        this.typeLines(this.sections[index].lines, () => {
+          this.isTyping = false;
+          this.scrollToBottom();
+          this.$nextTick(() => this.$refs.input.focus());
+        });
+      },
 
-      this.draw();
-      this.animation = requestAnimationFrame((t) => this.loop(t));
-    },
+      typeLines(lines, done) {
+        if (this.currentLineIndex >= lines.length) {
+          done();
+          return;
+        }
 
-    toggle() {
-      this.running = !this.running;
-    },
+        const line = lines[this.currentLineIndex];
+        if (this.currentCharIndex < line.length) {
+          const char = line.charAt(this.currentCharIndex);
+          this.output += char === "\n" ? "<br>" : char;
+          this.currentCharIndex++;
+          this.scrollToBottom();
+          this.typingTimeout = setTimeout(
+            () => this.typeLines(lines, done),
+            this.typingSpeed
+          );
+        } else {
+          this.currentCharIndex = 0;
+          this.currentLineIndex++;
+          setTimeout(() => this.typeLines(lines, done), 400);
+        }
+      },
 
-    reset() {
-      this.grid = Array.from({ length: this.rows }, () =>
-        Array(this.cols).fill(0)
-      );
-    },
+      resetGame() {
+        this.output = "";
+        this.section = 0;
+        this.inputDisabled = false;
+        this.printSection(0);
+      },
 
-    randomize() {
-      this.grid = Array.from({ length: this.rows }, () =>
-        Array(this.cols)
-          .fill(0)
-          .map(() => (Math.random() < 0.12 ? 1 : 0))
-      );
-    },
+      scrollToBottom() {
+        this.$nextTick(() => {
+          const container = this.$refs.terminalWindow;
+          container.scrollTop = container.scrollHeight;
+        });
+      },
+    }));
+  });
 
-    toggleCell(e) {
-      const rect = this.canvas.getBoundingClientRect();
-      const x = Math.floor((e.clientX - rect.left) / this.cellSize);
-      const y = Math.floor((e.clientY - rect.top) / this.cellSize);
-      if (x >= 0 && x < this.cols && y >= 0 && y < this.rows) {
-        this.grid[y][x] = this.grid[y][x] ? 0 : 1;
-        this.draw();
-      }
-    },
-  };
-
+  // Neural background script same as before
   function initNeuralBackground(canvas) {
     const ctx = canvas.getContext("2d");
     let width, height;
@@ -253,5 +273,20 @@
     draw();
   }
 </script>
+
+<style>
+  .animate-blink {
+    animation: blink 1s steps(2, start) infinite;
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
 
 {{ end }}
