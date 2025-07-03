@@ -7,6 +7,8 @@
       {{- block "main" . }}{{- end }}
     </div>
     {{- partial "footer.html" . -}}
+    <!-- Cookie Consent Popup -->
+    {{ partial "cookie-banner.html" . }}
 
     <!-- Reference to matrix.js -->
     {{ $matrix := resources.Get "js/matrix.js" | minify | fingerprint }}
