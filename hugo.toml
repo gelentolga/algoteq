@@ -4,6 +4,10 @@ title = 'Algoteq – Advanced Algorithmic Trading Systems'
 enableRobotsTXT = true
 canonifyURLs = false  # Set to true when deploying live
 
+capitalizeListTitles = true
+pluralizeListTitles = false
+
+
 [params]
   author = "Algoteq"
   description = "Algoteq designs high-performance algorithmic trading platforms powered by AI, data analytics, and advanced simulation tools."
