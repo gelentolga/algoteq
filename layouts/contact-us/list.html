@@ -40,7 +40,6 @@
 
   <!-- Content -->
   <div class="relative z-10 max-w-5xl mx-auto">
-    <!-- Heading -->
     <div class="text-center">
       <h1
         class="text-5xl font-bold tracking-wide bg-gradient-to-r from-white via-green-400 to-white text-transparent bg-clip-text drop-shadow-lg"
@@ -103,15 +102,13 @@
           >
             Learn More
           </button>
+          <p id="form-message" class="mt-4 text-sm"></p>
         </div>
       </form>
     </div>
 
-    <!-- Info Grid -->
+    <!-- Info -->
     <div class="mt-16 grid gap-8 text-center">
-      <!-- Email Card -->
-
-      <!-- Address Card -->
       <div
         class="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-md shadow-lg hover:shadow-white/10 transition"
       >
@@ -124,6 +121,7 @@
     </div>
   </div>
 
+  <!-- JS -->
   <script>
     document
       .getElementById("contact-form")
@@ -134,8 +132,12 @@
         const email = document.getElementById("email").value.trim();
         const company = document.getElementById("company").value.trim();
         const message = document.getElementById("message").value.trim();
+        const messageEl = document.getElementById("form-message");
 
         const payload = { name, email, company, message };
+
+        messageEl.textContent = "Sending...";
+        messageEl.className = "mt-4 text-blue-300 text-sm";
 
         try {
           const res = await fetch("http://localhost:5001/api/contact", {
@@ -144,16 +146,23 @@
             body: JSON.stringify(payload),
           });
 
-          const data = await res.json();
+          const contentType = res.headers.get("Content-Type") || "";
+          const data = contentType.includes("application/json")
+            ? await res.json()
+            : {};
 
           if (res.ok) {
-            alert("Message sent successfully! 🚀");
+            messageEl.textContent = "Message sent successfully! 🚀";
+            messageEl.className = "mt-4 text-green-500 text-sm";
             e.target.reset();
           } else {
-            alert("Error: " + (data.message || "Something went wrong."));
+            messageEl.textContent =
+              "Error: " + (data.message || "Something went wrong.");
+            messageEl.className = "mt-4 text-red-500 text-sm";
           }
         } catch (error) {
-          alert("Network error: " + error.message);
+          messageEl.textContent = "Network error: " + error.message;
+          messageEl.className = "mt-4 text-red-500 text-sm";
         }
       });
   </script>
