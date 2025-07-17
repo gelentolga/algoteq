@@ -31,5 +31,32 @@
   </footer>
   {{ end }}
 </article>
+<!-- Suggested Posts -->
+<section class="max-w-4xl mx-auto px-4 pb-12">
+  <h2 class="text-2xl font-bold mb-4 mt-10">You Might Also Like</h2>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {{ $current := . }} {{ $related := where .Site.RegularPages "Type" "in"
+    (slice "blog" "posts") | complement (slice $current) | first 20 }} {{
+    $sorted := sort $related "Date" "desc" }} {{ range first 3 $sorted }}
+    <a
+      href="{{ .RelPermalink }}"
+      class="block border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
+    >
+      {{ with .Params.featuredImage }}
+      <img src="{{ . }}" alt="{{ $.Title }}" class="w-full h-48 object-cover" />
+      {{ end }}
+      <div class="p-4">
+        <h3 class="text-lg font-semibold mb-1">{{ .Title }}</h3>
+        <p class="text-sm text-gray-600">
+          {{ .Summary | plainify | truncate 100 }}
+        </p>
+        <span class="text-xs text-gray-500 mt-2 block"
+          >{{ .Date.Format "Jan 2, 2006" }}</span
+        >
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
 
 {{ end }}

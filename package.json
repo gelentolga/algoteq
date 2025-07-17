@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "hugo server --disableFastRender --port 1314 --ignoreCache --noHTTPCache --buildDrafts"
+    "start": "hugo server --disableFastRender --port 1315 --ignoreCache --noHTTPCache --buildDrafts"
   },
   "keywords": [
     "hugo",

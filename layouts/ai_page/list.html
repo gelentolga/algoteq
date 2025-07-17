@@ -1,0 +1,366 @@
+{{ define "main" }}
+
+<style>
+  #neuralCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .aiPageContainer {
+    position: relative;
+    overflow: hidden;
+  }
+</style>
+
+<div
+  class="aiPageContainer mx-auto w-full bg-[#090619] text-white min-h-screen flex flex-col items-center"
+  x-data="gameOfLifeApp"
+  x-init="init($refs.canvas); initNeuralBackground($refs.neural)"
+>
+  <canvas x-ref="neural" id="neuralCanvas"></canvas>
+
+  <section
+    class="relative w-5/6 max-w-4xl py-24 flex flex-col items-center z-10 text-center"
+  >
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+      <span
+        class="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent"
+      >
+        Game of Life
+      </span>
+      <br />— Conway's Cellular Sand Simulation
+    </h1>
+    <p class="mt-6 text-lg text-gray-300 max-w-2xl">
+      Cells live, die, and evolve in mesmerizing patterns. A universe of logic,
+      right in your browser.
+    </p>
+
+    <!-- Game of Life -->
+    <div class="mt-12 relative w-full max-w-[500px]">
+      <canvas
+        x-ref="canvas"
+        id="gameCanvas"
+        class="w-full aspect-square border border-cyan-500 rounded-lg shadow-lg cursor-pointer"
+        @click="toggleCell($event)"
+      ></canvas>
+
+      <!-- Controls -->
+      <div
+        class="absolute bottom-2 left-2 flex gap-2 bg-black/60 p-2 rounded-lg text-sm text-white z-10"
+      >
+        <button
+          @click="toggle()"
+          class="px-3 py-1 bg-green-600 hover:bg-green-400 rounded"
+        >
+          <span x-text="running ? 'Pause' : 'Play'"></span>
+        </button>
+        <button
+          @click="reset()"
+          class="px-3 py-1 bg-gray-700 hover:bg-gray-500 rounded"
+        >
+          Reset
+        </button>
+        <button
+          @click="randomize()"
+          class="px-3 py-1 bg-indigo-600 hover:bg-indigo-400 rounded"
+        >
+          Random
+        </button>
+        <button
+          @click="toggleGliders()"
+          class="px-3 py-1 bg-yellow-600 hover:bg-yellow-400 rounded"
+        >
+          <span x-text="glidersEnabled ? 'Gliders: On' : 'Gliders: Off'"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const GLIDER_PATTERN = [
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 1, 1],
+  ];
+
+  const gameOfLifeApp = {
+    canvas: null,
+    ctx: null,
+    cellSize: 8,
+    cols: 0,
+    rows: 0,
+    grid: [],
+    fadeGrid: [],
+    running: true,
+    animation: null,
+    lastUpdate: 0,
+    updateInterval: 45, // ~15 FPS
+
+    glidersEnabled: false,
+    gliderIntervalId: null,
+
+    init(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext("2d");
+      this.resize();
+      window.addEventListener("resize", () => {
+        this.resize();
+        this.draw();
+      });
+      this.randomize();
+      this.loop();
+    },
+
+    resize() {
+      this.canvas.width = this.canvas.clientWidth;
+      this.canvas.height = this.canvas.clientHeight;
+      this.cols = Math.floor(this.canvas.width / this.cellSize);
+      this.rows = Math.floor(this.canvas.height / this.cellSize);
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+      this.fadeGrid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+    },
+
+    draw() {
+      // Background fade for glow effect
+      this.ctx.fillStyle = "rgba(11, 12, 23, 0.25)";
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // Draw alive and fading cells
+      for (let y = 0; y < this.rows; y++) {
+        for (let x = 0; x < this.cols; x++) {
+          if (this.grid[y][x]) {
+            // alive cell
+            this.ctx.fillStyle = "#00ffe0";
+            this.ctx.fillRect(
+              x * this.cellSize,
+              y * this.cellSize,
+              this.cellSize,
+              this.cellSize
+            );
+            this.fadeGrid[y][x] = 1; // reset fade to max
+          } else if (this.fadeGrid[y][x] > 0.01) {
+            // fading cell
+            this.fadeGrid[y][x] *= 0.75; // smoother fade with easing
+            this.ctx.fillStyle = `rgba(0, 255, 224, ${this.fadeGrid[y][
+              x
+            ].toFixed(2)})`;
+            this.ctx.fillRect(
+              x * this.cellSize,
+              y * this.cellSize,
+              this.cellSize,
+              this.cellSize
+            );
+          }
+        }
+      }
+
+      // Draw bright grey grid lines
+      this.ctx.strokeStyle = "rgba(200, 200, 200, 0.2)";
+      this.ctx.lineWidth = 0.5;
+      for (let x = 0; x <= this.cols; x++) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(x * this.cellSize, 0);
+        this.ctx.lineTo(x * this.cellSize, this.canvas.height);
+        this.ctx.stroke();
+      }
+      for (let y = 0; y <= this.rows; y++) {
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, y * this.cellSize);
+        this.ctx.lineTo(this.canvas.width, y * this.cellSize);
+        this.ctx.stroke();
+      }
+    },
+
+    update() {
+      const next = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+
+      for (let y = 0; y < this.rows; y++) {
+        for (let x = 0; x < this.cols; x++) {
+          let neighbors = 0;
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              if (dx === 0 && dy === 0) continue;
+              const ny = y + dy;
+              const nx = x + dx;
+              if (ny >= 0 && ny < this.rows && nx >= 0 && nx < this.cols) {
+                neighbors += this.grid[ny][nx];
+              }
+            }
+          }
+
+          if (this.grid[y][x] === 1) {
+            // Cell alive now
+            if (neighbors === 2 || neighbors === 3) {
+              next[y][x] = 1; // stays alive
+              this.fadeGrid[y][x] = 0; // no fade
+            } else {
+              next[y][x] = 0; // cell dies
+              this.fadeGrid[y][x] = 1; // start fading
+            }
+          } else {
+            // Cell dead now
+            if (neighbors === 3) {
+              next[y][x] = 1; // new cell born
+              this.fadeGrid[y][x] = 0; // no fade
+            } else {
+              next[y][x] = 0; // stays dead
+              // fade out dying cells gradually
+              if (this.fadeGrid[y][x] > 0) {
+                this.fadeGrid[y][x] -= 0.05; // fade speed
+                if (this.fadeGrid[y][x] < 0) this.fadeGrid[y][x] = 0;
+              }
+            }
+          }
+        }
+      }
+
+      this.grid = next;
+    },
+
+    toggle() {
+      this.running = !this.running;
+    },
+
+    reset() {
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+      this.fadeGrid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+    },
+
+    randomize() {
+      this.grid = Array.from({ length: this.rows }, () =>
+        Array(this.cols)
+          .fill(0)
+          .map(() => (Math.random() < 0.12 ? 1 : 0))
+      );
+      this.fadeGrid = Array.from({ length: this.rows }, () =>
+        Array(this.cols).fill(0)
+      );
+    },
+
+    toggleCell(e) {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = Math.floor((e.clientX - rect.left) / this.cellSize);
+      const y = Math.floor((e.clientY - rect.top) / this.cellSize);
+      if (x >= 0 && x < this.cols && y >= 0 && y < this.rows) {
+        this.grid[y][x] = this.grid[y][x] ? 0 : 1;
+        this.fadeGrid[y][x] = 0;
+        this.draw();
+      }
+    },
+
+    toggleGliders() {
+      this.glidersEnabled = !this.glidersEnabled;
+      if (this.glidersEnabled) {
+        this.addGlider();
+        this.gliderIntervalId = setInterval(() => this.addGlider(), 5000);
+      } else {
+        clearInterval(this.gliderIntervalId);
+        this.gliderIntervalId = null;
+      }
+    },
+
+    addGlider() {
+      if (this.cols < 3 || this.rows < 3) return;
+      const x = Math.floor(Math.random() * (this.cols - 3));
+      const y = Math.floor(Math.random() * (this.rows - 3));
+      for (let dy = 0; dy < 3; dy++) {
+        for (let dx = 0; dx < 3; dx++) {
+          this.grid[y + dy][x + dx] = GLIDER_PATTERN[dy][dx];
+          this.fadeGrid[y + dy][x + dx] = 0; // reset fade on new glider cells
+        }
+      }
+    },
+
+    loop(timestamp) {
+      if (!this.lastUpdate) this.lastUpdate = timestamp;
+
+      const elapsed = timestamp - this.lastUpdate;
+      if (elapsed > this.updateInterval) {
+        if (this.running) this.update();
+        this.lastUpdate = timestamp;
+      }
+
+      this.draw();
+      this.animation = requestAnimationFrame((t) => this.loop(t));
+    },
+  };
+
+  function initNeuralBackground(canvas) {
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    const nodesCount = 120;
+    const nodes = [];
+
+    function resize() {
+      width = canvas.width = canvas.clientWidth;
+      height = canvas.height = canvas.clientHeight;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    function Node(x, y) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 1;
+      this.vy = (Math.random() - 0.5) * 1;
+      this.radius = 2 + Math.random() * 2;
+    }
+
+    for (let i = 0; i < nodesCount; i++) {
+      nodes.push(new Node(Math.random() * width, Math.random() * height));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgba(100, 220, 255, 0.2)";
+      nodes.forEach((node) => {
+        node.x += node.vx;
+        node.y += node.vy;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      for (let i = 0; i < nodesCount; i++) {
+        for (let j = i + 1; j < nodesCount; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const maxDist = 80;
+          if (dist < maxDist) {
+            ctx.strokeStyle = `rgba(100, 220, 255, ${1 - dist / maxDist})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  }
+</script>
+
+{{ end }}
