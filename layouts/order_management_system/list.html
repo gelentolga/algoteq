@@ -11,7 +11,7 @@
   >
     <img
       src="/images/omg-try.png"
-      class="w-[380px] absolute right-10 max-sm:hidden"
+      class="w-[380px] absolute right-10 max-sm:right-0 max-sm:w-[100px]"
     />
     <div
       class="leftSide"
@@ -26,7 +26,9 @@
       class="rightSide flex justify-center items-center max-sm:items-end max-sm:justify-end"
     >
       <div class="flex flex-col text-right">
-        <span class="text-2xl">“Quality is not an act, it is a habit.”</span>
+        <span class="text-2xl max-sm:text-xl"
+          >“Quality is not an act, it is a habit.”</span
+        >
         <span class="text-md">Aristotle</span>
       </div>
     </div>
@@ -34,7 +36,7 @@
   <!-- Second Section -->
 
   <div
-    class="fisrtSection w-5/6 h-[500px] max-sm:h-[300px] flex flex-col justify-around relative"
+    class="fisrtSection w-5/6 h-[500px] max-sm:h-[400px] flex flex-col justify-around relative"
   >
     <div class="h-1 bg-gradient-to-r from-green-400 to-blue-500 relative"></div>
     <div
@@ -156,12 +158,14 @@
             </div>
           </div>
           <div class="flex justify-start mt-20 max-sm:mt-10 ml-10 max-sm:ml-0">
-            <button
-              type="submit"
-              class="px-8 py-3 bg-gradient-to-r from-blue-400 to-green-400 font-semibold hover:scale-105 hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-white shadow-sm text-white"
-            >
-              Let's talk
-            </button>
+            <a href="/contact-us">
+              <button
+                type="submit"
+                class="px-8 py-3 bg-gradient-to-r from-blue-400 to-green-400 font-semibold hover:scale-105 hover:from-green-600 hover:to-blue-600 transition-all duration-300 shadow-white shadow-sm text-white"
+              >
+                Let's talk
+              </button>
+            </a>
           </div>
         </div>
       </div>
@@ -182,7 +186,7 @@
       x-transition:enter-end="opacity-100 translate-y-0"
     >
       <div
-        class="flex flex-col justify-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+        class="flex flex-col justify-center w-full max-w-[800px] min-h-[700px] max-sm:min-h-[300px]"
       >
         <img
           src="/images/imac-binance.png"
@@ -196,7 +200,7 @@
     <div
       class="w-full md:w-11/12 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
-      open: null,
+      open: 0,
       items: [
         {
           title: 'Separation of Concerns',
@@ -302,7 +306,7 @@
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-1 max-sm:order-1"
       x-data="{
       shown: true,
-      open: null,
+      open: 0,
       items: [
         {
           title: 'Multi-Asset',
@@ -416,7 +420,7 @@
       x-transition:enter-end="opacity-100 translate-y-0"
     >
       <div
-        class="flex justify-center items-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+        class="flex justify-center items-center w-full max-w-[800px] min-h-[700px] max-sm:min-h-[300px]"
       >
         <img
           src="/images/imac-binance-2.png"
@@ -442,7 +446,7 @@
       x-transition:enter-end="opacity-100 translate-y-0"
     >
       <div
-        class="flex justify-center items-center w-full max-w-[600px] min-h-[700px] max-sm:min-h-[300px]"
+        class="flex justify-center items-center w-full max-w-[800px] min-h-[700px] max-sm:min-h-[300px]"
       >
         <img
           src="/images/imac-binance-3.png"
@@ -457,7 +461,7 @@
       class="w-auto md:w-3/4 max-sm:w-11/12 mx-auto order-2 max-sm:order-1"
       x-data="{
       shown: true,
-      open: null,
+      open: 0,
       items: [
         {
           title: 'Non-Functional Aspects',
